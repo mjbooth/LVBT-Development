@@ -1,0 +1,131 @@
+{% paginate article.comments by settings.blog-comments-per-page %}
+
+<div class="row show-for-medium-up">
+  <div class="columns large-12">
+    {% include 'snippet-breadcrumbs' %}
+  </div> 
+</div>
+
+<div class="previous-next row">
+  <div class="previous columns large-2 small-6">
+    {% if blog.previous_article %}
+      {% capture prev_blog_text %}<span aria-hidden="true" class="glyph arrow-left"></span> Previous {% endcapture %}
+      <span class="left">{{ prev_blog_text | link_to: blog.previous_article }}</span>
+    {% endif %}
+    <div class="border-decoration show-for-large-up"></div>
+  </div>
+
+  <div class="next columns large-3 large-offset-7 small-6">
+    {% if blog.next_article %}
+      {% capture next_blog_text %}Next <span aria-hidden="true" class="glyph arrow-right"></span>{% endcapture %}
+      <span class="right">{{ next_blog_text | link_to: blog.next_article }}</span>
+    {% endif %}
+    <div class="border-decoration show-for-large-up"></div>
+  </div>
+</div>
+
+<div class="left-two-columns-wrapper row"> 
+  
+  <div class="article columns large-9">
+    
+    <div class="left-sidebar columns large-3 show-for-large-up">
+      <div class="date block">
+        <h3 class="title">Date</h3>
+        <p class="content">{{ article.published_at | date: "%B %d %Y" }}</p>
+      </div>
+        
+      <div class="author block">
+        <h3 class="title">Written By</h3>
+        <p class="content">{{ article.author }}</p>
+      </div>
+      
+      <div class="comments block">
+        {% if article.comments_enabled? %}{% endif %}
+          <h3 class="title">Comments</h3>
+          <p class="content">{{ article.comments_count }} {{ article.comments_count | pluralize: "Comment", "Comments" }}</p>
+      </div>
+
+    </div>
+
+    <div class="middle-column columns large-9">
+      <h1 class="title"><a href="{{ article.url }}">{{ article.title }}</a></h1>
+      <p class="mobile-meta show-for-medium-down">
+        Written by {{ article.author }} - {{ article.published_at | date: "%B %d %Y" }}
+      </p>
+      <div class="content colored-links rte-content">{{ article.content }}</div>
+
+       <div class="social-share block clearfix">
+        {% include 'snippet-article-share' %}
+      </div>
+
+      <!-- Begin comments -->
+      {% if blog.comments_enabled? %}
+      <div id="comments" class="comments">
+        
+        {% if article.comments.size > 0 or comment.created_at %}
+        <h2 class="title">Comments</h3>
+        
+        {% if comment and comment.created_at %}
+          <div id="comment-{{ comment.id }}" class="comment clearfix">
+            <h3 class="author"><strong>{{ comment.author }}</strong> <br/>  <span class="date">{{ comment.created_at | date: "%B %d %Y" }}</span></h3>
+            <div class="comment-content">{{ comment.content }}</div>
+          </div> <!-- /.comment -->
+        {% endif %}
+        
+        {% for comment in article.comments %}
+          <div id="comment-{{ comment.id }}" class="comment clearfix">
+            <h3 class="author"><strong>{{ comment.author }}</strong> <br/> <span class="date">{{ comment.created_at | date: "%B %d %Y" }}</span></h3>
+            <div class="comment-content">{{ comment.content }}</div>
+          </div> <!-- /.comment -->
+        {% endfor %}
+
+        <div class="row">
+          {% include 'snippet-pagination' %}
+        </div>
+
+        {% endif %}
+        
+        <div class="comment-form">
+          {% form article %}
+          <h2 class="title">Leave a comment</h2>
+
+          {% if form.posted_successfully? %}
+          {% if blog.moderated? %}
+          <p class="subtext success">Thank you for your comment. It will have to be approved by the blog owner first before showing up.</p>
+          {% else %}
+          <p class="subtext success">Thank you, your comment has been posted.</p>
+          {% endif %}
+          {% endif %}
+
+          {% if form.errors %}
+          <p class="subtext error">Not all the fields have been filled out correctly</p>
+          {% endif %}
+
+          <label for="comment_author">Your name</label>
+          <input type="text" id="comment_author" name="comment[author]" size="40" class="text" />
+          <label for="comment_email">Your email</label>
+          <input type="text" id="comment_email" name="comment[email]" size="40" class="text" />
+          <label for="comment_body">Comment</label>
+          <textarea id="comment_body" name="comment[body]" cols="40" rows="10" class="text">{{form.body}}</textarea>
+
+          <input type="submit" value="Post comment" class="button" id="comment-submit" />
+
+          {% if blog.moderated? %}
+          <div class="notice">Comments have to be approved before showing up</div>
+          {% endif %}
+
+          {% endform %}
+        </div>
+      </div> 
+      {% endif %}
+      <!-- End comments -->
+    </div>
+  </div>
+    
+  <!-- Begin sidebar -->
+  {% include 'snippet-blog-sidebar' %}
+
+  <!-- End sidebar -->
+  
+</div>
+{% endpaginate %}

@@ -1,0 +1,42 @@
+<div class="account-content">
+<div id="customer-register">
+  <div class="row">
+    <div id="register" class="columns large-12">
+      <h1 class="page-title">Create Account</h1>
+      {% include 'snippet-breadcrumbs' %}
+
+	    {% form 'create_customer' %}
+	
+	      {{ form.errors | default_errors }}
+
+	      <div id="first_name" class="clearfix large_form">
+	        <label for="first_name" class="label">First Name</label>
+	        <input type="text" value="" name="customer[first_name]" id="first_name" class="text" size="30" />
+	      </div>
+
+	      <div id="last_name" class="clearfix large_form">
+	        <label for="last_name" class="label">Last Name</label>
+	        <input type="text" value="" name="customer[last_name]" id="last_name" class="text" size="30" />
+	      </div>
+
+	      <div id="email" class="clearfix large_form">
+	        <label for="email" class="label">Email Address</label>
+	        <input type="email" value="" name="customer[email]" id="email" class="text" size="30" />
+	      </div>
+
+	      <div id="password" class="clearfix large_form">
+	        <label for="password" class="label">Password</label>
+	        <input type="password" value="" name="customer[password]" id="password" class="password text" size="30" />
+	      </div>
+
+	      <div class="action_bottom">
+	        <input class="button" type="submit" value="Create" />
+	        <span class="note">or <a href="{{ shop.url }}/account/login">Login to an Existing Account</a></span>
+	      </div>
+	
+	    {% endform %}
+        
+    </div><!-- #register -->
+  </div><!-- .row -->
+</div><!-- #customer-register -->
+</div>

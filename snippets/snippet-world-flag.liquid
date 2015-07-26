@@ -1,0 +1,15 @@
+<div class="flags">
+	{% assign flags = collection.metafields.flags %}{% assign key = 'country' %} <span style="display: none;">{{ flags[key] }}</span>
+	{% if flags[key] == 'AUS' %}
+	<img class="flags-icon" src="https://cdn.shopify.com/s/files/1/0653/1555/files/flag_australia.png?4069416455270246770"></img>
+	{% elsif flags[key] == 'GBR' %}
+	<img class="flags-icon" src="https://cdn.shopify.com/s/files/1/0653/1555/files/flag_UK.png?2876311455800055549"></img>
+	{% elsif flags[key] == 'THA' %}
+	<img class="flags-icon" src="https://cdn.shopify.com/s/files/1/0653/1555/files/flag_thailand.png?109605692634644911"></img>
+	{% elsif flags[key] == 'BEL' %}
+	<img class="flags-icon" src="https://cdn.shopify.com/s/files/1/0653/1555/files/flag_belgium.png?109605692634644911"></img>
+	{% endif %}
+	<span style="padding-left: 10px;">
+		{% assign origin = collection.metafields.origin %}{% assign key = 'location' %}<span>{{ origin[key] }}
+	</span>
+</div>

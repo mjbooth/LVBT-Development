@@ -1,0 +1,5 @@
+<div class="columns large-4 small-4">
+	<a href="{{ product.url | within: collection }}">
+		<img src="{{ product.featured_image.src | product_img_url: 'compact' }}" alt="{{ product.featured_image.alt | escape }}" />
+	</a>
+</div>

@@ -1,0 +1,22 @@
+<div class="collection-item columns large-3">
+  <a href="{{ collection.url }}">
+    <div class="image-wrapper">
+      <div class="hover"></div>
+      {% if collection.image %}
+        {{ collection.image.src | collection_img_url: 'large' | img_tag: collection.image.alt }}
+      {% else %}
+        {{ collection.products.first.featured_image.src | product_img_url: 'large' | img_tag: collection.title }}
+      {% endif %}
+    </div><!-- .coll-image-wrap -->
+    <div class="caption">
+      <div class="bg"></div>
+      <div class="inner">
+        <div class="title">
+          {{ collection.title }}
+        </div>
+        <p class="product-count">{{ collection.all_products_count }} {{ collection.all_products_count | pluralize:'product','products' }}</p>
+      </div>
+    </div>
+  </a>
+</div>
+{% cycle 'clear-row': '', '', '', '<div class="clearfix"></div>' %}

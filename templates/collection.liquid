@@ -1,0 +1,120 @@
+{% assign products_per_row = settings.collections-products-per-row | to_number %}
+{% assign products_per_page =  products_per_row | to_number | times: settings.collections-rows-per-page %}
+
+{% paginate collection.products by products_per_page %}
+<header class="row">
+  <div class="left columns large-6">
+    {% comment %}<h1 class="page-title">{{ collection.title }}</h1>{% endcomment %}
+    {% if settings.collections-breadcrumbs-show %}
+    {% include 'snippet-breadcrumbs' %}
+    {% endif %}
+  </div>
+</header>
+
+<div class="row">
+  <div class="columns">
+    <div class="divider"></div>
+  </div>
+</div>
+
+<div class="row left columns large-3">
+  {% include 'filter-menu' %}
+</div>
+
+<div class="row large-9" style="float: right;">
+  {% if collection.description.size > 0 %}
+  <div class="description columns intro">
+    <article class="" style="float: left;">
+      <div style="float: left;" class="large-3">
+        {{ collection.image.src | collection_img_url: 'large' | img_tag: collection.image.alt }}
+      </div>
+      <div class="collection-intro">
+        {% if collection.title == 'LYLA&BO' or collection.title == 'SUPA SUNDAYS' or collection.title =="Ashiana" or collection.title =="LVBT" or collection.title =="Amadoria" or collection.title =="Posh"  or collection.title =="MYA BAY" %}
+        <div class="flags">
+          <h1>{{ collection.title}}</h1>
+          {% include 'snippet-world-flag' %}
+        </div>
+        {% else %}
+          <h1>{{ collection.title}}</h1>
+        {% endif %}
+        {{ collection.description }}
+      
+{% comment %}        {% if collection.title == 'Full Collection' %}
+        <div class="mini-nav">
+          <ul>
+          {% for link in linklists.product.links %}
+            <li style="float: left; width: 40%; list-style-type:none">{{ link.title | link_to: link.url }}</li>
+          {% endfor %}
+        </ul>
+        </div>
+      </div>
+      {% endif %}{% endcomment %}
+    </article>
+  </div>
+  {% endif %}
+
+  {% if shop.products_count == 0 %}
+
+  {% include 'snippet-default-products' %}
+
+  {% else %}
+  <section class="row">
+    <div class="right columns large-12">
+      <div class="product-grid clearfix">
+        {% for product in collection.products %}
+        {% include 'snippet-product-item' with products_per_row %}
+        {% endfor %}
+      </div>        
+    </div>
+  </section>
+  {% endif %}
+
+</div>
+
+<div class="row">
+  <div class="columns">
+    <div class="divider bottom-margin"></div>
+  </div>
+</div>
+
+
+<footer class="row">
+  <div class="left columns large-6">
+    {% if settings.collections-breadcrumbs-show %}
+    {% include 'snippet-breadcrumbs' %}
+    {% endif %}
+  </div>
+  <div class="right columns large-6">
+    {% include 'snippet-pagination' %}
+  </div>
+
+</footer>
+
+{% endpaginate %}
+
+<script>
+/* Product Tag Filters - Good for any number of filters on any type of collection pages */
+/* Brought to you by Caroline Schnapp */
+var collFilters = jQuery('.tags-listbox');
+collFilters.change(function() {
+  var newTags = [];
+  collFilters.each(function() { 
+    if (jQuery(this).val()) {
+      newTags.push(jQuery(this).val());
+    }
+  });
+  if (newTags.length) {
+    var query = newTags.join('+');
+    window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('tag', query);
+  } 
+  else {
+    {% if collection.handle %}
+    window.location.href = '/collections/{{ collection.handle }}';
+    {% elsif collection.products.first.type == collection.title %}
+    window.location.href = '{{ collection.title | url_for_type }}';
+    {% elsif collection.products.first.vendor == collection.title %}
+    window.location.href = '{{ collection.title | url_for_vendor }}';
+    {% endif %}
+  }
+});
+</script>

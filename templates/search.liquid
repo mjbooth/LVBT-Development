@@ -1,0 +1,92 @@
+{% paginate search.results by settings.search-items-per-page %}
+<div class="row">
+  <div class="large-12 columns">
+    <h1 class="page-title">Search</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="columns">
+    <div class="divider"></div>
+  </div>
+</div>
+<div class="row summary narrow">
+  {% if search.terms != "" %}
+  <div class="large-4 columns">
+    <p>Search results for <strong>"{{ search.terms }}"</strong></p>
+  </div>    
+  {% endif %}
+
+  <div class="large-4 columns">
+    <div class="searchbar-container">
+      <form  action="/search" method="get" role="search">
+        {% if settings.search-products-only %}<input type="hidden" name="type" value="product" />{% endif %}
+        <input name="q" type="text" placeholder="Search store..." class="hint text" value="{{ search.terms }}" />
+        {% comment %}<input type="submit" value="" name="submit" class="button prefix {{ settings.color-icons-theme }}" />{% endcomment %}
+        <button aria-hidden="false" class="glyph search"></button>
+      </form>
+    </div>
+  </div>
+
+  {% if search.terms != "" %}
+  <div class="large-4 columns">
+    <p><strong>{{ search.results.size }}</strong> results found</p>
+  </div>
+  {% endif %}
+</div>
+<div class="row">
+  <div class="columns">
+    <div class="divider results"></div>
+  </div>
+</div>
+
+{% if search.results != empty %}
+  
+  <!-- Begin results -->
+  {% if settings.search-products-only %}
+    <section class="row">
+      <div class="product-grid clearfix">
+        {% for product in search.results %}
+          {% include 'snippet-product-item' with '4' %}
+        {% endfor %}
+      </div>
+    </section>
+  {% else %} 
+  {% comment %} mixed results {% endcomment %}
+    {% for item in search.results %}
+      <div class="row results narrow">
+        <div class="large-4 columns text-center">
+          
+            <div class="thumbnail">
+              {% if item.featured_image.size > 0 %}
+              <a href="{{ item.url }}">{{ item.featured_image | product_img_url: 'medium' | img_tag }}</a>
+              {% endif %}
+            </div>
+          
+        </div>
+        <div class="large-8 columns">
+          <div class="search-result">
+            <h3>{{ item.title | highlight: search.terms | link_to: item.url }}</h3>
+            
+            {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="columns">
+          <div class="divider results"></div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+<!-- End results -->
+{% endif %}
+
+<div class="row">
+  <div class="right columns large-6">
+    {% include 'snippet-pagination' %}
+  </div>
+</div>
+
+{% endpaginate %}

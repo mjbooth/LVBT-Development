@@ -1,0 +1,25 @@
+{% if settings.pages-breadcrumb-show %}
+<div class="row">
+  <div class="columns">
+    {% include 'snippet-breadcrumbs' %}
+  </div>
+</div>
+{% endif %}
+  
+<div class="row colored-links">
+  <div class="columns large-7">
+    <h1 class="page-title">{{ page.title }}</h1>  
+    <div class="rte-content page-content">
+      {{ page.content }}
+    </div>
+  </div>
+
+  <div class="columns large-4 push-1  ">
+    <div class="divider show-for-small"></div>
+    <h3>{{ settings.pages-sidebar-title }}</h3> 
+    <div>
+      {{ settings.pages-sidebar-content }}
+    </div>
+  </div>
+
+</div>

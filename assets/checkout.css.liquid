@@ -1,0 +1,164 @@
+{% assign google_fonts_list = '' %}
+
+{% comment %} settings.font-advanced-logo-enabled {% endcomment %}
+{% if settings.font-advanced-logo-enabled %}
+  {% if settings.font-advanced-logo-type == 'google' %}
+    {% assign font =  "|" | append: settings.font-advanced-logo | replace: " ", "+" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% else %}
+  {% assign font_family = settings.font-logo %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% assign font = "|" | append: words[1] | replace: "'", "" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% endif %}
+
+{% comment %} settings.font-advanced-mainmenu-enabled{% endcomment %}
+{% if settings.font-advanced-mainmenu-enabled %}
+  {% if settings.font-advanced-mainmenu-type == 'google' %}
+    {% assign font = "|" | append: settings.font-advanced-mainmenu | replace: " ", "+" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% else %}
+  {% assign font_family = settings.font-mainmenu %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% assign font = "|" | append: words[1] | replace: "'", "" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% endif %}
+
+{% comment %} settings.font-advanced-headings-enabled{% endcomment %}
+{% if settings.font-advanced-headings-enabled %}
+  {% if settings.font-advanced-headings-type == 'google' %}
+    {% assign font = "|" | append: settings.font-advanced-headings | replace: " ", "+" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% else %}
+  {% assign font_family = settings.font-headings %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% assign font = "|" | append: words[1] | replace: "'", "" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% endif %}
+
+{% comment %} settings.font-advanced-text-enabled{% endcomment %}
+{% if settings.font-advanced-text-enabled %}
+  {% if settings.font-advanced-text-type == 'google' %}
+    {% assign font = "|" | append: settings.font-advanced-text | replace: " ", "+" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% else %}
+  {% assign font_family = settings.font-text %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% assign font = "|" | append: words[1] | replace: "'", "" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% endif %}
+
+{% comment %} settings.font-advanced-accent-enabled{% endcomment %}
+{% if settings.font-advanced-accent-enabled %}
+  {% if settings.font-advanced-accent-type == 'google' %}
+    {% assign font = "|" | append: settings.font-advanced-accent | replace: " ", "+" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% else %}
+  {% assign font_family = settings.font-accent %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% assign font = "|" | append: words[1] | replace: "'", "" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% endif %}
+
+
+
+{% if google_fonts_list.size > 0  %}
+  @import url("//fonts.googleapis.com/css?family={{ google_fonts_list | replace_first: "|", "" }}");
+{% endif %}
+
+
+body { padding: 0; font-family: {% if settings.font-advanced-text-enabled %} "{{ settings.font-advanced-text }}" {% else %} {{ settings.font-text }} {% endif %}; color: {{ settings.color-text }}; }
+
+html, body { /* {% if settings.general-bg-image-enabled %} */ /* {% if settings.general-bg-image-display == "tiled" %} */ background: {{ settings.color-page-bg }} url('{{ "bg-custom.png" | asset_url }}') repeat scroll; /* {% endif %} */ /* {% if settings.general-bg-image-display == "full" %} */ background: {{ settings.color-page-bg }} url('{{ "bg-custom.png" | asset_url }}') no-repeat scroll; /* {% endif %} */ /* {% if settings.general-bg-image-display == "stretch" %} */ background: url('{{ "bg-custom.png" | asset_url }}') no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; /* {% endif %}*/ /* {% else %}*/ background: {{ settings.color-page-bg }}; /* {% endif %}*/ }
+
+a, a:link, a:visited { color: {{ settings.color-link }}; }
+
+a:hover { color: {{ settings.color-link-hover }}; }
+
+#container { width: 100%; margin: 0 auto; }
+
+h3, .group h3 { color: {{ settings.color-text }}; text-shadow: none; }
+
+.form td { padding: 8px 5px; }
+
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea { font-size: emCalc(12px); -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; background: {{ settings.color-page-bg }}; color: {{ settings.color-text }}; border: 1px solid {{ settings.color-border }}; letter-spacing: 0.8px; }
+input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, textarea:focus { background: {{ settings.color-page-bg }}; color: {{ settings.color-text }}; border: 1px solid {{ settings.color-border }}; }
+
+input[type="button"], input[type="submit"] { letter-spacing: 1px; background: {{ settings.color-button-bg }}; color: {{ settings.color-button }}; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; font-family: {% if settings.font-advanced-accent-enabled %} "{{ settings.font-advanced-accent }}" {% else %} {{ settings.font-accent }} {% endif %}; font-weight: 300 !important; font-size: emCalc(12px) !important; text-transform: uppercase; border: 0; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; padding: 12px 24px !important; }
+input[type="button"]:hover, input[type="submit"]:hover { background: {{ settings.color-button-bg-hover }}; }
+
+.group, #email { background: {{ settings.color-panel-bg }} !important; border-color: {{ settings.color-border }} !important; }
+
+/*  Info Bar
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#info-bar { background: {{ settings.color-panel-bg }}; color: {{ settings.color-text }}; border-bottom: none; text-align: center; padding: 5px 0; position: relative; left: 0; top: 0; font-size: 60%; width: 100%; }
+
+/*  Header
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#container.slim #header { background: none; }
+
+#header { width: 100%; background: none; padding: 0 5px; }
+#header #logo { display: block; margin: 0 auto; background: url({{ "logo_medium.png" | asset_url }}) 50% 50% no-repeat; height: 240px; width: 240px; /* {% unless settings.header-logo-show %} */ display: none; /* {% endunless %}*/ }
+#header #tagline { /* {% if settings.header-logo-show %} */ display: none; /* {% endif %}*/ }
+#header #tagline .title { font-family: {% if settings.font-advanced-logo-enabled %} "{{ settings.font-advanced-logo }}" {% else %} {{ settings.font-logo }} {% endif %}; font-size: 28px; margin: 0; text-align: center; display: block; color: {% if settings.color-logo-enabled %} {{ settings.color-logo }}  {% else %} {{ settings.color-text }} {% endif %}; padding: 50px 0; }
+#header #tagline .title a { color: {% if settings.color-logo-enabled %} {{ settings.color-logo }}  {% else %} {{ settings.color-text }} {% endif %}; display: inline-block; bottom: 5px; left: 0; }
+#header #tagline .subtitle { display: none; }
+
+/*  Content
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#container.slim #main { background: none; }
+
+#main { margin: 0 auto 30px; background: none; }
+#main #overview { background: {{ settings.color-panel-bg }}; border: 1px solid {{ settings.color-border }}; padding: 10px; margin: 10px; }
+#main #overview h2 { color: {{ settings.color-text }}; }
+#main #cost, #main #order-num { text-shadow: none; }
+#main #products { float: left; width: 480px; border-right: 1px solid {{ settings.color-border }}; }
+#main #products #thumbs span { color: {{ settings.color-text }}; }
+#main #products #thumbs div { border: 0; }
+#main #cost { color: {{ settings.color-text }}; font-family: {% if settings.font-advanced-text-enabled %} "{{ settings.font-advanced-text }}" {% else %} {{ settings.font-text }} {% endif %}; }
+#main .group h3, #main .pgroup h3, #main label { font-weight: normal; }
+#main #buttons { background: none; border: 0; }
+
+/*  Footer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#footer { background: none; padding: 0 0 60px; color: {{ settings.color-text }}; }

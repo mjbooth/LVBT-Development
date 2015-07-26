@@ -1,0 +1,32 @@
+<div class="menu">
+  {% if settings.header-search-show %}
+    <a class="searchbar-open" href="#">Search<span aria-hidden="true" class="glyph search"></span></a>
+  {% endif %}
+
+  {% if settings.header-account-show and shop.customer_accounts_enabled %}
+    <a class="account-open" href="#">Account<span aria-hidden="true" class="glyph account"></span></a>
+  {% endif %}
+    
+</div>
+
+<div class="searchbar-container">
+  <form  action="/search" method="get" role="search">
+    {% if settings.search-products-only %}<input type="hidden" name="type" value="product" />{% endif %}
+    <input name="q" type="text" placeholder="Search store..." class="search-box hint text" />
+    {% comment %}<input type="submit" value="" name="submit" aria-hidden="true" class="glyph search"  />{% endcomment %}
+    <button class="glyph search"></button>
+  </form>
+  <a href="#" aria-hidden="true" class="searchbar-close glyph cross"></a>
+</div>
+
+<div class="account-container">
+  {% if customer %}
+    <a href="/account">View Account (Logged in as {{ customer.first_name }})</a> <span class="separator">|</span> {{ "Logout" | customer_logout_link }}
+  {% else %}
+    {{ 'Log in' | customer_login_link }}{% if shop.customer_accounts_optional %} <span class="font-normal">or</span> {{ 'Sign Up' | customer_register_link }}{% endif %}
+  {% endif %}
+  <a href="#" aria-hidden="true" class="account-close glyph cross"></a>
+</div>
+
+
+

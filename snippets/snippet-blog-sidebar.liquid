@@ -1,0 +1,29 @@
+<div class="side-bar columns large-3">
+  <div class="divider"></div>
+  <div class="recent-articles block clearfix colored-links">
+    <h3 class="title">Recent Articles</h3>
+    <ul>
+      {% for article in blog.articles limit:10 %}
+      <li class="item">
+        <a href="{{ article.url }}">{{ article.title }}</a> <br/><em>Posted on {{ article.created_at | date: "%B %d, %Y" }}</em>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="tags block clearfix colored-links">
+    {% if blog.all_tags.size > 0 %}
+    <h3 class="title">Tags</h3>
+    <ul>
+      <li class="item{% unless current_tags %} active{% endunless %}"><a href="{{ shop.url}}/blogs/{{ blog.handle }}">All</a></li>
+      {% for tag in blog.all_tags %}
+      {% if current_tags contains tag %}
+      <li class="item active">{{ tag | link_to_remove_tag: tag }}</li>
+      {% else %}
+      <li class="item">{{ tag | link_to_add_tag: tag }}</li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</div>

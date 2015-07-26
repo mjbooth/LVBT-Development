@@ -1,0 +1,111 @@
+<div class="main-menu">
+  <nav role="navigation" class="widescreen clearfix">
+    <ul class="font-nav">
+      {% for link in linklists.main-menu.links %}
+          {% assign collection_dropdown = false %}
+          {% if link.url == "/collections/all" or link.url == "collections/all" %}
+            {% if settings.header-collections-sub-1-linklist.size > 0 or settings.header-collections-sub-2-linklist.size > 0 or settings.header-collections-sub-3-linklist.size > 0 or settings.header-collections-sub-4-linklist.size > 0 %}
+              {% assign collection_dropdown = true %}
+            {% endif %}
+          {% endif %}
+
+          {% assign auto_dropdown = false %}
+          {% if linklists[link.handle].links.size > 0 %}
+            {% assign auto_dropdown = true %}
+          {% endif %}
+          
+          {% if collection_dropdown %}
+            <li class="nav-item dropdown">
+              <a class="nav-item-link" href="{{ link.url }}">
+                {{ link.title }} <span aria-hidden="true" class="glyph arrow-down"></span>
+              </a>
+
+              <ul class="sub-nav catalog">              
+                <li class="sub-nav-item row">
+                  {% if settings.header-collections-sub-1-linklist.size > 0 %}
+                    <div class="columns large-3">
+                      {% if settings.header-collections-sub-1-title.size > 0 %}
+                        <h3 class="title">{{ settings.header-collections-sub-1-title }}</h3>
+                      {% endif %}
+                      <ul>
+                        {% for link in linklists[settings.header-collections-sub-1-linklist].links %}
+                           <li>{{ link.title | link_to: link.url }}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+
+                  {% if settings.header-collections-sub-2-linklist.size > 0 %}
+                    <div class="columns large-3">
+                      {% if settings.header-collections-sub-2-title.size > 0 %}
+                        <h3 class="title">{{ settings.header-collections-sub-2-title }}</h3>
+                      {% endif %}
+                      <ul>
+                        {% for link in linklists[settings.header-collections-sub-2-linklist].links %}
+                           <li>{{ link.title | link_to: link.url }}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+
+                  {% if settings.header-collections-sub-3-linklist.size > 0 %}
+                    <div class="columns large-3">
+                      {% if settings.header-collections-sub-3-title.size > 0 %}
+                        <h3 class="title">{{ settings.header-collections-sub-3-title }}</h3>
+                      {% endif %}
+                      <ul>
+                        {% for link in linklists[settings.header-collections-sub-3-linklist].links %}
+                           <li>{{ link.title | link_to: link.url }}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+
+                  {% if settings.header-collections-sub-4-linklist.size > 0 %}
+                    <div class="columns large-3">
+                      {% if settings.header-collections-sub-4-title.size > 0 %}
+                        <h3 class="title">{{ settings.header-collections-sub-4-title }}</h3>
+                      {% endif %}
+                      <ul>
+                        {% for link in linklists[settings.header-collections-sub-4-linklist].links %}
+                           <li>{{ link.title | link_to: link.url }}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+
+                </li>
+              </ul>
+            </li>
+          {% elsif auto_dropdown %}
+            <li class="nav-item dropdown">
+              <a class="nav-item-link" href="{{ link.url }}">
+                {{ link.title }} <span aria-hidden="true" class="glyph arrow-down"></span>
+              </a>
+
+                <ul class="sub-nav">
+                  <li>
+                    <div class="columns large-3">
+                      <ul>
+                      {% for link in linklists[link.handle].links %}
+                        <li class="sub-nav-item">{{ link.title | link_to: link.url }}</li>
+                      {% endfor %}
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+            </li>
+
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-item-link" href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+            </li>
+          {% endif %}
+
+      {% endfor %}
+    </ul>
+  </nav>
+
+</div>

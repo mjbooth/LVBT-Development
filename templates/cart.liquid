@@ -1,0 +1,105 @@
+<header class="row">
+  <div class="columns">
+    <h1 class="page-title">Your Cart</h1>
+  </div>
+</header>
+
+{% if cart.item_count > 0 %}
+
+<form action="/cart" method="post" class="custom">
+  <div class="row">
+    <div class="columns">
+      <table width="100%" class="cart-table">
+        <thead>
+          <tr>
+            <th class="image">&nbsp;</th>
+            <th class="title">&nbsp;</th>
+            <th class="quantity">Quantity</th>
+            <th class="total">Total</th>
+            <th class="remove">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in cart.items %}
+        {% if forloop.first %}
+          {% assign coll_handle = item.product.collections.first.handle %}
+          {% if coll_handle == 'frontpage' or coll_handle == '' %}{% assign coll_handle = 'all' %}{% endif %}
+        {% endif %}
+        <tr>
+          <td class="image">
+            <a href="{{ item.url | within: collections.all }}">
+            
+              <img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}" />
+            </a>
+
+            <p class="mobile-title"><a href="{{ item.product.url }}">{{ item.title }}</a></p>
+
+          </td>
+          <td class="title">
+            <p><a href="{{ item.url | within: collections.all }}">{{ item.title }}</a></p>
+          </td>
+          <td class="quantity"><input type="text" class="field styled-input" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" /></td>
+          <td class="total">{{ item.line_price | money }}</td>
+          <td class="remove"><a title="Remove" href="/cart/change?line={{ forloop.index }}&quantity=0" aria-hidden="true" class="glyph cross" title="remove"></a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div> <!-- .row -->
+      
+  <div class="row">
+
+    <div class="columns large-5 show-for-medium-up">
+      <div class="shipping-rates-calculator">
+        {% include 'snippet-shipping-rates-calculator' %}
+      </div>
+
+      <div class="continue-shopping show-for-medium-up">
+        <span><a href="/collections/{{ coll_handle }}"><span aria-hidden="true" class="glyph arrow-left"></span> Continue Shopping</a></span>
+      </div>
+    </div>
+
+
+    <div class="columns large-7">
+      <div class="totals columns">
+        <h3><strong>SUBTOTAL {{ cart.total_price | money }}</strong></h3>
+        <h4 id="estimated-shipping" style="display:none">+ Estimated shipping <em>{{ 0 | money }}</em></h4>
+        <input type="submit" name="update" class="button" value="Update cart" /> <span class="or">or</span>
+        <input  class="button" type="submit" name="checkout" value="Check out" />
+        {% if additional_checkout_buttons %}
+        <p class="additional-checkout-buttons">
+          {{ content_for_additional_checkout_buttons }}
+        </p>
+        {% endif %}
+      </div>
+
+      <div class="order-notes columns">
+        <div class="container">
+          <h3>Order Notes</h3>
+          <textarea id="cart-notes-area" name="note">{{ cart.note }}</textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="continue-shopping columns show-for-small columns hide-for-ie9-down">
+      <span><a href="/collections/{{ coll_handle }}"><span aria-hidden="true" class="glyph arrow-left"></span> Continue Shopping</a></span>
+    </div>
+
+  </div> <!-- .row -->
+</form>
+
+
+{% else %}
+
+<section class="empty-cart row colored-links">
+  <div class="columns">
+    <h1>It appears that your cart is currently empty!</h1>
+    <h2>You can continue browsing <a href="/collections/all">here</a>.</h2>
+  </div>
+</section><!-- #empty-cart -->
+
+{% endif %} <!-- if cart.item_count > 0  -->
+
+

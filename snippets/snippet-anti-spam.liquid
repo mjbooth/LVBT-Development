@@ -1,0 +1,14 @@
+{{ 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' | script_tag }}
+<script type="text/javascript">
+$(document).ready(function() {
+ var n1 = Math.round(Math.random() * 10 + 1);
+ var n2 = Math.round(Math.random() * 10 + 1);
+ $("#question").val(n1 + " + " + n2);
+ $(".contact-form").submit(function (e) {
+   if (eval($("#question").val()) != $("#answer").val()) {
+     $("#answer").css('box-shadow', '0px 0px 7px red');
+     e.preventDefault(); 
+   } 
+ });
+});
+</script>

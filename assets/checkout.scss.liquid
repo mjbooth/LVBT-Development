@@ -1,0 +1,325 @@
+
+{% assign google_fonts_list = '' %}
+
+{% comment %} settings.font-advanced-logo-enabled {% endcomment %}
+{% if settings.font-advanced-logo-enabled %}
+  {% if settings.font-advanced-logo-type == 'google' %}
+    {% assign font =  "|" | append: settings.font-advanced-logo | replace: " ", "+" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% else %}
+  {% assign font_family = settings.font-logo %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% assign font = "|" | append: words[1] | replace: "'", "" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% endif %}
+
+{% comment %} settings.font-advanced-mainmenu-enabled{% endcomment %}
+{% if settings.font-advanced-mainmenu-enabled %}
+  {% if settings.font-advanced-mainmenu-type == 'google' %}
+    {% assign font = "|" | append: settings.font-advanced-mainmenu | replace: " ", "+" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% else %}
+  {% assign font_family = settings.font-mainmenu %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% assign font = "|" | append: words[1] | replace: "'", "" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% endif %}
+
+{% comment %} settings.font-advanced-headings-enabled{% endcomment %}
+{% if settings.font-advanced-headings-enabled %}
+  {% if settings.font-advanced-headings-type == 'google' %}
+    {% assign font = "|" | append: settings.font-advanced-headings | replace: " ", "+" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% else %}
+  {% assign font_family = settings.font-headings %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% assign font = "|" | append: words[1] | replace: "'", "" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% endif %}
+
+{% comment %} settings.font-advanced-text-enabled{% endcomment %}
+{% if settings.font-advanced-text-enabled %}
+  {% if settings.font-advanced-text-type == 'google' %}
+    {% assign font = "|" | append: settings.font-advanced-text | replace: " ", "+" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% else %}
+  {% assign font_family = settings.font-text %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% assign font = "|" | append: words[1] | replace: "'", "" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% endif %}
+
+{% comment %} settings.font-advanced-accent-enabled{% endcomment %}
+{% if settings.font-advanced-accent-enabled %}
+  {% if settings.font-advanced-accent-type == 'google' %}
+    {% assign font = "|" | append: settings.font-advanced-accent | replace: " ", "+" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% else %}
+  {% assign font_family = settings.font-accent %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% assign font = "|" | append: words[1] | replace: "'", "" | append: ':400,700' %}
+    {% unless google_fonts_list contains font %}
+      {% capture google_fonts_list %}{{ google_fonts_list }}{{ font }}{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% endif %}
+
+
+
+{% if google_fonts_list.size > 0  %}
+  @import url("//fonts.googleapis.com/css?family={{ google_fonts_list | replace_first: "|", "" }}");
+{% endif %}
+
+body { 
+  padding: 0;
+  font-family: {% if settings.font-advanced-text-enabled %} "{{ settings.font-advanced-text }}" {% else %} {{ settings.font-text }} {% endif %};
+  color: {{ settings.color-text }} !important;
+}
+
+html, body { /* {% if settings.general-bg-image-enabled %} */ /* {% if settings.general-bg-image-display == "tiled" %} */ background: {{ settings.color-page-bg }} url('{{ "bg-custom.png" | asset_url }}') repeat scroll; /* {% endif %} */ /* {% if settings.general-bg-image-display == "full" %} */ background: {{ settings.color-page-bg }} url('{{ "bg-custom.png" | asset_url }}') no-repeat scroll; /* {% endif %} */ /* {% if settings.general-bg-image-display == "stretch" %} */ background: url('{{ "bg-custom.png" | asset_url }}') no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; /* {% endif %}*/ /* {% else %}*/ background: {{ settings.color-page-bg }}; /* {% endif %}*/ }
+
+.section__blank-slate, .modal {
+  background-color: {{ settings.color-page-bg }} !important;
+  border-color: {{ settings.color-border }} !important;
+}
+
+.shop {
+  text-align: center;
+  width: 100%;
+}
+
+{% unless settings.header-logo-center %} 
+@media all and (min-width: 768px) {
+  .shop {
+    text-align: left;
+  }
+}
+{% endunless %}
+
+.shop__name {
+  font-family: {% if settings.font-advanced-logo-enabled %} "{{ settings.font-advanced-logo }}" {% else %} {{ settings.font-logo | remove_first: "google, " }} {% endif %};
+  color: {% if settings.color-logo-enabled %} {{ settings.color-logo }}  {% else %} {{ settings.color-text }} {% endif %}; 
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.shop__logo {
+  display: inline-block;
+  max-width: 100% !important;
+}
+
+@media all and (min-width: 600px) {
+  .shop__logo {
+    max-width: 100% !important;
+  }
+}
+
+{% if settings.checkout_use_logo_image %}
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+
+  .shop > a {
+    display: inline-block;
+    background-image: url(#{'{{ "logo-retina.png" | asset_url }}'});
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+  }
+
+  .shop__logo {
+    visibility: hidden;
+  }
+
+}
+{% endif %}
+
+// pannels
+.fieldset, .field-group {
+  background-color: {{ settings.color-panel-bg }};
+  border-color: {{ settings.color-border }} !important;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: inherit;
+  box-shadow: inherit;
+}
+
+.order-summary { 
+  background-color: {{ settings.color-panel-bg }};
+  border-color: {{ settings.color-border }};
+  color: {{ settings.color-text }} !important;
+}
+
+// borders
+.section, .order-summary__section, .summary-body, .field+.field, .total-line--total, table { border-color: {{ settings.color-border }} !important; }
+
+.shop__desc { display: none; }
+
+th, td, .order-number, .payment-method-name, .payment-method-additional-info {
+  color: {{ settings.color-text }} !important;
+  border-color: {{ settings.color-border }} !important;
+}
+
+.header__backdrop {
+  background-color: {% if settings.color-header-bg-enabled %} {{ settings.color-header-bg }}  {% else %} {{ settings.color-panel-bg }} {% endif %} !important; 
+  background-image: none !important;
+}
+
+
+h1, h2, h3 {
+  font-family: {% if settings.font-advanced-headings-enabled %} "{{ settings.font-advanced-headings }}" {% else %} {{ settings.font-headings | remove_first: "google, " }} {% endif %} !important;
+  color: {{ settings.color-text }} !important;
+}
+
+// text colors
+label, p strong, strong, p, small,
+.step--current .section__header:before, .payment-due__currency,
+input[type="text"], input[type="tel"], input[type="email"], input[type="password"], select,
+.step--blank .section__header:before, .step--current .section__header:before
+{
+  color: {{ settings.color-text }} !important;
+  border-color: {{ settings.color-text }} !important;
+}
+
+
+.chrome .toggle:checked, .safari .toggle:checked,
+.chrome .toggle:checked:after, .safari .toggle:checked:after {
+  border-color: {{ settings.color-text }} !important;
+  background-color: {{ settings.color-text }} !important ;
+}
+
+.chrome .toggle:checked:after, .safari .toggle:checked:after {
+  background: #fff !important;
+}
+
+.chrome input[type="radio"]:checked,.safari input[type="radio"]:checked,
+.chrome input[type="radio"]:checked:hover,.safari input[type="radio"]:checked:hover {
+  border-color: {{ settings.color-text }} !important;
+  background-color: {{ settings.color-text }} !important;
+}
+
+.field input[type="text"], .field input[type="tel"], .field input[type="email"], .field input[type="password"], .field select {
+  margin: -1em -1em -1em -1em;
+  padding: 1em 1em 1em 1em;
+}
+
+input[type="text"]:-webkit-input-placeholder,input[type="tel"]:-webkit-input-placeholder,input[type="email"]:-webkit-input-placeholder,input[type="password"]:-webkit-input-placeholder,select:-webkit-input-placeholder {
+  color: {{ settings.color-text-alt }} !important;
+}
+
+input[type="text"]::-webkit-input-placeholder,input[type="tel"]::-webkit-input-placeholder,input[type="email"]::-webkit-input-placeholder,input[type="password"]::-webkit-input-placeholder,select::-webkit-input-placeholder {
+  color: {{ settings.color-text-alt }} !important;
+}
+
+input[type="text"]:-moz-placeholder,input[type="tel"]:-moz-placeholder,input[type="email"]:-moz-placeholder,input[type="password"]:-moz-placeholder,select:-moz-placeholder {
+  color: {{ settings.color-text-alt }} !important;
+}
+
+input[type="text"]::-moz-placeholder,input[type="tel"]::-moz-placeholder,input[type="email"]::-moz-placeholder,input[type="password"]::-moz-placeholder,select::-moz-placeholder {
+  color: {{ settings.color-text-alt }} !important;
+}
+
+input[type="text"]:-ms-input-placeholder,input[type="tel"]:-ms-input-placeholder,input[type="email"]:-ms-input-placeholder,input[type="password"]:-ms-input-placeholder,select:-ms-input-placeholder {
+  color: {{ settings.color-text-alt }} !important;
+}
+
+input[type="text"]::-ms-input-placeholder,input[type="tel"]::-ms-input-placeholder,input[type="email"]::-ms-input-placeholder,input[type="password"]::-ms-input-placeholder,select::-ms-input-placeholder {
+  color: {{ settings.color-text-alt }} !important;
+}
+
+a, a:link, a:visited { color: {{ settings.color-link }} !important; }
+a:hover { color: {{ settings.color-link-hover }} !important; }
+
+
+
+.btn, a.btn {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-weight: 300;
+  text-transform: uppercase;
+  border: 0;
+  letter-spacing: 1px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  font-size: 12px;
+  padding: 14px 28px !important;
+  background: {{ settings.color-button-bg }} !important; 
+  color: {{ settings.color-button }} !important;
+  border-color: {{ settings.color-border }}; 
+  font-family: {% if settings.font-advanced-accent-enabled %} "{{ settings.font-advanced-accent }}" {% else %} {{ settings.font-accent | remove_first: "google, " }} {% endif %};
+}
+
+.btn:hover, .btn:focus {
+  color: {{ settings.color-button }} !important; 
+  background: {{ settings.color-button-bg-hover }} !important;
+}
+
+.boxshadow .field--focus {
+  -webkit-box-shadow: 0 0 0 2px {{ settings.color-link }};
+  box-shadow: 0 0 0 2px {{ settings.color-link }};
+}
+
+
+
+::selection {
+  background: #b3d4fd; 
+}
+
+::-moz-selection {
+  background: #b3d4fd;
+}
+
+.footer {
+  background: {% if settings.color-footer-bg-enabled %} {{ settings.color-footer-bg }}  {% else %} {{ settings.color-panel-bg }} {% endif %} !important; 
+  color: {% if settings.color-footer-enabled %} {{ settings.color-footer }}  {% else %} {{ settings.color-text }} {% endif %} !important;
+}
+

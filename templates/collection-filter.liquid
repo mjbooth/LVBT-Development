@@ -1,0 +1,129 @@
+{% assign products_per_row = settings.collections-products-per-row | to_number %}
+{% assign products_per_page =  products_per_row | to_number | times: settings.collections-rows-per-page %}
+
+{% paginate collection.products by products_per_page %}
+<header class="row">
+  <div class="left columns large-6">
+    {% comment %}<h1 class="page-title">{{ collection.title }}</h1>{% endcomment %}
+    {% if settings.collections-breadcrumbs-show %}
+      {% include 'snippet-breadcrumbs' %}
+    {% endif %}
+  </div>
+  <div class="right columns large-6">
+    <div class="tag-filter">
+      {% if collection.all_tags.size > 0 and settings.collections-tags-show %}
+
+          <span class="title">Sort by Tags |</span>
+          
+          <form class="custom">
+            <select class="small tags-listbox" name="coll-filter" size="1">
+              <option value="">All</option>
+              {% for tag in collection.all_tags %}
+              {% if current_tags contains tag %}
+              <option value="{{ tag | handleize }}" selected>{{ tag }}</option>
+              {% else %}
+              <option value="{{ tag | handleize }}">{{ tag }}</option>
+              {% endif %}
+              {% endfor %}
+            </select>
+          </form>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+<div class="row">
+  <div class="columns">
+    <div class="divider"></div>
+  </div>
+</div>
+
+<div class="filter-2" id="navigation">
+  <div class="filter-bar">
+    <div class="filter-column">
+      <h3>Refine by:</h3>
+    </div>
+  </div>
+</div>
+
+<div class="row large-10" style="float: right;">
+  {% if collection.description.size > 0 %}
+  <div class="description columns">
+    <article class="large-7" style="float: left;">
+      <h1><span>Women's: </span>{{ collection.title}}</h1>
+      {{ collection.description }}
+      <div class="mini-nav">
+        {% if collection.title == 'Full Collection' %}
+        {% for link in linklists.product.links %}
+        {{ link.title | link_to: link.url }}
+        {% endfor %}
+      </div>
+      {% endif %}
+    </article>
+    <img src="https://cdn.shopify.com/s/files/1/0730/5135/files/ashania-brand-page.png" style="float: right;" class="large-4">
+  </div>
+  {% endif %}
+
+  {% if shop.products_count == 0 %}
+
+    {% include 'snippet-default-products' %}
+
+  {% else %}
+    <section class="row">
+      <div class="product-grid clearfix">
+        {% for product in collection.products %}
+          {% include 'snippet-product-item' with products_per_row %}
+        {% endfor %}
+      </div>
+    </section>
+
+  {% endif %}
+</div>
+
+<div class="row">
+  <div class="columns">
+    <div class="divider bottom-margin"></div>
+  </div>
+</div>
+
+
+<footer class="row">
+  <div class="left columns large-6">
+    {% if settings.collections-breadcrumbs-show %}
+      {% include 'snippet-breadcrumbs' %}
+    {% endif %}
+  </div>
+  <div class="right columns large-6">
+    {% include 'snippet-pagination' %}
+  </div>
+
+</footer>
+
+{% endpaginate %}
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  /* Brought to you by Caroline Schnapp */
+  var collFilters = jQuery('.tags-listbox');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() { 
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('tag', query);
+    } 
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+</script>

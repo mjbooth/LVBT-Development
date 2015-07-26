@@ -1,0 +1,15 @@
+<div class="row full-width">
+  <div class="columns">
+    
+    <div class="page-content">
+    	{% if settings.pages-breadcrumb-show %}
+      	{% include 'snippet-breadcrumbs' %}
+      {% endif %}
+      <h1 class="page-title">{{ page.title }}</h1>
+      <div class="rte-content colored-links">
+	      {{ page.content }}
+	    </div>
+    </div>
+
+  </div>
+</div>

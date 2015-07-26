@@ -1,0 +1,21 @@
+{% if paginate.previous or paginate.next %}
+<ul class="pagination">
+  
+  <li  class="arrow left{% unless paginate.previous %} unavailable{% endunless %}"><a {% if paginate.previous %}href="{{ paginate.previous.url }}"{% endif %}><span class="glyph arrow-left" aria-hidden="true"></span> Previous</a></li>
+  
+  {% for part in paginate.parts %}
+    {% if part.is_link %}
+      <li><a href="{{ part.url }}">{{ part.title }}</a></li>
+    {% else %}
+      {% if part.title == '&hellip;' %}
+        <li class="unavailable"><a href="">&hellip;</a></li>
+      {% else %}
+        <li class="current"><a href="">{{ part.title }}</a></li>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  
+  <li  class="arrow right{% unless paginate.next %} unavailable{% endunless %}"><a {% if paginate.next %}href="{{ paginate.next.url }}"{% endif %}>Next <span class="glyph arrow-right" aria-hidden="true"></span></a></li>
+  
+</ul>
+{% endif %}

@@ -1,0 +1,64 @@
+{% paginate blog.articles by settings.blog-articles-per-page %}
+
+<div class="row blog-title">
+  <div class="columns large-12">
+    <h1 class="text">{{ blog.title }}</h1>
+  </div> 
+</div>
+
+<div class="left-two-columns-wrapper row"> 
+  <!-- Begin content -->
+  <div class="articles columns large-9">
+    {% if blog.articles.size <= 0 %}
+      <h2>No articles found...</h2>
+    {% endif %}
+    
+    {% for article in blog.articles %}
+    <div class="article clearfix">
+      <div class="left-sidebar columns large-3 show-for-large-up">
+        <div class="date block">
+          <h3 class="title">Date</h3>
+          <p class="content">{{ article.published_at | date: "%B %d %Y" }}</p>
+        </div>
+          
+        <div class="author block">
+          <h3 class="title">Written By</h3>
+          <p class="content">{{ article.author }}</p>
+        </div>
+        
+        <div class="comments block">
+          {% if article.comments_enabled? %}{% endif %}
+            <h3 class="title">Comments</h3>
+            <p class="content">{{ article.comments_count }} {{ article.comments_count | pluralize: "Comment", "Comments" }}</p>
+        </div>
+      </div>
+
+      <div class="middle-column columns large-9">
+        <h1 class="title"><a href="{{ article.url }}">{{ article.title }}</a></h1>
+        <p class="mobile-meta show-for-medium-down">
+            Written by {{ article.author }} - {{ article.published_at | date: "%B %d %Y" }}
+        </p>
+        <div class="content rte-content colored-links">
+          {{ article.excerpt_or_content }}
+        
+          {% if article.excerpt != blank %}
+          <p class="read-more"><a href="{{ article.url }}">Read more <span aria-hidden="true" class="glyph arrow-right"></span></a></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+    
+  <!-- Begin sidebar -->
+  {% include 'snippet-blog-sidebar' %}
+  <!-- End sidebar -->
+
+</div>
+<!-- End content -->
+<div class="row">
+  <div class="right columns large-6">
+    {% include 'snippet-pagination' %}
+  </div>
+</div>
+{% endpaginate %}

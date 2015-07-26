@@ -1,0 +1,88 @@
+{% assign google_font_families = '' %}
+
+{% unless settings.font-advanced-logo-enabled %}
+  {% assign font_family = settings.font-logo %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% capture google_font_families %}{{ google_font_families }}'{{ words[1] | replace: "'", "" }}:400,700', {% endcapture %}
+  {% endif %}
+{% endunless %}
+
+{% unless settings.font-advanced-mainmenu-enabled %}
+  {% assign font_family = settings.font-mainmenu %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% capture google_font_families %}{{ google_font_families }}'{{ words[1] | replace: "'", "" }}:400,700', {% endcapture %}
+  {% endif %}
+{% endunless %}
+
+{% unless settings.font-advanced-headings-enabled %}
+  {% assign font_family = settings.font-headings %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% capture google_font_families %}{{ google_font_families }}'{{ words[1] | replace: "'", "" }}:400,700', {% endcapture %}
+  {% endif %}
+{% endunless %}
+
+{% unless settings.font-advanced-text-enabled %}
+  {% assign font_family = settings.font-text %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% capture google_font_families %}{{ google_font_families }}'{{ words[1] | replace: "'", "" }}:400,700', {% endcapture %}
+  {% endif %}
+{% endunless %}
+
+{% unless settings.font-advanced-accent-enabled %}
+  {% assign font_family = settings.font-accent %}
+  {% assign google_check = font_family | truncate: 6, '' %}
+  {% if google_check == 'google' %}
+    {% assign words = font_family | split: ', ' %}
+    {% capture google_font_families %}{{ google_font_families }}'{{ words[1] | replace: "'", "" }}:400,700', {% endcapture %}
+  {% endif %}
+{% endunless %}
+
+
+{% if settings.font-advanced-logo-enabled and settings.font-advanced-logo-type == 'google' %}
+  {% capture google_font_families %}{{ google_font_families }}'{{ settings.font-advanced-logo }}:400,700', {% endcapture %}
+{% endif %}
+
+{% if settings.font-advanced-mainmenu-enabled and settings.font-advanced-mainmenu-type == 'google' %}
+  {% capture google_font_families %}{{ google_font_families }}'{{ settings.font-advanced-mainmenu }}:400,700', {% endcapture %}
+{% endif %}
+
+{% if settings.font-advanced-headings-enabled and settings.font-advanced-headings-type == 'google' %}
+  {% capture google_font_families %}{{ google_font_families }}'{{ settings.font-advanced-headings }}:400,700', {% endcapture %}
+{% endif %}
+
+{% if settings.font-advanced-text-enabled and settings.font-advanced-text-type == 'google' %}
+  {% capture google_font_families %}{{ google_font_families }}'{{ settings.font-advanced-text }}:400,700', {% endcapture %}
+{% endif %}
+
+{% if settings.font-advanced-accent-enabled and settings.font-advanced-accent-type == 'google' %}
+ {% capture google_font_families %}{{ google_font_families }}'{{ settings.font-advanced-accent }}:400,700', {% endcapture %}
+{% endif %}
+
+
+{% assign typekit_enabled = false %}
+{% if settings.font-advanced-typekit-enabled and settings.font-advanced-typekit-id.size > 0 %}
+  {% assign typekit_enabled = true %}
+{% endif %}
+
+
+{% if google_font_families.size > 0 or typekit_enabled %}
+<script>
+  WebFontConfig = {
+    {% if typekit_enabled %}
+    typekit: { id: '{{ settings.font-advanced-typekit-id }}' },
+    {% endif %}
+    {% if google_font_families.size > 0 %}
+    google: { families: [{{ google_font_families }}] }
+    {% endif %}
+  };
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js" async></script>
+{% endif %}

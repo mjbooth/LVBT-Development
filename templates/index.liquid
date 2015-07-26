@@ -1,0 +1,544 @@
+{% assign widgets_order = settings.home-widgets-order | downcase | replace: ' ', '' | split: ',' %}
+{% for widget_order in widgets_order %}
+{% if widget_order == 'a' %}
+
+<section class="slider {{ settings.color-icons-theme }}">
+  <div class="row">
+    <div class="slides">
+
+      
+
+      {% for i in (1..7) %}
+
+      {% capture slide_enabled %}home-slider-slide-{{ i }}-enabled{% endcapture %}
+
+      {% capture slide_img %}home-slider-slide-{{ i }}.jpg{% endcapture %}
+      {% capture slide_media_type %}home-slider-slide-{{ i }}-type{% endcapture %}
+      {% capture slide_bg_color %}home-slider-slide-{{ i }}-bg-color{% endcapture %}
+      {% capture slide_title %}home-slider-slide-{{ i }}-title{% endcapture %}
+      {% capture slide_tagline %}home-slider-slide-{{ i }}-tagline{% endcapture %}
+      {% capture slide_link_url %}home-slider-slide-{{ i }}-link-url{% endcapture %}
+      {% capture slide_link_title %}home-slider-slide-{{ i }}-link-title{% endcapture %}
+      {% capture slide_x_pos %}home-slider-slide-{{ i }}-x-pos{% endcapture %}
+      {% capture slide_y_pos %}home-slider-slide-{{ i }}-y-pos{% endcapture %}
+      {% capture slide_text_pos %}home-slider-slide-{{ i }}-text-pos{% endcapture %}
+      {% capture slide_video %}home-slider-slide-{{ i }}-video{% endcapture %}
+
+
+      {% if settings[slide_enabled] %}
+
+      {% assign caption_exists = false %}
+      {% if settings[slide_title].size > 0 or settings[slide_tagline].size > 0 or settings[slide_link_title].size > 0 %}
+      {% assign caption_exists = true %}
+      {% endif %}
+
+      {% assign link_whole_slide = false %}
+      {% if settings[slide_link_url].size > 0 and caption_exists == false and settings[slide_video].size == 0 %}
+      {% assign link_whole_slide = true %}
+      {% endif %}
+
+      <div class="slide{% if settings[slide_video].size > 0 %} video{% endif %}">
+
+        {% if link_whole_slide %}
+        <a href="{{ settings[slide_link_url] }}">
+          {% endif %}
+          {{ slide_img | asset_url | img_tag }}
+
+          {% if settings[slide_video].size > 0 %}
+
+          {% assign video_src = '' %}
+          {% assign attributes = settings[slide_video] | split: ' ' %}
+          {% for attribute in attributes %}
+          {% assign match = attribute | truncate: 4, '' %}
+          {% if match == 'src=' or match == 'http' %}
+          {% assign video_src = attribute | replace: 'src=', '' | replace: '"', '' | replace: "'", ""  %}
+          {% endif %}
+          {% endfor %}
+
+
+          <a href="{{ video_src }}" class="play-button"><div class="triangle"></div></a>
+
+          {% endif %}
+
+
+          {% if caption_exists %}
+          <div class="caption {{ settings[slide_x_pos] }} {{ settings[slide_y_pos] }} {{ settings[slide_text_pos] }}">
+            <div class="bg"></div>
+            {% if settings[slide_title].size > 0 %}
+            <h2 class="title">{{ settings[slide_title] }}</h2>
+            {% endif %}
+
+            {% if settings[slide_tagline].size > 0 %}
+            <h3 class="sub-title">{{ settings[slide_tagline] }}</h3>
+            {% endif %}
+
+            {% if settings[slide_link_title].size > 0 %}
+            <a class="button" href="{{ settings[slide_link_url] }}">{{ settings[slide_link_title] }}</a>
+            {% endif %}
+          </div><!--.slide_caption -->
+          {% endif %}
+
+          {% if link_whole_slide %}
+        </a>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div class="modal video">
+  <div class="bg"></div>
+  <a aria-hidden="true" class="close glyph cross"></a>
+  <div class="player columns large-8">
+    <div class="flex-video">
+    </div>
+  </div>
+
+  <div class="caption columns large-4">
+
+  </div>
+</div>
+<div class="modal-mask"></div>
+
+
+{% elsif widget_order == 'b' %}
+
+{% if settings.home-product-slider-collection == blank or collections[settings.home-product-slider-collection].handle != settings.home-product-slider-collection %}
+{% for c in collections %}
+{% if c.products-count > 0 %}
+{% assign collection = c %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% assign collection = collections[settings.home-product-slider-collection] %}
+{% endif %}
+
+<div class="product-slider {{ settings.color-icons-theme }}">
+  <div class="row header">
+    <div class="columns">
+     <h2 class="font-headings clearfix">{{ settings.home-product-slider-title | link_to: collection.url }}</h2>
+   </div>
+ </div>
+ <div class="row content">
+  {% if collection.products.size %}
+  <div class="product-grid clearfix">
+    {% for product in collection.products limit: settings.home-product-slider-limit %}
+    {% include 'snippet-home-product-item' with 'product-slider' %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p style="text-align:center;" class="colored-links">Your <strong>{{ collection.title }}</strong> collection is empty. <a target="_blank" href="{{ shop.url }}/admin/collections/">Go and add some products to it</a>.</p>
+  {% endif %}
+</div>
+</div><!-- #product-slider -->
+
+{% elsif widget_order == 'c' %}
+<div class="widgets">
+  <div class="featured-promo">
+    <div class="row">
+
+
+      {% assign left_type = settings.home-featured-promo-left-type %}
+      {% assign right_type = settings.home-featured-promo-right-type %}
+
+      {% assign widget_text_align = settings["home-featured-promo-text-align"] %}
+      {% assign widget_title = settings["home-featured-promo-title"] %}
+      {% assign widget_description = settings["home-featured-promo-description"] %}
+      {% assign widget_link_text = settings["home-featured-promo-link-text"] %}
+      <!-- {% assign widget_link_text_2 = settings["home-featured-promo-link-text-2"] %} -->
+      {% assign widget_link_url = settings["home-featured-promo-link-url"] %}
+      <!-- {% assign widget_link_url_2 = settings["home-featured-promo-link-url-2"] %} -->
+
+      {% assign widget_image_a = "home-featured-promo-a.png" %}
+      {% assign widget_image_link_a = settings["home-featured-promo-image-link-a"] %}
+      {% assign widget_alt_a = settings["home-featured-promo-alt-a"] %}
+
+      {% assign widget_image_b = "home-featured-promo-b.png" %}
+      {% assign widget_image_link_b = settings["home-featured-promo-image-link-b"] %}
+      {% assign widget_alt_b = settings["home-featured-promo-alt-b"] %}
+
+      {% assign widget_vimeo_code = settings["home-featured-promo-video"] %}
+
+      {% for i in (1..2) %}
+      {% if forloop.first %}
+      {% assign block_type = settings.home-featured-promo-left-type %}
+      {% else %}
+      {% assign block_type = settings.home-featured-promo-right-type %}
+      {% endif %}
+
+      {% if block_type == 'none' %}{% continue %}{% endif %}
+
+
+
+      <div class="columns{% if block_type == 'text' %} {{ widget_text_align}}{% endif %}{% unless settings.home-featured-promo-right-type == 'none' %} large-6{% endunless %}">
+
+        {% if block_type == 'text'  %}
+
+        {% if widget_title.size > 0 %}
+        <h3 class="title">{{ widget_title }}</h3>
+        {% endif %}
+
+        <div class="description">
+          {{ widget_description | newline_to_br  }}
+          {% if widget_link_text.size > 0 %}
+          <p class="call-to-action">
+            <a class="button" href="{{ widget_link_url }}">{{ widget_link_text }}</a>
+            <!-- <a class="button" style="display: table;" href="{{ widget_link_url_2 }}">{{ widget_link_text_2 }}</a> -->
+            <p>
+              {% endif %}
+            </div>
+
+            {% elsif block_type == 'image-a' %}
+
+            {% if widget_image_link_a != empty %}
+            {{ widget_image_a | asset_url | img_tag: widget_alt_a | link_to: widget_image_link_a }}
+            {% else %}
+            {{ widget_image_a | asset_url | img_tag: widget_alt_a }}
+            {% endif %}
+
+            {% elsif block_type == 'image-b' %}
+
+            {% if widget_image_link_b != empty %}
+            {{ widget_image_b | asset_url | img_tag: widget_alt_b | link_to: widget_image_link_b }}
+            {% else %}
+            {{ widget_image_b | asset_url | img_tag: widget_alt_b }}
+            {% endif %}
+
+            {% elsif block_type == 'video' %}
+
+            <div class="vimeo-wrapper">
+              <div class="flex-video">
+                {{ widget_vimeo_code }}
+              </div>
+            </div>
+
+            {% endif %}
+
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+
+    {% elsif widget_order == 'f' %}
+    <div class="widgets">
+      <div class="featured-promo">
+        <div class="row">
+
+          {% assign left_type = settings.home-featured-promo-left-type %}
+          {% assign right_type = settings.home-featured-promo-right-type %}
+
+          {% assign widget_text_align = settings["home-featured-promo-text-align"] %}
+          {% assign widget_title = settings["home-featured-promo-title"] %}
+          {% assign widget_description = settings["home-featured-promo-description"] %}
+          {% assign widget_link_text = settings["home-featured-promo-link-text"] %}
+          <!-- {% assign widget_link_text_2 = settings["home-featured-promo-link-text-2"] %} -->
+          {% assign widget_link_url = settings["home-featured-promo-link-url"] %}
+          <!-- {% assign widget_link_url_2 = settings["home-featured-promo-link-url-2"] %} -->
+
+          {% assign widget_image_a = "home-featured-promo-a.png" %}
+          {% assign widget_image_link_a = settings["home-featured-promo-image-link-a"] %}
+          {% assign widget_alt_a = settings["home-featured-promo-alt-a"] %}
+
+          {% assign widget_image_b = "home-featured-promo-b.png" %}
+          {% assign widget_image_link_b = settings["home-featured-promo-image-link-b"] %}
+          {% assign widget_alt_b = settings["home-featured-promo-alt-b"] %}
+
+          {% assign widget_vimeo_code = settings["home-featured-promo-video"] %}
+
+          {% for i in (1..2) %}
+          {% if forloop.first %}
+          {% assign block_type = settings.home-featured-promo-left-type %}
+          {% else %}
+          {% assign block_type = settings.home-featured-promo-right-type %}
+          {% endif %}
+
+          {% if block_type == 'none' %}{% continue %}{% endif %}
+
+
+
+          <div class="columns{% if block_type == 'text' %} {{ widget_text_align}}{% endif %}{% unless settings.home-featured-promo-right-type == 'none' %} large-6{% endunless %}">
+
+            {% if block_type == 'text'  %}
+
+            {% if widget_title.size > 0 %}
+            <h3 class="title">{{ widget_title }}</h3>
+            {% endif %}
+
+            <div class="description">
+              {{ widget_description | newline_to_br  }}
+              {% if widget_link_text.size > 0 %}
+              <p class="call-to-action">
+                <a class="button" href="{{ widget_link_url }}">{{ widget_link_text }}</a>
+                <!-- <a class="button" style="display: table;" href="{{ widget_link_url_2 }}">{{ widget_link_text_2 }}</a> -->
+                <p>
+                  {% endif %}
+                </div>
+
+                {% elsif block_type == 'image-a' %}
+
+                {% if widget_image_link_a != empty %}
+                {{ widget_image_a | asset_url | img_tag: widget_alt_a | link_to: widget_image_link_a }}
+                {% else %}
+                {{ widget_image_a | asset_url | img_tag: widget_alt_a }}
+                {% endif %}
+
+                {% elsif block_type == 'image-b' %}
+
+                {% if widget_image_link_b != empty %}
+                {{ widget_image_b | asset_url | img_tag: widget_alt_b | link_to: widget_image_link_b }}
+                {% else %}
+                {{ widget_image_b | asset_url | img_tag: widget_alt_b }}
+                {% endif %}
+
+                {% elsif block_type == 'video' %}
+
+                <div class="vimeo-wrapper">
+                  <div class="flex-video">
+                    {{ widget_vimeo_code }}
+                  </div>
+                </div>
+
+                {% endif %}
+
+              </div>
+              {% endfor %}
+
+            </div>
+          </div>
+        </div>
+
+
+        {% elsif widget_order == 'd' %}
+        <div class="widgets">
+          {% assign column_count = 4 %}
+      {% comment %}{% if settings.home-widget-image-text-1 %}{% assign column_count = column_count | plus: 1 %}{% endif %}
+      {% if settings.home-widget-image-text-2 %}{% assign column_count = column_count | plus: 1 %}{% endif %}
+      {% if settings.home-widget-image-text-3 %}{% assign column_count = column_count | plus: 1 %}{% endif %}
+      {% if settings.home-widget-image-text-4 %}{% assign column_count = column_count | plus: 1 %}{% endif %}{% endcomment %}
+
+      {% if column_count > 0 %}
+      <div class="small-promos">
+        <div class="row">
+
+          <div class="columns large-6">
+            <div class="image-text-widget box announcement">
+              <p><strong>Worldwide shipping</strong> available on all orders</p>
+              <a href="/pages/shipping-information">See shipping information</a>
+            </div>
+          </div>
+
+          <div class="columns large-6">
+            <div class="image-text-widget box announcement">
+              <p><strong>Free shipping</strong> on UK orders over £45</p>
+              <a href="/collections/all">Start shopping now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="columns large-3">
+            <div class="image-text-widget box">
+              <a href="/collections/rings">
+                <img src="https://cdn.shopify.com/s/files/1/0653/1555/files/lvbt-rings.jpg" alt="Rings at LVBT" />
+                <div class="mjbtitle">
+                  <div class="inner">
+                    <h1>Rings<span aria-hidden="true" class="glyph slider-right"></span></h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns large-3">
+            <div class="image-text-widget box">
+              <a href="/collections/sunglasses">
+                <img src="https://cdn.shopify.com/s/files/1/0653/1555/files/sunglasses-2.jpg" alt="Earrings at LVBT" />
+                <div class="mjbtitle">
+                  <div class="inner">
+                    <h1>Sunglasses<span aria-hidden="true" class="glyph slider-right"></span></h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns large-3">
+            <div class="image-text-widget box">
+              <a href="/collections/bracelets-bangles">
+                <img src="https://cdn.shopify.com/s/files/1/0653/1555/files/LVBT_2015_pr_008.jpg" alt="Bracelets and Bangles at LVBT" />
+                <div class="mjbtitle">
+                  <div class="inner">
+                    <h1>Bracelets<span aria-hidden="true" class="glyph slider-right"></span></h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns large-3">
+            <div class="image-text-widget box">
+              <a href="/collections/bags">
+                <img src="https://cdn.shopify.com/s/files/1/0653/1555/files/lvbt-bags-2.jpg" alt="Bags and Clutches at LVBT" />
+                <div class="mjbtitle">
+                  <div class="inner">
+                    <h1>Bags<span aria-hidden="true" class="glyph slider-right"></span></h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns large-3">
+            <div class="tall-aspect-image box">
+              <a href="/collections/mya-bay">
+                <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://cdn.shopify.com/s/files/1/0730/5135/files/mya-bay.jpg" alt="MYA BAY at LVBT" />
+                <div class="mjbtitle">
+                  <div class="tall-inner">
+                    <h1>MYA BAY<span aria-hidden="true" class="glyph slider-right"></span></h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns large-3">
+            <div class="image-text-widget box">
+              <a href="/collections/amadoria">
+                <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://cdn.shopify.com/s/files/1/0730/5135/files/amadoria-bracelets.jpg" alt="Amadoria at LVBT" />
+                <div class="mjbtitle">
+                  <div class="inner">
+                    <h1>Amadoria<span aria-hidden="true" class="glyph slider-right"></span></h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns large-3">
+            <div class="image-text-widget box">
+              <a href="/collections/posh">
+                <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://cdn.shopify.com/s/files/1/0653/1555/files/LVBT_2015_pr_013.jpg" alt="Posh bags at LVBT" />
+                <div class="mjbtitle">
+                  <div class="inner">
+                    <h1>POSH<span aria-hidden="true" class="glyph slider-right"></span></h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns large-3">
+            <div class="image-text-widget box">
+              <a href="/collections/ashiana">
+                <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://cdn.shopify.com/s/files/1/0730/5135/files/ashian-sqr.png" alt="Ashiana at LVBT" />
+                <div class="mjbtitle">
+                  <div class="inner">
+                    <h1>Ashiana<span aria-hidden="true" class="glyph slider-right"></span></h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns large-3">
+            <div class="image-text-widget box">
+              <a href="/collections/necklaces">
+                <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://cdn.shopify.com/s/files/1/0653/1555/files/lvbt-necklace-2.jpg" alt="Necklaces, Charms and Chockers at LVBT" />
+                <div class="mjbtitle">
+                  <div class="inner">
+                    <h1>Necklaces <span aria-hidden="true" class="glyph slider-right"></span></h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns large-3">
+            <div class="image-text-widget box">
+              <a href="/collections/lyla-bo">
+                <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://cdn.shopify.com/s/files/1/0730/5135/files/lyla-bo-2.jpg" alt="LYLA&amp;BO at LVBT" />
+                <div class="mjbtitle">
+                  <div class="inner">
+                    <h1>LYLA&amp;BO <span aria-hidden="true" class="glyph slider-right"></span></h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="columns large-3">
+            <div class="newsletter-block box">
+              <div class="newsletter-block-content">
+                <h2>Keep up-to-date with the very latest from LVBT with our weekly newsletter!</h2>
+              </div>
+              <div class="mjbtitle">
+                <div class="wide-inner">
+                  <h1><a href="/pages/newsletter-sign-up">Subscribe </a><span aria-hidden="true" class="glyph slider-right"></span></h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>{% endif %}
+      </div>{% endif %}{% endfor %}
+    </div>
+
+    {% comment %}<div class="widgets">
+      <div class="small-promos">
+        <div class="row">
+          <div class="columns large-7">
+            <div class="">
+              <a href="/"><img src="http://placehold.it/1556x920" alt="" /></a>
+            </div>
+          </div>
+          <div class="columns large-5">
+            <div class="blog-widget">
+              <h3 class="title"><a href="{{ blogs/news.url }}">From The Blog</a></h3>
+              <ul class="colored-links">
+                {% for article in blogs/news.articles limit: 1 %}
+                <li>
+                  <div class="item-title"><a href="{{ article.url }}">{{ article.title }}</a></div>
+                  <div class="date">{{  article.published_at | date: "%d %B, %Y" }}</div>
+                  <div class="content">
+                    {{ article.content | strip_html | truncate: 140 }}
+                  </div>
+                  <div class="read-more"><a href="{{ article.url }}">Read more <span aria-hidden="true" class="glyph arrow-right"></span></a></div>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>{% endcomment %}
+
+    <div class="widgets">
+      <div class="small-promos">
+        <div class="row">
+          <div class="social-columns large-3 social">
+            <div class="instagram-block">
+              <a href="https://instagram.com/lvbt_uk/"><img src="https://cdn.shopify.com/s/files/1/0730/5135/files/instagram.png" alt="LVBT on Instagram" /></a>
+            </div>
+          </div>
+          <div class="social-columns large-3 social">
+            <div class="facebook-block">
+              <a href="https://facebook.com/lovebytaryn/"><img src="https://cdn.shopify.com/s/files/1/0730/5135/files/facebook.png" alt="LVBT on Facebook" /></a>
+            </div>
+          </div>
+          <div class="social-columns large-3 social">
+            <div class="twitter-block">
+              <a href="https://twitter.com/lvbt_uk/"><img src="https://cdn.shopify.com/s/files/1/0730/5135/files/twitter.png" alt="LVBT on Twitter" /></a>
+            </div>
+          </div>
+          <div class="social-columns large-3 social">
+            <div class="pinterest-block">
+              <a href="https://uk.pinterest.com/lovebytaryn/"><img src="https://cdn.shopify.com/s/files/1/0730/5135/files/pinterest.png" alt="LVBT on Pinterest" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

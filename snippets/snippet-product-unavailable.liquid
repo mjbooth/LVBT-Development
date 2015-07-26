@@ -1,0 +1,29 @@
+<div class="product-unavailable">
+  {% if product.variants.size > 1 %}
+    <p class="error">This variant is currently sold out.</p>
+  {% else %}
+    <p class="error">This product is currently sold out.</p>
+  {% endif %}
+
+  {% if settings.product-unavailable-form-show %}
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+      <p class="success">Thanks! We will notify you when it becomes available!</p>
+      {% else %}
+      <p>Please fill in the form below if you'd like to be notified when it becomes available.</p>
+      {% endif %}
+      {% if form.errors %}
+      <div class="error feedback">
+        <p>Please provide a valid email address.</p>
+      </div>
+      {% endif %}
+      {% unless form.posted_successfully? %}
+      <div class="notify-me-wrapper clearfix">
+        <input required="required" type="email" name="contact[email]" placeholder="your@email.com" class="{% if form.errors contains 'email' %} error{% endif %}" value="{{ customer.email }}" />
+        <input type="hidden" class="email-body" name="contact[body]" value="Please notify me when this is back in stock: {{ product.title | escape }}" />
+        <input style="" class="button prefix" type="submit" value="Send" />         
+      </div>
+      {% endunless %}
+    {% endform %}
+  {% endif %}
+</div>
