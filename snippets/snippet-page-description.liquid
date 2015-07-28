@@ -3,7 +3,7 @@
 {% elsif template == 'article' %}
 	<meta name="description" content="{{ article.excerpt_or_content | newline_to_br | strip_html | truncatewords: 50, '' | escape  }}" />
 {% elsif template == 'collection' %}
-	<meta name="description" content="{{ page.description | newline_to_br | strip_html | truncatewords: 50, '' | escape  }}" />
+	<meta name="description" content="{{ page_description }}" />
 {% else %}
 	<meta name="description" content="{{ page_description }}" />
 {% endif %}
