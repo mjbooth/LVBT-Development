@@ -5,5 +5,5 @@
 {% elsif template == 'collection' %}
 	<meta name="description" content="{{ page.description | newline_to_br | strip_html | truncatewords: 50, '' | escape  }}" />
 {% else %}
-	<meta name="description" content="{{ page_description | newline_to_br | strip_html | truncatewords: 50, '' | escape  }}" />
+	<meta name="description" content="{{ page_description }}" />
 {% endif %}
