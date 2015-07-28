@@ -1,9 +1,9 @@
 {% if template == 'blog' %}
-	<meta name="description" content="News on the most stylish accessories and latest fashion trends from Love by Taryn" />
+	<meta name="description" content="News on the most stylish accessories and latest fashion trends from LVBT" />
 {% elsif template == 'article' %}
 	<meta name="description" content="{{ article.excerpt_or_content | newline_to_br | strip_html | truncatewords: 50, '' | escape  }}" />
 {% elsif template == 'collection' %}
-	<meta name="description" content="{{ collection.description | newline_to_br | strip_html | truncatewords: 50, '' | escape  }}" />
+	<meta name="description" content="{{ page.description | newline_to_br | strip_html | truncatewords: 50, '' | escape  }}" />
 {% else %}
 	<meta name="description" content="{{ page_description | newline_to_br | strip_html | truncatewords: 50, '' | escape  }}" />
 {% endif %}
