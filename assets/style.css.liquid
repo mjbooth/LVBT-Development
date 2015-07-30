@@ -2016,7 +2016,7 @@ html, body { /* {% if settings.general-bg-image-enabled %} */ /* {% if settings.
 .main-header { /* position: relative; z-index: 1; */ width: 100%; }
 .main-header .bg { position: absolute; width: 100%; height: 100%; background: {% if settings.color-header-bg-enabled %} {{ settings.color-header-bg }}  {% else %} {{ settings.color-panel-bg }} {% endif %}; }
 .main-header .top.row { padding-top: 16px; min-height: 50px; }
-.main-header .bottom-row { padding: 14px 0 0; position: relative; }
+.main-header .bottom-row { padding: 14px 0 14px; position: relative; }
 @media only screen and (max-width: 768px) { .main-header .bottom-row { padding: 14px 0 0; position: relative; z-index: 150; margin-bottom: -80px; box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.2); -webkit-transform: translate3d(0,0,0); background-color: #fff; } }
 .main-header .bottom-row.hover { background: {% if settings.color-menubar-bg-enabled %} {{ settings.color-menubar-bg }}  {% else %} {{ settings.color-panel-bg }} {% endif %}; background: transparent; }
 .main-header .bottom-row .menu-container { display: none; padding: 0 120px 0 15px; }
