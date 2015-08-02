@@ -18,10 +18,17 @@
 
   {% include 'snippet-page-title' %}
   {% include 'snippet-page-description' %}
-  <link rel="canonical" href="{{ canonical_url }}" />
   {% include 'snippet-fb-open-graph-tags' %}
   {% include 'snippet-fb-retarget' %}
   {% include 'snippet-webfont' %}
+
+  {% if template == 'product' %}
+    {% if collection %}
+      <link rel="canonical" href="{{ shop.url }}{{ product.url }}" />
+    {% endif %}
+  {% else %}
+    <link rel="canonical" href="{{ canonical_url }}" />
+  {% endif %}
 
   {{ content_for_header }}
 
