@@ -29,7 +29,7 @@
   {% elsif template == 'collection' %}
     <link rel="canonical" href="{{ collection.url }}" />
   {% else %}
-    <link rel="canonical" href="{{ shop.url }}{{ product.url }}" />
+    <link rel="canonical" href="{{ canonical_url }}" />
   {% endif %}
 
   {{ content_for_header }}
