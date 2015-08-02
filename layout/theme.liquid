@@ -27,7 +27,7 @@
       <link rel="canonical" href="{{ shop.url }}{{ product.url }}" />
     {% endif %}
   {% else %}
-    <link rel="canonical" href="{{ canonical_url }}" />
+    <link rel="canonical" href="{{ canonical_url }}" description="{{ collection.url }}" />
   {% endif %}
 
   {{ content_for_header }}
