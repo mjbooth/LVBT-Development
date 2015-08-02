@@ -27,7 +27,7 @@
   {% if template == 'product' %}
     <link rel="canonical" href="{{ shop.url }}{{ product.url }}" />
   {% elsif template == 'collection' %}
-    <link rel="canonical" href="{{ collection.url }}" />
+    <link rel="canonical" href="{{ shop.url }}{{ collection.url }}" />
   {% else %}
     <link rel="canonical" href="{{ canonical_url }}" />
   {% endif %}
