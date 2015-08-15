@@ -5,7 +5,7 @@
 {% elsif template == 'collection' %}
   <title>{{ page_title }} {% for tag in current_tags %}{{ tag | capitalize | replace: '-', ' ' }}{% unless forloop.last %}, {% endunless %}{% endfor %}</title>
 {% elsif template == 'product' %}
-  <title>{{ product.vendor }} | {{ product.title }} at {{ shop.name }}</title>
+  <title>{{ product.vendor }} | {{ product.title }}</title>
 {% else %}
-  <title>Statement Jewellery | {{ page_title }} at {{ shop.name }}</title>
+  <title>Statement Jewellery | {{ page_title }}</title>
 {% endif %}
