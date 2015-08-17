@@ -2,8 +2,6 @@
   <title>{{ page_title }}</title>
 {% elsif template == '404' %}
   <title>Page Not Found at {{ shop.name }}</title>
- {% elsif page.url contains 'types' %}
-  <title>New Page Title</title>  
 {% elsif template == 'collection' %}
   <title>{{ page_title }} {% for tag in current_tags %}{{ tag | capitalize | replace: '-', ' ' }}{% unless forloop.last %}, {% endunless %}{% endfor %}</title>
 {% elsif template == 'product' %}
