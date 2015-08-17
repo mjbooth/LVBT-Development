@@ -36,7 +36,8 @@
         
       <div class="author block">
         <h3 class="title">Written By</h3>
-        <p class="content">{{ article.author }}</p>
+        <p class="content">{% if article.author == 'Kirstin Hutton' or article.author == 'Taryn Courland' or article.author == 'Matt Booth' %}LVBT{% else %}{{ article.author }}{% endif %}
+        </p>
       </div>
       
       <div class="comments block">
