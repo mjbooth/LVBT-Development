@@ -2783,6 +2783,71 @@ content: "";
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
 }
 
+figure {
+    margin: 0;
+    position: relative;
+}
+
+figure img {
+    max-width: 100%;
+    display: block;
+    position: relative;
+}
+
+figcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    background: #2c3f52;
+    color: #ed4e6e;
+}
+
+figcaption h3 {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+figcaption a {
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 2px;
+    display: inline-block;
+    background: #ed4e6e;
+    color: #fff !important;
+}
+
+.cs-style-1 figcaption {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    text-align: center;
+    backface-visibility: hidden;
+    transition: transform 0.75s, opacity 0.75s;
+}
+
+.no-touch .cs-style-1 figure:hover figcaption,
+.cs-style-1 figure.cs-hover figcaption {
+    opacity: 1.0;
+    -webkit-transition: all 0.75s ease-in-out;
+    -moz-transition: all 0.75s ease-in-out;
+    -o-transition: all 0.75s ease-in-out;
+    transition: all 0.75s ease-in-out;
+}
+
+.cs-style-1 figcaption h3 {
+    margin-top: 70px;
+}
+
+.cs-style-1 figcaption span {
+    display: block;
+}
+
+.cs-style-1 figcaption a {
+    margin-top: 30px;
+}
+
 
 /* ===============================================
 // Collection Filters
