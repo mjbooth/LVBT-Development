@@ -18,7 +18,7 @@
   </div>
 
   <p>
-    <label for="address_zip">Zip/Postal Code</label>
+    <label for="address_zip">Postcode</label>
     <input type="text" id="address_zip" name="address[zip]"{% if shop.customer_accounts_enabled and customer %} value="{{ customer.default_address.zip }}"{% endif %} />
     <input type="button" class="button get-rates" value="Calculate Shipping" />
   </p> 
