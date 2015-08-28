@@ -1428,7 +1428,7 @@ h1 a, h1 a:link, h1 a:visited, h1 a:hover, h2 a, h2 a:link, h2 a:visited, h2 a:h
 
 p, ul, li, a { margin-top: 0; }
 
-blockquote { font-style: italic; color: {{ settings.color-text-alt }}; padding-left: 20px; margin-left: 0; border-left: 2px solid {{ settings.color-text-alt }}; }
+blockquote { font-style: italic; color: {{ settings.color-text-alt }}; margin-left: 0; }
 
 a, a:link, a:visited, a:hover { color: {{ settings.color-text }}; text-decoration: none; }
 
@@ -2754,7 +2754,6 @@ html, body { /* {% if settings.general-bg-image-enabled %} */ /* {% if settings.
 } }
 
 @media only screen and (max-width: 768px) { .main-header, .main-content, .main-footer {
-    background-color: #ffffff;
     position: relative;
 } }
 
@@ -3050,6 +3049,53 @@ only screen and (min-device-pixel-ratio: 1.1) {
 
 .announcement a {
     text-decoration: underline;
+}
+
+.testimonials {
+    background: rgba(241,196,15,0.1);
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.review-block {
+    padding: 1.0% !important;
+}
+
+.r-r h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.rating span {
+    font-size: 20px;
+    color: orange;
+    cursor: pointer;
+}
+
+.rating span:before {
+    content: "\2605";
+    position: absolute;
+    color: orange;
+}
+
+.review blockquote {
+  quotes: "\201C""\201D";
+  margin: 0;
+}
+.review blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+.review cite:before {
+    content: "\2014 \2009";
 }
 
 
