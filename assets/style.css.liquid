@@ -1532,6 +1532,8 @@ you can use the generic selector below, but it's slower:
 
 .glyph.cart:before { content: "\e629"; }
 
+.glyph.cart-menu:before { content: "\e629"; }
+
 /*  1.7 - Navigation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /* Breadcrumbs */
@@ -2004,8 +2006,6 @@ label { color: {{ settings.color-text }}; }
 .row { max-width: none; }
 @media only screen and (min-width: 768px) { .row { padding: 0 1em 0 40px; } }
 .lt-ie9 .row { padding: 0 1em 0 40px; }
-
-
 
 html, body { /* {% if settings.general-bg-image-enabled %} */ /* {% if settings.general-bg-image-display == "tiled" %} */ background: {{ settings.color-page-bg }} url('{{ "bg-custom.png" | asset_url }}') repeat scroll; /* {% endif %} */ /* {% if settings.general-bg-image-display == "full" %} */ background: {{ settings.color-page-bg }} url('{{ "bg-custom.png" | asset_url }}') no-repeat scroll; /* {% endif %} */ /* {% if settings.general-bg-image-display == "stretch" %} */ background: url('{{ "bg-custom.png" | asset_url }}') no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; /* {% endif %}*/ /* {% else %}*/ background: {{ settings.color-page-bg }}; /* {% endif %}*/ }
 
