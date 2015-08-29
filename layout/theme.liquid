@@ -14,6 +14,8 @@
   {% endif %}
 
   {{ 'style.css' | asset_url | stylesheet_tag }}
+  {{ 'trunk.css' | asset_url | stylesheet_tag }}    
+  {{ 'reset.css' | asset_url | stylesheet_tag }}
 
   {% include 'snippet-page-title' %}
   {% include 'snippet-page-description' %}
@@ -49,6 +51,7 @@
   <script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js' async></script>
   <script src="{{ 'api.jquery.js' | shopify_asset_url }}" async></script>
   <script src="//load.sumome.com/" data-sumo-site-id="8a69768f5f612b20a7c2f3013b9953bc9fe5a13062cb4bec21373eb96ad0f4b5" async="async"></script>
+  <script src="{{ 'trunk.js' | asset_url }}" ></script>
 
   {% if page.title contains 'scroller' %}
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -84,6 +87,7 @@
 
 <body class="page-{{ page_title | handle }} {% if customer %}customer-logged-in {% endif %}template-{{ template | split: '.' | first | remove: '/' | remove: '_' }}{% if template == 'index' and settings.home-transparent-menu %} transparent-menu{% endif %}">
 
+<<<<<<< HEAD
   <header class="main-header">
     <div class="bg"></div>
     <div class="logo-block">
@@ -96,132 +100,106 @@
         <div class="search-account columns">
           {% include 'snippet-searchbar-account' %}
         </div>
+=======
+  <div class="container">
+    <header id="mobile" class="slide">
+      <div class="logo">
+        <img src="https://cdn.shopify.com/s/files/1/0730/5135/files/lvbt-03.svg?4821368000818331262"> 
+>>>>>>> develop
       </div>
-    </div><!-- .row -->
+      <ul id="navToggle" class="burger slide">
+        <li></li><li></li><li></li>
+      </ul>
 
-    <div class="bottom-row">
-      <div class="row">
-        <div class="columns menu-container{% if settings.header-menu-center %} text-center{% endif %}">
-          {% include 'snippet-main-menu' %}
+      {% if settings.header-account-show and shop.customer_accounts_enabled %}
+      <a href="/account" class="glyph account-menu"></a>
+      {% endif %}
+      <a href="/cart" class="glyph cart-menu"></a>
+    </header>
+
+    <nav id="mobile" class="slide">
+      <ul>
+        <div class="mobile-menu">
+          {% include 'snippet-mobile-menu' %}
+        </div>
+      </ul>
+    </nav>
+
+    <div class="content slide">
+      <header class="main-header">
+        <div class="bg"></div>
+        <div class="logo-block">
+          <div class="headline"><h4>Your destination for affordable luxury and stylish accessories</h4></div>
+          <div class="row top">
+            <div class="columns{% if settings.header-logo-center %} logo-center{% endif %}">
+              {% include 'snippet-store-title' %}
+            </div>
+            <div class="search-account columns">
+              {% include 'snippet-searchbar-account' %}
+            </div>
+          </div>
+        </div><!-- .row -->
+
+        <div class="bottom-row">
+          <div class="row">
+            <div class="columns menu-container{% if settings.header-menu-center %} text-center{% endif %}">
+              {% include 'snippet-main-menu' %}
+            </div>
+            <div class="columns cart-container">
+              {% include 'snippet-cart' %}
+            </div>
+          </div>
         </div>
 
-        <div class="columns cart-container">
-          {% include 'snippet-cart' %}
+        <div class="main-menu-dropdown-panel">
+          <div class="row{% if settings.header-menu-center %} text-center{% endif %}"></div>
         </div>
-
-        <div class="mobile-tools">
-          <a class="glyph menu" href=""></a>
-          {% if settings.header-search-show %}
-          <a href="/search" class="glyph search"></a>
-          {% endif %}
-          {% if settings.header-account-show and shop.customer_accounts_enabled %}
-          <a href="/account" class="glyph account"></a>
-          {% endif %}
-          <a href="/cart" class="glyph cart"></a>
-
-        </div>
+<<<<<<< HEAD
       </div>
     </div>
 
     <div class="main-menu-dropdown-panel">
       <div class="row{% if settings.header-menu-center %} text-center{% endif %}"></div>
     </div>
+=======
+>>>>>>> develop
 
-    <div class="mobile-menu">
-      {% include 'snippet-mobile-menu' %}
-    </div>
-
-    <div class="row">
-      <div class="header-divider"></div>
-    </div>
-  </header>
-
-  <section class="main-content">
-    {{ content_for_layout }}
-  </section>
-
-  <footer class="main-footer">
-    <div class="row bottom">
-      <div class="column-1 large-3 columns">
-        <h2 class="title">{{ settings.footer-block-1-title }}</h2>
-        <div class="content">
-          <p class="text">{{ settings.footer-block-1-text | newline_to_br }}</p>
+        <div class="mobile-menu">
+          {% include 'snippet-mobile-menu' %}
         </div>
-      </div>
-      <div class="column-2 large-3 columns">
-        <h2 class="title">{{ settings.footer-block-2-title }}</h2>
-        <div class="content">
-          {% assign footer_nav = 'footer' %}
-          {% if linklists[settings.footer-block-2-linklist].links.size > 0 %}
-          {% assign footer_nav = settings.footer-block-2-linklist %}
-          {% endif %}
-          <ul class="footer-nav plain-list" role="navigation">
-            {% for link in linklists[footer_nav].links %}
-            <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
-            {% endfor %}
-          </ul>
+
+        <div class="row">
+          <div class="header-divider"></div>
         </div>
-      </div>
-      <div class="column-2 large-3 columns">
-        <h2 class="title">What's in store</h2>
-        <div class="content">
-          <ul class="footer-nav plain-list" role="navigation">
-            <li><a href="/collections/bags">Bags</a></li>
-            <li><a href="/collections/bracelets-bangles">Bracelets &amp; Bangles</a></li>
-            <li><a href="/collections/earrings">Earrings</a></li>
-            <li><a href="/collections/hats">Hats</a></li>
-            <li><a href="/collections/necklaces">Necklaces</a></li>
-            <li><a href="/collections/rings">Rings</a></li>
-          </ul>
-        </div>
-      </div>
+      </header>
 
-      <div class="column-3 large-3 columns">
-        {% if settings.footer-mailing-list-show %}
-        {% if settings.footer-mailing-list-title.size > 0 %}
-        <h2 class="title">{{ settings.footer-mailing-list-title }}</h2>
-        {% endif %}
+      <section class="main-content">
+        {{ content_for_layout }}
+      </section>
 
-        <div class="content" id="mailing-list-module">
-          {% if settings.footer-mailing-list-tag-line.size > 0 %}
-          <p>{{ settings.footer-mailing-list-tag-line }}</p>
-          {% endif %}
-
-          {% if settings.footer-mailing-list-form-action.size > 0 %}
-          <form action="{{ settings.footer-mailing-list-form-action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="mailchimp-form validate" target="_blank">
-            <div class="row collapse">
-              <div class="small-10 large-10 columns" style="padding-right: 10px;">
-                <input type="email" placeholder="Your Email" name="EMAIL" id="email-input" />
-              </div>
-              <div class="small-2 large-2 columns">
-                <input type="submit" class="button prefix" value="OK" name="subscribe" id="email-submit" />
-              </div>
-            </div>
-          </form>
-          {% else %}
-          {% form 'customer' %}        
-          {% if form.posted_successfully? %}
-          <p class="success feedback">Thank you for signing up!</p>
-          {% endif %}
-          {% if form.errors %}
-          <p class="error feedback">
-            {% for field in form.errors %}
-            {{ field }} {{ form.errors.messages[field] }}
-            {% endfor %}
-          </p>
-          {% endif %}       
-          <input type="hidden" id="contact_tags" name="contact[tags]" value="newsletter" />
-          <input type="hidden" id="newsletter-first-name" name="contact[first_name]" value="Subscriber" />
-          <input type="hidden" id="newsletter-last-name" name="contact[last_name]" value="Newsletter" />
-
-          <div class="row collapse">
-            <div class="small-10 large-10 columns" style="padding-right: 10px;">
-              <input type="email" placeholder="Your Email" name="contact[email]" />
-            </div>
-            <div class="small-2 large-2 columns">
-              <input type="submit" class="button prefix" value="OK" name="subscribe" id="email-submit" />
+      <footer class="main-footer">
+        <div class="row bottom">
+          <div class="column-1 large-3 columns">
+            <h2 class="title">{{ settings.footer-block-1-title }}</h2>
+            <div class="content">
+              <p class="text">{{ settings.footer-block-1-text | newline_to_br }}</p>
             </div>
           </div>
+          <div class="column-2 large-3 columns">
+            <h2 class="title">{{ settings.footer-block-2-title }}</h2>
+            <div class="content">
+              {% assign footer_nav = 'footer' %}
+              {% if linklists[settings.footer-block-2-linklist].links.size > 0 %}
+              {% assign footer_nav = settings.footer-block-2-linklist %}
+              {% endif %}
+              <ul class="footer-nav plain-list" role="navigation">
+                {% for link in linklists[footer_nav].links %}
+                <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+<<<<<<< HEAD
           {% if form.posted_successfully? or form.errors %}
           <script>window.location.hash = '#mailing-list-module';</script>
           {% endif %}
@@ -239,32 +217,111 @@
             {% if settings.footer-youtube-follow-url.size > 0 %}<a title="Youtube" aria-hidden="true" target="_blank" class="glyph youtube" href="{{ settings.footer-youtube-follow-url }}"></a>{% endif %}
             {% if settings.footer-google-plus-follow-url.size > 0 %}<a title="Google Plus" aria-hidden="true" target="_blank" class="glyph googleplus" href="{{ settings.footer-google-plus-follow-url }}"></a>{% endif %}
             {% if settings.footer-rss-follow-url.size > 0 %}<a title="RSS" aria-hidden="true" target="_blank" class="glyph feed" href="{{ settings.footer-rss-follow-url }}"></a>{% endif %}
+=======
+          <div class="column-2 large-3 columns">
+            <h2 class="title">What's in store</h2>
+            <div class="content">
+              <ul class="footer-nav plain-list" role="navigation">
+                <li><a href="/collections/bags">Bags</a></li>
+                <li><a href="/collections/bracelets-bangles">Bracelets &amp; Bangles</a></li>
+                <li><a href="/collections/earrings">Earrings</a></li>
+                <li><a href="/collections/hats">Hats</a></li>
+                <li><a href="/collections/necklaces">Necklaces</a></li>
+                <li><a href="/collections/rings">Rings</a></li>
+              </ul>
+            </div>
+>>>>>>> develop
           </div>
-        </div> 
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="columns">
-        {% if settings.footer-payment-options-show %} 
-        <ul class="payment-options">
-          {% if settings.footer-payment-amex %}<li aria-hidden="true" class="glyph amex"></li>{% endif %}
-          {% if settings.footer-payment-diners %}<li aria-hidden="true" class="glyph diners"></li>{% endif %}
-          {% if settings.footer-payment-discover %}<li aria-hidden="true" class="glyph discover"></li>{% endif %}
-          {% if settings.footer-payment-visa %}<li aria-hidden="true" class="glyph visa"></li>{% endif %}
-          {% if settings.footer-payment-mastercard %}<li aria-hidden="true" class="glyph mastercard"></li>{% endif %}
-          {% if settings.footer-payment-skrill %}<li aria-hidden="true" class="glyph moneybookers"></li>{% endif %}
-          {% if settings.footer-payment-stripe %}<li aria-hidden="true" class="glyph stripe"></li>{% endif %}
-          {% if settings.footer-payment-switch %}<li aria-hidden="true" class="glyph switch"></li>{% endif %}
-          {% if settings.footer-payment-paypal %}<li aria-hidden="true" class="glyph paypal"></li>{% endif %}
-          {% if settings.footer-payment-googlewallet %}<li aria-hidden="true" class="glyph googlewallet"></li>{% endif %}
-        </ul>
-        {% endif %}
-      </div>
-    </div>
-  </footer>
+          <div class="column-3 large-3 columns">
+            {% if settings.footer-mailing-list-show %}
+            {% if settings.footer-mailing-list-title.size > 0 %}
+            <h2 class="title">{{ settings.footer-mailing-list-title }}</h2>
+            {% endif %}
 
-  {{ 'com-scripts.min.js' | asset_url | script_tag }}
+            <div class="content" id="mailing-list-module">
+              {% if settings.footer-mailing-list-tag-line.size > 0 %}
+              <p>{{ settings.footer-mailing-list-tag-line }}</p>
+              {% endif %}
+
+              {% if settings.footer-mailing-list-form-action.size > 0 %}
+              <form action="{{ settings.footer-mailing-list-form-action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="mailchimp-form validate" target="_blank">
+                <div class="row collapse">
+                  <div class="small-10 large-10 columns" style="padding-right: 10px;">
+                    <input type="email" placeholder="Your Email" name="EMAIL" id="email-input" />
+                  </div>
+                  <div class="small-2 large-2 columns">
+                    <input type="submit" class="button prefix" value="OK" name="subscribe" id="email-submit" />
+                  </div>
+                </div>
+              </form>
+              {% else %}
+              {% form 'customer' %}        
+              {% if form.posted_successfully? %}
+              <p class="success feedback">Thank you for signing up!</p>
+              {% endif %}
+              {% if form.errors %}
+              <p class="error feedback">
+                {% for field in form.errors %}
+                {{ field }} {{ form.errors.messages[field] }}
+                {% endfor %}
+              </p>
+              {% endif %}       
+              <input type="hidden" id="contact_tags" name="contact[tags]" value="newsletter" />
+              <input type="hidden" id="newsletter-first-name" name="contact[first_name]" value="Subscriber" />
+              <input type="hidden" id="newsletter-last-name" name="contact[last_name]" value="Newsletter" />
+
+              <div class="row collapse">
+                <div class="small-10 large-10 columns" style="padding-right: 10px;">
+                  <input type="email" placeholder="Your Email" name="contact[email]" />
+                </div>
+                <div class="small-2 large-2 columns">
+                  <input type="submit" class="button prefix" value="OK" name="subscribe" id="email-submit" />
+                </div>
+              </div>
+              {% if form.posted_successfully? or form.errors %}
+              <script>window.location.hash = '#mailing-list-module';</script>
+              {% endif %}
+              {% endform %} 
+              {% endif %}
+              {% endif %}
+              <div class="social-follow">
+                {% if settings.footer-facebook-follow-url.size > 0 %}<a title="Facebook" aria-hidden="true" target="_blank" class="glyph facebook" href="{{ settings.footer-facebook-follow-url }}"></a>{% endif %}
+                {% if settings.footer-twitter-follow-url.size > 0 %}<a title="Twitter" aria-hidden="true" target="_blank" class="glyph twitter" href="{{ settings.footer-twitter-follow-url }}"></a>{% endif %}
+                {% if settings.footer-instagram-follow-url.size > 0 %}<a title="Instagram" aria-hidden="true" target="_blank" class="glyph instagram" href="{{ settings.footer-instagram-follow-url }}"></a>{% endif %}
+                {% if settings.footer-pinterest-follow-url.size > 0 %}<a title="Pinterest" aria-hidden="true" target="_blank" class="glyph pinterest" href="{{ settings.footer-pinterest-follow-url }}"></a>{% endif %}
+                {% if settings.footer-tumblr-follow-url.size > 0 %}<a title="Tumblr" aria-hidden="true" target="_blank" class="glyph tumblr" href="{{ settings.footer-tumblr-follow-url }}"></a>{% endif %}
+                {% if settings.footer-vimeo-follow-url.size > 0 %}<a title="Vimeo" aria-hidden="true" target="_blank" class="glyph vimeo" href="{{ settings.footer-vimeo-follow-url }}"></a>{% endif %}
+                {% if settings.footer-youtube-follow-url.size > 0 %}<a title="Youtube" aria-hidden="true" target="_blank" class="glyph youtube" href="{{ settings.footer-youtube-follow-url }}"></a>{% endif %}
+                {% if settings.footer-google-plus-follow-url.size > 0 %}<a title="Google Plus" aria-hidden="true" target="_blank" class="glyph googleplus" href="{{ settings.footer-google-plus-follow-url }}"></a>{% endif %}
+                {% if settings.footer-rss-follow-url.size > 0 %}<a title="RSS" aria-hidden="true" target="_blank" class="glyph feed" href="{{ settings.footer-rss-follow-url }}"></a>{% endif %}
+              </div>
+            </div> 
+          </div>
+        </div>
+        <div class="row">
+          <div class="columns">
+            {% if settings.footer-payment-options-show %} 
+            <ul class="payment-options">
+              {% if settings.footer-payment-amex %}<li aria-hidden="true" class="glyph amex"></li>{% endif %}
+              {% if settings.footer-payment-diners %}<li aria-hidden="true" class="glyph diners"></li>{% endif %}
+              {% if settings.footer-payment-discover %}<li aria-hidden="true" class="glyph discover"></li>{% endif %}
+              {% if settings.footer-payment-visa %}<li aria-hidden="true" class="glyph visa"></li>{% endif %}
+              {% if settings.footer-payment-mastercard %}<li aria-hidden="true" class="glyph mastercard"></li>{% endif %}
+              {% if settings.footer-payment-skrill %}<li aria-hidden="true" class="glyph moneybookers"></li>{% endif %}
+              {% if settings.footer-payment-stripe %}<li aria-hidden="true" class="glyph stripe"></li>{% endif %}
+              {% if settings.footer-payment-switch %}<li aria-hidden="true" class="glyph switch"></li>{% endif %}
+              {% if settings.footer-payment-paypal %}<li aria-hidden="true" class="glyph paypal"></li>{% endif %}
+              {% if settings.footer-payment-googlewallet %}<li aria-hidden="true" class="glyph googlewallet"></li>{% endif %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  {{ 'com-scripts.js' | asset_url | script_tag }}
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
   
   {% if settings.show_multiple_currencies %}

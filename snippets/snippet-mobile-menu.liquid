@@ -1,5 +1,8 @@
 <nav role="navigation">
   <ul class="font-nav">
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">Home</a>
+    </li>
     {% for link in linklists.main-menu.links %}
         {% assign collection_dropdown = false %}
         {% if link.url == "/collections/all" or link.url == "collections/all" %}
@@ -23,7 +26,10 @@
               <li class="bg"></li>
               {% if settings.header-collections-sub-1-linklist.size > 0 %}
               <li class="sub-nav-item">
-                    <a class="dropdown-link" href="">{{ settings.header-collections-sub-1-title | strip_html }} <span aria-hidden="true" class="glyph plus"></span><span aria-hidden="true" class="glyph minus"></span></a>
+                    <a class="dropdown-link" href="">{{ settings.header-collections-sub-1-title | strip_html }} 
+                      <span aria-hidden="true" class="glyph plus" ></span>
+                      <span aria-hidden="true" class="glyph minus"></span>
+                    </a>
                     <ul class="sub-nav">
                       <li class="bg"></li>
                       {% for link in linklists[settings.header-collections-sub-1-linklist].links %}
@@ -91,7 +97,6 @@
             </a>
           </li>
         {% endif %}
-
     {% endfor %}
   </ul>
 </nav>
