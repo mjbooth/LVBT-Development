@@ -2673,8 +2673,7 @@ html, body { /* {% if settings.general-bg-image-enabled %} */ /* {% if settings.
     overflow: hidden;
 }
 .newsletter-block {
-  /*background-color: #a5f7ce;*/
-  background-color: #fdb9f5;
+  background-color: #a5f7ce;
   display: block;
   height: 0;
   padding-bottom: 100%;
@@ -2715,20 +2714,22 @@ html, body { /* {% if settings.general-bg-image-enabled %} */ /* {% if settings.
     height: 32px;
 }
 
-.cart-menu {        
-    right: 10px;        
-    position: absolute;     
-    top: 9px;       
-    padding: 10px;      
-    font-size: 22px;        
-}       
-.logo {     
-    width: 9.2em;       
-    margin: auto;       
-    padding-top: 2px;       
-}       
-@media only screen and (min-width: 769px) { #mobile {       
-    display: none;      
+.cart-menu {
+    right: 10px;
+    position: absolute;
+    top: 9px;
+    padding: 10px;
+    font-size: 22px;
+}
+
+.logo {
+    width: 9.2em;
+    margin: auto;
+    padding-top: 2px;
+}
+
+@media only screen and (min-width: 769px) { #mobile {
+    display: none;
 } }
 
 /* ===============================================
@@ -2758,7 +2759,7 @@ html, body { /* {% if settings.general-bg-image-enabled %} */ /* {% if settings.
 } }
 
 @media only screen and (max-width: 768px) { .main-header, .main-content, .main-footer {
-    position: relative;
+    background-color: #fff;
 } }
 
 .prodlist {
@@ -2786,6 +2787,109 @@ content: "";
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
 }
 
+.r-r h3 {
+    font-size: 28px;
+    text-align: center;
+}
+
+.rating span {
+    font-size: 20px;
+    color: orange;
+    cursor: pointer;
+}
+
+.rating span:before {
+    content: "\2605";
+    position: absolute;
+    color: orange;
+}
+
+.review blockquote {
+  quotes: "\201C""\201D";
+}
+.review blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+.review cite:before {
+    content: "\2014 \2009";
+}
+
+.media {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+}
+
+figure {
+    margin: 0;
+    position: relative;
+}
+
+figure img {
+    max-width: 100%;
+    display: block;
+    position: relative;
+}
+
+figcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    background: #2c3f52;
+    color: #ed4e6e;
+}
+
+figcaption h3 {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+figcaption a {
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 2px;
+    display: inline-block;
+    background: #ed4e6e;
+    color: #fff !important;
+}
+
+.cs-style-1 figcaption {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    text-align: center;
+    backface-visibility: hidden;
+    transition: transform 0.75s, opacity 0.75s;
+}
+
+.no-touch .cs-style-1 figure:hover figcaption,
+.cs-style-1 figure.cs-hover figcaption {
+    opacity: 1.0;
+    -webkit-transition: all 0.75s ease-in-out;
+    -moz-transition: all 0.75s ease-in-out;
+    -o-transition: all 0.75s ease-in-out;
+    transition: all 0.75s ease-in-out;
+}
+
+.cs-style-1 figcaption h3 {
+    margin-top: 70px;
+}
+
+.cs-style-1 figcaption span {
+    display: block;
+}
+
+.cs-style-1 figcaption a {
+    margin-top: 30px;
+}
 
 /* ===============================================
 // Collection Filters
@@ -2992,53 +3096,6 @@ only screen and (min-device-pixel-ratio: 1.1) {
 
 .announcement a {
     text-decoration: underline;
-}
-
-.testimonials {
-    background: rgba(241,196,15,0.1);
-    position: relative;
-    margin-bottom: 30px;
-}
-
-.review-block {
-    padding: 1.0% !important;
-}
-
-.r-r h2 {
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 1.5em;
-    margin-bottom: 30px;
-    font-weight: bold;
-}
-
-.rating span {
-    font-size: 20px;
-    color: orange;
-    cursor: pointer;
-}
-
-.rating span:before {
-    content: "\2605";
-    position: absolute;
-    color: orange;
-}
-
-.review blockquote {
-  quotes: "\201C""\201D";
-  margin: 0;
-}
-.review blockquote:before {
-  color: #ccc;
-  content: open-quote;
-  font-size: 4em;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
-}
-
-.review cite:before {
-    content: "\2014 \2009";
 }
 
 
