@@ -6,6 +6,9 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
 
 <head>
+
+  <!-- Blockshop Theme Version 2.0.4 by Troop Digital - http://troop.ws/ -->
+
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -79,33 +82,15 @@
   </script>
 
   {% include 'snippet-twitter-card' %}
-  {% include 'snippet-facebook-pixel' %}
-  {% include 'snippet-hotjar' %}
 
 </head>
 
-
 <body class="page-{{ page_title | handle }} {% if customer %}customer-logged-in {% endif %}template-{{ template | split: '.' | first | remove: '/' | remove: '_' }}{% if template == 'index' and settings.home-transparent-menu %} transparent-menu{% endif %}">
 
-<<<<<<< HEAD
-  <header class="main-header">
-    <div class="bg"></div>
-    <div class="logo-block">
-      <div class="headline"><h4>Your destination for affordable luxury and stylish accessories</h4></div>
-      <div class="row top">
-        <div class="columns{% if settings.header-logo-center %} logo-center{% endif %}">
-          {% include 'snippet-store-title' %}
-        </div>
-
-        <div class="search-account columns">
-          {% include 'snippet-searchbar-account' %}
-        </div>
-=======
   <div class="container">
     <header id="mobile" class="slide">
       <div class="logo">
         <img src="https://cdn.shopify.com/s/files/1/0730/5135/files/lvbt-03.svg?4821368000818331262"> 
->>>>>>> develop
       </div>
       <ul id="navToggle" class="burger slide">
         <li></li><li></li><li></li>
@@ -154,15 +139,6 @@
         <div class="main-menu-dropdown-panel">
           <div class="row{% if settings.header-menu-center %} text-center{% endif %}"></div>
         </div>
-<<<<<<< HEAD
-      </div>
-    </div>
-
-    <div class="main-menu-dropdown-panel">
-      <div class="row{% if settings.header-menu-center %} text-center{% endif %}"></div>
-    </div>
-=======
->>>>>>> develop
 
         <div class="mobile-menu">
           {% include 'snippet-mobile-menu' %}
@@ -199,25 +175,6 @@
               </ul>
             </div>
           </div>
-<<<<<<< HEAD
-          {% if form.posted_successfully? or form.errors %}
-          <script>window.location.hash = '#mailing-list-module';</script>
-          {% endif %}
-          {% endform %} 
-          {% endif %}
-          {% endif %}
-
-          <div class="social-follow">
-            {% if settings.footer-facebook-follow-url.size > 0 %}<a title="Facebook" aria-hidden="true" target="_blank" class="glyph facebook" href="{{ settings.footer-facebook-follow-url }}"></a>{% endif %}
-            {% if settings.footer-twitter-follow-url.size > 0 %}<a title="Twitter" aria-hidden="true" target="_blank" class="glyph twitter" href="{{ settings.footer-twitter-follow-url }}"></a>{% endif %}
-            {% if settings.footer-instagram-follow-url.size > 0 %}<a title="Instagram" aria-hidden="true" target="_blank" class="glyph instagram" href="{{ settings.footer-instagram-follow-url }}"></a>{% endif %}
-            {% if settings.footer-pinterest-follow-url.size > 0 %}<a title="Pinterest" aria-hidden="true" target="_blank" class="glyph pinterest" href="{{ settings.footer-pinterest-follow-url }}"></a>{% endif %}
-            {% if settings.footer-tumblr-follow-url.size > 0 %}<a title="Tumblr" aria-hidden="true" target="_blank" class="glyph tumblr" href="{{ settings.footer-tumblr-follow-url }}"></a>{% endif %}
-            {% if settings.footer-vimeo-follow-url.size > 0 %}<a title="Vimeo" aria-hidden="true" target="_blank" class="glyph vimeo" href="{{ settings.footer-vimeo-follow-url }}"></a>{% endif %}
-            {% if settings.footer-youtube-follow-url.size > 0 %}<a title="Youtube" aria-hidden="true" target="_blank" class="glyph youtube" href="{{ settings.footer-youtube-follow-url }}"></a>{% endif %}
-            {% if settings.footer-google-plus-follow-url.size > 0 %}<a title="Google Plus" aria-hidden="true" target="_blank" class="glyph googleplus" href="{{ settings.footer-google-plus-follow-url }}"></a>{% endif %}
-            {% if settings.footer-rss-follow-url.size > 0 %}<a title="RSS" aria-hidden="true" target="_blank" class="glyph feed" href="{{ settings.footer-rss-follow-url }}"></a>{% endif %}
-=======
           <div class="column-2 large-3 columns">
             <h2 class="title">What's in store</h2>
             <div class="content">
@@ -230,7 +187,6 @@
                 <li><a href="/collections/rings">Rings</a></li>
               </ul>
             </div>
->>>>>>> develop
           </div>
 
           <div class="column-3 large-3 columns">
