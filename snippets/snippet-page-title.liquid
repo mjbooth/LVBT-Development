@@ -3,7 +3,7 @@
 {% elsif template == '404' %}
   <title>Page Not Found at {{ shop.name }}</title>
 {% elsif template == 'blog' %}
-	<title>{{page_title}} | Page {{current_page}}</title>
+	<title>Unique Jewellery | {{page_title}} | Page {{current_page}}</title>
 {% elsif template == 'collection' %}
   <title>{{ page_title }} {% for tag in current_tags %}{{ tag | capitalize | replace: '-', ' ' }}{% unless forloop.last %}, {% endunless %}{% endfor %}</title>
 {% elsif template == 'product' %}
