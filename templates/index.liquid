@@ -6,8 +6,6 @@
   <div class="row">
     <div class="slides">
 
-      
-
       {% for i in (1..7) %}
 
       {% capture slide_enabled %}home-slider-slide-{{ i }}-enabled{% endcapture %}
@@ -23,7 +21,6 @@
       {% capture slide_y_pos %}home-slider-slide-{{ i }}-y-pos{% endcapture %}
       {% capture slide_text_pos %}home-slider-slide-{{ i }}-text-pos{% endcapture %}
       {% capture slide_video %}home-slider-slide-{{ i }}-video{% endcapture %}
-
 
       {% if settings[slide_enabled] %}
 
@@ -93,16 +90,11 @@
   <div class="bg"></div>
   <a aria-hidden="true" class="close glyph cross"></a>
   <div class="player columns large-8">
-    <div class="flex-video">
-    </div>
+    <div class="flex-video"></div>
   </div>
-
-  <div class="caption columns large-4">
-
-  </div>
+  <div class="caption columns large-4"></div>
 </div>
 <div class="modal-mask"></div>
-
 
 {% elsif widget_order == 'b' %}
 
@@ -140,7 +132,6 @@
   <div class="featured-promo">
     <div class="row">
 
-
       {% assign left_type = settings.home-featured-promo-left-type %}
       {% assign right_type = settings.home-featured-promo-right-type %}
 
@@ -170,8 +161,6 @@
       {% endif %}
 
       {% if block_type == 'none' %}{% continue %}{% endif %}
-
-
 
       <div class="columns{% if block_type == 'text' %} {{ widget_text_align}}{% endif %}{% unless settings.home-featured-promo-right-type == 'none' %} large-6{% endunless %}">
 
@@ -259,8 +248,6 @@
 
           {% if block_type == 'none' %}{% continue %}{% endif %}
 
-
-
           <div class="columns{% if block_type == 'text' %} {{ widget_text_align}}{% endif %}{% unless settings.home-featured-promo-right-type == 'none' %} large-6{% endunless %}">
 
             {% if block_type == 'text'  %}
@@ -344,7 +331,7 @@
           <div class="columns large-3">
             <div class="image-text-widget box">
               <a href="/collections/rings">
-                <img src="https://cdn.shopify.com/s/files/1/0653/1555/files/lvbt-rings.jpg" alt="Rings at LVBT" />
+                <img src="https://cdn.shopify.com/s/files/1/0653/1555/files/lvbt-rings.jpg" alt="Unique gold and silver rings at LVBT" />
                 <div class="mjbtitle">
                   <div class="inner">
                     <h1>Rings<span aria-hidden="true" class="glyph slider-right"></span></h1>
