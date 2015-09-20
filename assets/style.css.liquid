@@ -2742,6 +2742,27 @@ html, body { /* {% if settings.general-bg-image-enabled %} */ /* {% if settings.
     display: none;
 } }
 
+/*---------------*/
+/***** Homepage black filter *****/
+/*---------------*/
+
+figure.effect-black-fill {
+    background: rgba(0,0,0,0.8);
+}
+
+figure.effect-black-fill img {
+    opacity: 1.0;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+}
+
+figure.effect-black-fill:hover img {
+    opacity: 0.40;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+}
+
 .testimonials {
     background: rgba(241,196,15,0.1);
     position: relative;
