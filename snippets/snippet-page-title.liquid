@@ -5,7 +5,7 @@
 {% elsif template == 'blog' %}
 	<title>Unique Jewellery | {{page_title}} | Page {{current_page}}</title>
 {% elsif template == 'collection' %}
-  <title>{{ page_title }} | {% for tag in current_tags %}{{ tag | capitalize | replace: '-', ' ' }}{% unless forloop.last %}, {% endunless %}{% endfor %}{% if paginate.current_page > '1' %} | Page {{current_page}}{% endif %}</title>
+  <title>{{ page_title }} | {% for tag in current_tags %}{{ tag | capitalize | replace: '-', ' ' }}{% unless forloop.last %}, {% endunless %}{% endfor %}{% if paginate.pages > '1' and paginate.current_page != '1' %} | Page {{current_page}}{% endif %}</title>
 {% elsif template == 'product' %}
   <title>{{ product.vendor }} | {{ product.title }}</title>
 {% else %}
