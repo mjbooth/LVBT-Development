@@ -2882,7 +2882,7 @@ figure img {
     position: relative;
 }
 
-figcaption {
+figcaption.rte-content {
     position: absolute;
     top: 0;
     left: 0;
@@ -2891,13 +2891,13 @@ figcaption {
     color: #ed4e6e;
 }
 
-figcaption h3 {
+figcaption.rte-content h3 {
     margin: 0;
     padding: 0;
     color: #fff;
 }
 
-figcaption a {
+figcaption.rte-content a {
     text-align: center;
     padding: 5px 10px;
     border-radius: 2px;
@@ -3303,4 +3303,279 @@ only screen and (min-device-pixel-ratio: 1.1) {
 
 .filter-active-colour-yellow .check-icon {
     background-color: yellow;
+}
+
+
+/* ===============================================
+// ABOUT US
+=============================================== */
+
+.page-about-us h1, h2, h3, h4, h5 {
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 769px) { 
+    
+    .map {
+        margin-top: 10px;
+    }
+}
+
+.page-about-us .about-personality a {
+    text-decoration: underline;
+}
+
+.page-about-us h2 {
+    font-size: 2.2em;
+    line-height: 1.0;
+}
+
+.page-about-us .caption {
+    position: absolute; 
+    top: 20px; 
+    width: 100%;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+@media only screen and (max-width: 769px) {
+    
+    .page-about-us .caption {
+        position: absolute; 
+        top: 80px; 
+        width: 100%;
+        font-size: 0.8em;
+        text-align: center;
+    }
+}
+
+.page-about-us .caption .title {
+    margin-left: auto;
+    margin-right: auto;
+    width: 62%;
+    line-height: 1.0;
+}
+
+.page-about-us .caption .subtitle {
+    background-color:rgba(255,255,255,0.8);
+    font-weight: 100;
+}
+
+@media only screen and (max-width: 769px) {
+    
+    .page-about-us .caption .subtitle {
+        background-color:rgba(255,255,255,1.0);
+        font-weight: 100;
+    }
+}
+
+.about-intro {
+    background-image: -moz-linear-gradient( -81deg, rgb(179,250,238) 0%, rgb(233,149,208) 100%);
+    background-image: -webkit-linear-gradient( -81deg, rgb(179,250,238) 0%, rgb(233,149,208) 100%);
+    background-image: -ms-linear-gradient( -81deg, rgb(179,250,238) 0%, rgb(233,149,208) 100%);
+    padding: 50px 1.25em;
+}
+
+.about-intro p {
+    margin-bottom: 0;
+}
+
+.about-intro img {
+    padding: 30px 0;
+}
+
+@media only screen and (max-width: 769px) {
+    .about-intro img { padding: 15px 0; }  
+}
+
+.about-everyday {
+    padding: 100px 1.25em 50px;
+}
+
+.about-global {
+    padding: 100px 4.8em 50px 4.8em;
+}
+
+.about-personality {
+    background-color: rgb(122, 214, 222);
+    padding: 100px 0 50px;
+}
+
+.about-power {
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+@media only screen and (max-width: 769px) {
+    .about-everyday { padding: 50px 1.25em 25px; }
+    .about-global { padding: 50px 1.25em 25px; }
+    .about-personality { background-color: rgb(122, 214, 222); padding: 50px 0 25px; }
+    .about-power { padding: 50px 1.25em 25px; }
+}
+
+.brand-block {
+    padding-top: 30px;
+}
+
+.about-global .large-3 {
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+}
+
+@media only screen and (min-width: 550px) and (max-width: 769px) {
+    .about-global .large-3 { padding-left: 0.25em; padding-right: 0.25em; width: 50%; }
+}
+
+/******************
+HOVER IMAGES STATE
+******************/
+
+figure.global-brands {
+  margin: 0.5%;
+  padding: 0;
+}
+
+.sunburst {
+  background-image: -moz-linear-gradient( 90deg, rgb(237,50,25) 0%, rgb(8,25,248) 100%);
+  background-image: -webkit-linear-gradient( 90deg, rgb(237,50,25) 0%, rgb(8,25,248) 100%);
+  background-image: -ms-linear-gradient( 90deg, rgb(237,50,25) 0%, rgb(8,25,248) 100%);
+}
+
+figure.sunburst img {
+    opacity: 1.0;
+}
+
+figure.sunburst:hover img {
+    opacity: 0.698;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+}
+
+figure.sunburst figcaption::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: #fff;
+    content: '';
+    -webkit-transform: translate3d(0,10px,0);
+    transform: translate3d(0,10px,0);
+}
+
+figure.sunburst h2, figure.sunburst p, figure.sunburst span {
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    right: 30px;
+    line-height: 3;
+    opacity: 0;
+    color: #fff;
+    text-align: left;
+}
+
+figure.sunburst:hover h2, figure.sunburst:hover p, figure.sunburst:hover span {
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    right: 30px;
+    line-height: 3;
+    opacity: 1;
+    color: #fff;
+    text-align: center;
+}
+
+figure.sunburst:hover span {
+    font-size: 8em;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 999px) {
+
+    figure.sunburst:hover h2, figure.sunburst:hover p, figure.sunburst:hover span {
+        position: absolute;
+        bottom: 0;
+        left: 5%;
+        right: 5%;
+        line-height: 2;
+        opacity: 1;
+        color: #fff;
+        text-align: center;
+    }
+
+    figure.sunburst:hover h2 {
+        font-size: 1.8em;
+    }
+
+    figure.sunburst:hover span {
+        font-size: 3.0em;
+        top: 10%;
+    }
+}
+
+figure.sunburst:hover figcaption::before,
+figure.sunburst:hover h2,
+figure.sunburst:hover p {
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+
+/******************
+END HOVER IMAGES STATE
+******************/
+
+.lvbt-choice {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.lvbt-choice img {
+    width: 80%;
+    padding: 1em 0;
+}
+
+.stripe {
+  height: 10px;
+  background-color: white;
+  background-image:
+    linear-gradient( to right, #ebacd9, #ebacd9 25%, #bb8cfe 25%, #bb8cfe 50%, #68b2f8 50%, #68b2f8 75%, #dbeecf 75% );
+}
+
+.about-sign-off {
+    background-color: #53545B;
+    text-align: center;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.about-sign-off h2 {
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+.about-sign-off .button {
+    margin-top: 20px;
+    font-size: 1.4em;
+    font-weight: 700;
+    background-color: #d74273;
+    margin-bottom: 0;
+}
+
+.module.parallax {
+  height: 400px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.module.parallax-1 { background-image: url("https://cdn.shopify.com/s/files/1/0730/5135/files/LVBT_2015_pr_004.jpg?15788979164185081906"); }
+
+@media only screen and (max-width: 769px) {
+    .module.parallax { height: 400px; background-position: 50% 50%; background-repeat: no-repeat; background-attachment: inherit; background-size: cover; }
+    .module.parallax-1 { background-image: url("https://cdn.shopify.com/s/files/1/0653/1555/files/everyday-exclusivity.jpg?647801678669488084"); }
 }
