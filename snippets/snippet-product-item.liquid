@@ -22,9 +22,7 @@
   <div class="product-item {{ column-classes }}">
     <div class="image-wrapper">
       
-      {% if product.available == false %}
-        <div class="circle sold-out">Sold<br />Out</div>
-      {% elsif product.compare_at_price > product.price %}  
+      {% if product.compare_at_price > product.price %}  
         <a class="circle sale" href="{{ product.url | within: collection }}">Sale</a>
       {% endif %}
       {% assign ratio = settings.product_img_w_to_h_ratio | times: 1.0 %}
@@ -65,7 +63,7 @@
       {% else %}
       <p class="price">
         {% if product.price_varies %}From{% endif %}
-        {{ product.price | money }}
+        {{ product.price | money }} {% if product.available == false %} <span>~ SOLD OUT</span> {% endif %}
       </p>
       {% endif %}
     </div><!-- .coll-prod-caption -->
