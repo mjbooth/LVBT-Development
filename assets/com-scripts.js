@@ -1854,3 +1854,13 @@ function() {
 }), !1
 }.call(this), $(document).ready(function() {
 });
+
+var text_max = 140;
+$('#cart-notes-area_feedback').html(text_max + ' characters remaining');
+
+$('#cart-notes-area').keyup(function() {
+    var text_length = $('#cart-notes-area').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#cart-notes-area_feedback').html(text_remaining + ' characters remaining');
+});

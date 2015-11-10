@@ -1909,7 +1909,7 @@ form.custom .custom.checkbox { -webkit-border-radius: 0px; border-radius: 0px; p
 form.custom .custom.radio { -webkit-border-radius: 1000px; border-radius: 1000px; padding: 3px; }
 form.custom .custom.checkbox:before { content: ""; display: block; font-size: 16px; color: white; }
 form.custom .custom.radio.checked:before { content: ""; display: block; width: 8px; height: 8px; -webkit-border-radius: 1000px; border-radius: 1000px; background: #222222; position: relative; }
-form.custom .custom.checkbox.checked:before { content: "\00d7"; color: #222222; position: absolute; top: -50%; left: 50%; margin-top: 4px; margin-left: -5px; }
+form.custom .custom.checkbox.checked:before { content: "\00d7"; color: #222222; position: absolute; top: -50%; left: 50%; margin-top: 1px; margin-left: -5px; }
 
 /* Custom Select Options and Dropdowns */
 form.custom { /* Custom input, disabled */ }
@@ -3579,3 +3579,10 @@ END HOVER IMAGES STATE
     .module.parallax { height: 400px; background-position: 50% 50%; background-repeat: no-repeat; background-attachment: inherit; background-size: cover; }
     .module.parallax-1 { background-image: url("https://cdn.shopify.com/s/files/1/0653/1555/files/everyday-exclusivity.jpg?647801678669488084"); }
 }
+
+
+.gift-checkbox { border-bottom: 1px solid #ebebeb; margin-bottom: 10px; overflow: hidden; }
+.gift-checkbox h3 { padding-top: 12px; }
+.gift-checkbox input[type="checkbox"] ~ div {display:none;}
+.gift-checkbox input[type="checkbox"]:checked ~ div {display:inline;}
+.gift-checkbox span { margin-right: 10px }
