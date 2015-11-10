@@ -55,7 +55,7 @@
       <h3 style="color: red;">Is this item a Christmas gift? <i class="fa fa-gift"></i></h3>
 
       <div class="gift-checkbox">
-        <input type="checkbox">Would you like to make it extra special with LVBT gift packaging and a personalised message?<br /><br />
+        <input name="attributes[gift-wrap]" value="Please gift wrap" type="checkbox">Would you like to make it extra special with LVBT gift packaging and a personalised message?<br /><br />
 
 
         <div class="tipo-uf-131">        
@@ -65,7 +65,7 @@
           <input type="radio" name="attributes[wrapping]" value="individual">Wrap individually
           {% endif %}
 
-          <h3>Complimentry gift messaging</h3>
+          <h3>Complimentry gift message</h3>
           <div class="large-5">
             <textarea id="cart-notes-area" name="attributes[message]" placeholder="Add your gift message here_">{{ cart.attributes.message }}</textarea>
             <div id="cart-notes-area_feedback" style="float: right; margin-bottom: 10px;"></div>
