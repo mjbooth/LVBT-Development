@@ -12,6 +12,8 @@
 	<img class="flags-icon" src="https://cdn.shopify.com/s/files/1/0653/1555/files/flag_SouthAfrica.png?1712079824320192709"></img>
 	{% elsif flags[key] == 'USA' %}
 	<img class="flags-icon" src="https://cdn.shopify.com/s/files/1/0653/1555/files/flag_UnitedStates.png?7765433750768807049"></img>
+	{% elsif flags[key] == 'FRA' %}
+	<img class="flags-icon" src="https://cdn.shopify.com/s/files/1/0653/1555/files/france.jpg?3317346393389540287"></img>
 	{% endif %}
 	<span style="padding-left: 10px;">
 		{% assign origin = collection.metafields.origin %}{% assign key = 'location' %}<span>{{ origin[key] }}
