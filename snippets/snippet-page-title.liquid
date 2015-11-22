@@ -1,13 +1,15 @@
 {% if template == 'index' %}
-  <title>{{ page_title }}</title>
+	<title>{{ page_title }}</title>
 {% elsif template == '404' %}
-  <title>Page Not Found at {{ shop.name }}</title>
+	<title>Page Not Found at {{ shop.name }}</title>
 {% elsif template == 'blog' %}
 	<title>Unique Jewellery | {{page_title}} | Page {{current_page}}</title>
 {% elsif template == 'collection' %}
-  <title>{{ page_title }} | {% for tag in current_tags %}{{ tag | capitalize | replace: '-', ' ' }}{% unless forloop.last %}, {% endunless %}{% endfor %}{% if current_page != 1 %} | Page {{current_page}}{% endif %}</title>
+  	<title>{{ page_title }} | {% for tag in current_tags %}{{ tag | capitalize | replace: '-', ' ' }}{% unless forloop.last %}, {% endunless %}{% endfor %}{% if current_page != 1 %} | Page {{current_page}}{% endif %}</title>
 {% elsif template == 'product' %}
-  <title>{{ product.vendor }} | {{ product.title }}</title>
+  	<title>{{ product.vendor }} | {{ product.title }}</title>
+{% elsif template == 'article' %}
+	<title>{{ page_title }}</title>
 {% else %}
-  <title>Statement Jewellery | {{ page_title }}</title>
+  	<title>Statement Jewellery | {{ page_title }}</title>
 {% endif %}
