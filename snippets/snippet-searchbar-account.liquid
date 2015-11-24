@@ -1,11 +1,15 @@
 <div class="menu">
   {% if settings.header-search-show %}
-    <a class="searchbar-open" href="#">Search<span aria-hidden="true" class="glyph search"></span></a>
+    <a class="searchbar-open" href="#">Search</a>
   {% endif %}
 
   {% if settings.header-account-show and shop.customer_accounts_enabled %}
-    <a class="account-open" href="#">Account<span aria-hidden="true" class="glyph account"></span></a>
+    <a class="account-open" href="#">Account</a>
   {% endif %}
+
+  <a class="cart-link" href="/cart">Basket<span class="number-wrapper {% if cart.item_count == 0 %}hide{% endif %}">(<span class="number"><strong>{{ cart.item_count }}</strong></span>)</span></a>
+
+  {% include 'snippet-cart' %}
     
 </div>
 
@@ -27,6 +31,3 @@
   {% endif %}
   <a href="#" aria-hidden="true" class="account-close glyph cross"></a>
 </div>
-
-
-
