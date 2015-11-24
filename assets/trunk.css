@@ -18,7 +18,7 @@ a {text-decoration: none;}
 
 .container {
 	overflow: hidden;
-	background-color: #000;
+	background-color: #fff;
 
 /*  Prevents Flickering  */
 	-webkit-backface-visibility: hidden;

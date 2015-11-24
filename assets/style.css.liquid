@@ -1835,7 +1835,7 @@ button.large, .button.large { padding-top: 1.375em; padding-bottom: 1.375em; }
   button.round, .button.round { -webkit-border-radius: 1000px; border-radius: 1000px; } }
 @media only screen and (min-width: 768px) { button, .button { display: inline-block; } }
 /* Standard Forms */
-form { margin: 0 0 0.83333em; }
+form { padding: 0 0 0.83333em; }
 
 /* Using forms within rows, we need to set some defaults */
 form .row .row { margin: 0 -0.41667em; }
@@ -2071,7 +2071,7 @@ html, body { /* {% if settings.general-bg-image-enabled %} */ /* {% if settings.
 .main-header .cart a, .main-header .cart a:link { margin-left: 8px; }
 .main-header .cart .button, .main-header .cart a.button { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; font-family: {% if settings.font-advanced-headings-enabled %} "{{ settings.font-advanced-headings }}" {% else %} {{ settings.font-headings | remove_first: "google, " }} {% endif %}; font-size: 1em; font-weight: bold; text-transform: uppercase; border: 0; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; margin-top: -15px; }
 .main-header .cart .heading { font-size: 1em; }
-.main-header .cart .recently-added { display: none; border: 1px solid {{ settings.color-border }}; background: {{ settings.color-page-bg }}; text-align: left; position: absolute; width: 350px; top: 40px; right: 15px; padding: 10px 10px 20px 10px; z-index: 10; }
+.main-header .cart .recently-added { display: none; border: 1px solid {{ settings.color-border }}; background: {{ settings.color-page-bg }}; text-align: left; position: absolute; width: 350px; top: 28px; right: 15px; padding: 10px 10px 20px 10px; z-index: 10; }
 .main-header .cart .recently-added:after { content: ''; display: block; position: absolute; right: 20px; bottom: 100%; width: 0; height: 0; border-color: transparent transparent {{ settings.color-page-bg }} transparent; border-style: solid; border-width: 10px; }
 .main-header .cart .recently-added:before { content: ''; display: block; position: absolute; right: 19px; bottom: 100%; width: 0; height: 0; border-color: transparent transparent {{ settings.color-border }} transparent; border-style: solid; border-width: 11px; }
 .main-header .cart .recently-added.mobile { width: 280px; left: 50%; right: auto; margin-left: -140px; position: fixed; top: 50%; margin-top: -131px; }
