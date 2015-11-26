@@ -21,7 +21,15 @@
 </div>
 
 <div class="row large-9" style="float: right;">
-  {% if collection.description.size > 0 %}
+  {% if collection.title == 'Black Friday' %}
+  <div class="description columns intro">
+    <article class="" style="float: left;">
+      <div style="float: left;">
+        {{ collection.image.src | collection_img_url: 'large' | img_tag: collection.image.alt }}
+      </div>
+    </article>
+  </div>
+  {% elsif collection.description.size > 0 %}
   <div class="description columns intro">
     <article class="" style="float: left;">
       <div style="float: left;" class="large-3">
