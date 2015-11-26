@@ -3607,14 +3607,16 @@ END HOVER IMAGES STATE
     font-size: 2.4em;
     text-transform: uppercase;
     line-height: 1;
-    background: linear-gradient(124deg, #fe8c00 0%, #bb377d 100%);
-    -webkit-background-clip: text;
+    color: #fe8c00;
     -webkit-text-fill-color: transparent;
+    background: -webkit-linear-gradient(124deg, #fe8c00 0%, #bb377d 100%);
+    background: -o-linear-gradient(transparent, transparent);
+    -webkit-background-clip: text;  
 }
 
 .flash-sale { background: rgba(0,0,0,1); position: relative; padding: 40px 30px; text-align: center; }
 @media only screen and (max-width: 769px) { .flash-sale { padding: 0; } }
-.flash-sale h2, .flash-sale h3 { background: linear-gradient(124deg, #fe8c00 0%, #bb377d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; text-transform: uppercase; margin-bottom: 30px; font-weight: bold; line-height: 1.2; }
+.flash-sale h2, .flash-sale h3 { color: #fe8c00; -webkit-text-fill-color: transparent; background: -webkit-linear-gradient(124deg, #fe8c00 0%, #bb377d 100%); background: -o-linear-gradient(transparent, transparent); -webkit-background-clip: text; text-align: center; text-transform: uppercase; margin-bottom: 30px; font-weight: bold; line-height: 1.2; }
 .flash-sale h2 { font-size: 4.2em; }
 .flash-sale h3 { font-size: 2.5em; }
 .flash-sale a.button { display: inline-block; width: 200px; font-weight: bold; padding: 8px; color: #fff; border: 3px solid #fff; text-align: center; outline: none; text-decoration: none; background: none; }
