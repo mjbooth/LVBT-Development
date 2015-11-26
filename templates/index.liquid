@@ -301,10 +301,17 @@
         {% elsif widget_order == 'd' %}
         <div class="widgets">
           {% assign column_count = 4 %}
-      {% comment %}{% if settings.home-widget-image-text-1 %}{% assign column_count = column_count | plus: 1 %}{% endif %}
-      {% if settings.home-widget-image-text-2 %}{% assign column_count = column_count | plus: 1 %}{% endif %}
-      {% if settings.home-widget-image-text-3 %}{% assign column_count = column_count | plus: 1 %}{% endif %}
-      {% if settings.home-widget-image-text-4 %}{% assign column_count = column_count | plus: 1 %}{% endif %}{% endcomment %}
+
+    <div class="widgets flash-sale">
+      <div class="row">
+        <div class="columns large-12">
+          <h2 class="">BLACK FRIDAY WEEKEND</h2>
+          <h3 class="">15% OFF USING CODE: BLACKFRIDAY15</h3>
+          <a class="button" href="/collections/black-friday">Shop the sale</a>
+        </div>
+      </div>
+    </div>
+
 
     {% if column_count > 0 %}
       <div class="small-promos">
