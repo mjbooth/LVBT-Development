@@ -103,7 +103,7 @@
     {% endfor %}
     {% assign current_collection_handle_sep = current_collection_handle | prepend: '|' | append: '|' %}
     {% unless displayed_collection_handles contains current_collection_handle_sep or current_collection_handle == 'all' %}
-    <div class="filter-group filter-group-not-shown has_group_selected" style="display: hidden;">
+    <div class="filter-group filter-group-not-shown has_group_selected" style="display: none;">
         <h4>Collection</h4>
         <div class="widget-content">
             <ul class="nav-not-shown">
