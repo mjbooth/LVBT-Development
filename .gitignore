@@ -4,4 +4,5 @@ config.yml
 .nvmrc
 packago.json
 Gruntfile.js
-node_modules
+node_modules/**
+gulpfile.js
