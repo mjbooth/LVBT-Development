@@ -1,3 +1,7 @@
 vc-with-git.sublime-project
 vc-with-git.sublime-workspace
 config.yml
+.nvmrc
+packago.json
+Gruntfile.js
+node_modules
