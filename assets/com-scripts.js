@@ -1864,4 +1864,5 @@ $('#cart-notes-area').keyup(function() {
 
     $('#cart-notes-area_feedback').html(text_remaining + ' characters remaining');
 });
+
 // MJB 14 December
