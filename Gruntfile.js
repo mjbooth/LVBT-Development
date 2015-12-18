@@ -7,7 +7,7 @@ grunt.initConfig({
     },
     my_target: {
       files: {
-        '/assets/com-scripts.min.js': ['LVBT-Development/assets/com-scripts.js']
+        'assets/com-scripts.min.js': ['assets/com-scripts.js']
       }
     }
   }
