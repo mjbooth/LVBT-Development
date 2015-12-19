@@ -163,13 +163,13 @@
       <footer class="main-footer">
         <div class="row bottom">
           <div class="column-1 large-3 columns">
-            <h2 class="title">{{ settings.footer-block-1-title }}</h2>
+            <h4 class="title">{{ settings.footer-block-1-title }}</h4>
             <div class="content">
               <p class="text">{{ settings.footer-block-1-text | newline_to_br }}</p>
             </div>
           </div>
           <div class="column-2 large-3 columns">
-            <h2 class="title">{{ settings.footer-block-2-title }}</h2>
+            <h4 class="title">{{ settings.footer-block-2-title }}</h4>
             <div class="content">
               {% assign footer_nav = 'footer' %}
               {% if linklists[settings.footer-block-2-linklist].links.size > 0 %}
@@ -183,7 +183,7 @@
             </div>
           </div>
           <div class="column-2 large-3 columns">
-            <h2 class="title">What's in store</h2>
+            <h4 class="title">What's in store</h4>
             <div class="content">
               <ul class="footer-nav plain-list" role="navigation">
                 <li><a href="/collections/bags">Bags</a></li>
@@ -199,7 +199,7 @@
           <div class="column-3 large-3 columns">
             {% if settings.footer-mailing-list-show %}
             {% if settings.footer-mailing-list-title.size > 0 %}
-            <h2 class="title">{{ settings.footer-mailing-list-title }}</h2>
+            <h4 class="title">{{ settings.footer-mailing-list-title }}</h4>
             {% endif %}
 
             <div class="content" id="mailing-list-module">
