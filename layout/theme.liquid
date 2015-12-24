@@ -25,12 +25,12 @@
   {{ 'trunk.min.css' | asset_url | stylesheet_tag }}    
   {{ 'reset.min.css' | asset_url | stylesheet_tag }}
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700italic,700,400italic,300,300italic' rel='stylesheet' type='text/css'>
 
   {% include 'snippet-page-title' %}
   {% include 'snippet-page-description' %}
   {% include 'snippet-fb-open-graph-tags' %}
   {% include 'snippet-fb-retarget' %}
-  {% include 'snippet-webfont' %}
   {% include 'sofa-script' %}
 
   {% if template == 'blog' %}
