@@ -4,8 +4,10 @@
 	<title>Page Not Found at {{ shop.name }}</title>
 {% elsif template == 'blog' %}
 	<title>Unique Jewellery | {{page_title}} | Page {{current_page}}</title>
-{% elsif template == 'collection' %}
+{% elsif template == 'collection' and collection.id %}
   	<title>{{ page_title }}{% for tag in current_tags %} | {{ tag | capitalize | replace: '-', ' ' }}{% unless forloop.last %}, {% endunless %}{% endfor %}{% if current_page != 1 %} | Page {{current_page}}{% endif %}</title>
+{% elsif template == 'collection' and collection.id == blank %}
+	<title>Unique Jewellery and Accessories | {{ page_title }}{% for tag in current_tags %} | {{ tag | capitalize | replace: '-', ' ' }}{% unless forloop.last %}, {% endunless %}{% endfor %}{% if current_page != 1 %} | Page {{current_page}}{% endif %}</title>
 {% elsif template == 'product' %}
   	<title>{{ product.vendor }} | {{ product.title }}</title>
 {% elsif template == 'article' %}
