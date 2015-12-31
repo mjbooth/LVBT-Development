@@ -2182,7 +2182,7 @@ html, body { /* */ background: #ffffff; /* */ }
 .product-grid .image-wrapper .box { box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2); }
 .product-grid .image-wrapper .hover { display: none; position: absolute; height: 100%; width: 100%; }
 .product-grid .caption { text-align: center; text-transform: uppercase; margin-top: 15px; }
-.product-grid .circle { text-align: center; text-transform: uppercase; display: block; position: absolute; z-index: 1; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; -o-border-radius: 50%; border-radius: 50%; color:  #f7f7f7  ; background:  #444444  ; font-family:  "lato" ; font-size: 1em; font-weight: 300; padding: 23px 0 0 0; top: 5px; right: 5px; height: 65px; width: 65px; }
+.product-grid .circle { text-align: center; text-transform: uppercase; display: block; position: absolute; z-index: 1; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; -o-border-radius: 50%; border-radius: 50%; color: #f7f7f7; background: #be2326; font-family: "lato" ; font-size: 1em; font-weight: 300; padding: 23px 0 0 0; top: 5px; right: 5px; height: 65px; width: 65px; }
 @media only screen and (min-width: 1280px) { .product-grid .circle { font-size: 1.16667em; padding: 35px 0 0 0; top: 15px; right: 15px; height: 90px; width: 90px; } }
 .product-grid .sold-out { color:  #ffffff  ; background:  #cccccc  ; padding: 18px 0 0 0; line-height: 1.3; }
 @media only screen and (min-width: 1280px) { .product-grid .sold-out { padding: 28px 0 0 0; } }
