@@ -4,7 +4,7 @@
 {% paginate collection.products by products_per_page %}
 <header class="row">
   <div class="left columns large-6">
-    {% if settings.collections-breadcrumbs-show %}
+    {% if settings.collections-breadcrumbs-show and collection.title != 'Winter Sale' %}
     {% include 'snippet-breadcrumbs' %}
     {% endif %}
   </div>
