@@ -3585,20 +3585,22 @@ END HOVER IMAGES STATE
 
 /** FLASH SALE **/
 
-.flash-intro { width: 100%; background-color: #000; text-align: center; padding: 15px 0; }
-.flash-intro h1, .flash-intro h2 { font-family: 'Roboto Slab', serif; font-size: 2.4em; text-transform: uppercase; line-height: 1; color: #fe8c00; -webkit-text-fill-color: transparent; background: -webkit-linear-gradient(124deg, #fe8c00 0%, #bb377d 100%); background: -o-linear-gradient(transparent, transparent); -webkit-background-clip: text; }
-.flash-sale { /*background: rgba(0,0,0,1)*/ background: url(https://cdn.shopify.com/s/files/1/0730/5135/files/jandh.jpg?17792413833591198414) center right / 100%; position: relative; padding: 60px 30px; text-align: center; }
+.flash-intro { width: 100%; text-align: center; padding: 25px 0; background: rgb(190, 35, 38); }
+@media only screen and (min-width: 769px) { .flash-intro{ margin-top: -32px;} }
+.flash-intro h1, .flash-intro h2 { font-family: 'Lato', sans-serif !important; font-size: 2.8em; text-transform: uppercase; line-height: 1; color: #ffffff; }
+.flash-sale { /*background: rgba(0,0,0,1)*/ background: url(https://cdn.shopify.com/s/files/1/0730/5135/files/winter-backdrop.jpg?13810368598318301023) center right / 100%; position: relative; padding: 60px 30px; text-align: center; }
 .page-necklaces .flash-sale { /*background: rgba(0,0,0,1)*/ background: url(https://cdn.shopify.com/s/files/1/0653/1555/files/necklace-landingpage.jpg?14792077009130546771) bottom center / 100%; position: relative; padding: 60px 30px; text-align: center; }
 @media only screen and (max-width: 768px) { .flash-sale { padding: 0; } }
 .flash-sale h1, .flash-sale h2 { color: rgba(34, 34, 34, 1); text-transform: uppercase; margin-bottom: 30px; font-weight: bold; line-height: 1.2; }
 .page-necklaces .header h1, .page-necklaces .header h2 { color: rgba(250, 250, 250, 1); text-transform: uppercase; margin-bottom: 30px; font-weight: bold; line-height: 1.2; }
 .flash-sale h1 { font-size: 4.2em; }
 .flash-sale h2 { font-size: 2.5em; }
-.flash-sale a.button { display: inline-block; width: 200px; font-weight: bold; padding: 8px; color: rgba(34, 34, 34, 1); border: 3px solid rgba(34, 34, 34, 1); text-align: center; outline: none; text-decoration: none; background: none; }
+.flash-sale a.button { display: inline-block; width: 200px; font-weight: bold; padding: 8px; color: rgba(34, 34, 34, 1); border: 3px solid rgba(34, 34, 34, 1); text-align: center; outline: none; text-decoration: none; /*background: none;*/ background-color: #fff; }
 .flash-sale a.button:hover, a.button:active { background-color: #fff; color: #000; transition: background-color 0.3s ease-in, color 0.3s ease-in; }
 @media only screen and (max-width: 768px) { 
     .flash-sale h1 { font-size: 3.2em; }
-    .flash-sale h2 { font-size: 2.0em; } }
+    .flash-sale h2 { font-size: 2.0em; } 
+}
 
 /** LANDING PAGE **/
 
