@@ -3588,7 +3588,8 @@ END HOVER IMAGES STATE
 .flash-intro { width: 100%; text-align: center; padding: 25px 0; background: rgb(190, 35, 38); }
 @media only screen and (min-width: 769px) { .flash-intro{ margin-top: -32px;} }
 .flash-intro h1, .flash-intro h2 { font-family: 'Lato', sans-serif !important; font-size: 2.8em; text-transform: uppercase; line-height: 1; color: #ffffff; }
-.flash-sale { /*background: rgba(0,0,0,1)*/ background: url(https://cdn.shopify.com/s/files/1/0730/5135/files/jandh.jpg?17400860877070001707) center right / 100%; position: relative; padding: 60px 30px; text-align: center; }
+.flash-sale { background: url(https://cdn.shopify.com/s/files/1/0653/1555/files/winter-background-mobile.jpg?5027604296710605496) center right / 100%; position: relative; padding: 60px 30px; text-align: center; }
+@media only screen and (min-width: 768px) { .flash-sale { background: url(https://cdn.shopify.com/s/files/1/0653/1555/files/winter-background-desktop.jpg?4174251917876716629) center right / 100%; position: relative; padding: 60px 30px; text-align: center; } }
 .page-necklaces .flash-sale { /*background: rgba(0,0,0,1)*/ background: url(https://cdn.shopify.com/s/files/1/0653/1555/files/necklace-landingpage.jpg?14792077009130546771) bottom center / 100%; position: relative; padding: 60px 30px; text-align: center; }
 @media only screen and (max-width: 768px) { .flash-sale { padding: 0; } }
 .flash-sale h1, .flash-sale h2 { color: rgba(34, 34, 34, 1); text-transform: uppercase; margin-bottom: 30px; font-weight: bold; line-height: 1.2; }
