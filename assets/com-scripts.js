@@ -1729,10 +1729,11 @@ function() {
       navigation: !1,
       paginationNumbers: !1,
       scrollPerPageNav: !0,
-      slideSpeed: 800,
-      pagination: !0,
+      slideSpeed: 400,
+      autoPlay : 3500,
+      pagination: false,
       autoHeight: !0,
-      autoPlay: t.autoplay(),
+      // autoPlay: t.autoplay(),
       afterInit: function() {
         return t.eventListeners()
       },
