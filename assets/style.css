@@ -2041,8 +2041,8 @@ html, body { /* */ background: #ffffff; /* */ }
 .main-header .main-menu-dropdown-panel ul li { padding-bottom: 10px; }
 .main-header .main-menu-dropdown-panel ul li a { color: #fff; }
 .main-header .currency-picker { display: none; }
-@media only screen and (min-width: 768px) { .main-header .logo-center h2.title { text-align: center; } }
-.lt-ie9 .main-header .logo-center h2.title { text-align: center; }
+@media only screen and (min-width: 768px) { .main-header .logo-center h2.title { text-align: center; width: 140px; margin-left: auto; margin-right: auto; } }
+.lt-ie9 .main-header .logo-center h2.title { text-align: center; width: 140px; margin-left: auto; margin-right: auto; }
 .main-header h2.title { text-align: center; font-family:  "Lato" ; font-size: 2.33333em; margin: 0; display: block; color:  #444444 ; }
 @media only screen and (min-width: 768px) { .main-header h2.title { text-align: left; } }
 .lt-ie9 .main-header h2.title { text-align: left; }
@@ -3603,11 +3603,7 @@ END HOVER IMAGES STATE
     .flash-sale h1 { font-size: 3.2em; }
     .flash-sale h2 { font-size: 2.0em; }
 }
-.title-block { 
-    width: 140px; 
-    margin-left: auto; 
-    margin-right: auto;
-}
+
 
 /** LANDING PAGE **/
 
