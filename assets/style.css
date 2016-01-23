@@ -3601,7 +3601,12 @@ END HOVER IMAGES STATE
 .flash-sale a.button:hover, a.button:active { background-color: #fff; color: #000; transition: background-color 0.3s ease-in, color 0.3s ease-in; }
 @media only screen and (max-width: 768px) { 
     .flash-sale h1 { font-size: 3.2em; }
-    .flash-sale h2 { font-size: 2.0em; } 
+    .flash-sale h2 { font-size: 2.0em; }
+}
+.title-block { 
+    width: 140px; 
+    margin-left: auto; 
+    margin-right: auto;
 }
 
 /** LANDING PAGE **/
