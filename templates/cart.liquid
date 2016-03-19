@@ -1,6 +1,6 @@
 <header class="row">
   <div class="columns">
-    <h1 class="page-title">Your Cart</h1>
+    <h1 class="page-title">Your Basket</h1>
   </div>
 </header>
 
@@ -46,7 +46,6 @@
         </tbody>
       </table>
     </div>
-
   </div>
       
   <div class="row">
@@ -58,8 +57,6 @@
         <span><a href="/collections/{{ coll_handle }}"><span aria-hidden="true" class="glyph arrow-left"></span> Continue Shopping</a></span>
       </div>
     </div>
-
-
     <div class="columns large-7">
       <div class="totals columns">
         <h3><strong>SUBTOTAL {{ cart.total_price | money }}</strong></h3>
@@ -72,7 +69,6 @@
         </p>
         {% endif %}
       </div>
-
       <div class="order-notes columns">
         <div class="container">
           <h3>Order Notes</h3>
@@ -80,21 +76,19 @@
         </div>
       </div>
     </div>
-
     <div class="continue-shopping columns show-for-small columns hide-for-ie9-down">
       <span><a href="/collections/{{ coll_handle }}"><span aria-hidden="true" class="glyph arrow-left"></span> Continue Shopping</a></span>
     </div>
-
-  </div> <!-- .row -->
+  </div>
 </form>
 
 {% else %}
 
 <section class="empty-cart row colored-links">
   <div class="columns">
-    <h1>It appears that your cart is currently empty!</h1>
-    <h2>You can continue browsing <a href="/collections/all">here</a>.</h2>
+    <p>It appears that your basket is currently empty!</p>
+    <p>You can continue browsing <a href="/collections/all">here</a>.</p>
   </div>
-</section><!-- #empty-cart -->
+</section>
 
-{% endif %} <!-- if cart.item_count > 0  -->
+{% endif %}

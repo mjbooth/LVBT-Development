@@ -1,30 +1,12 @@
 <header>
-  <div class="row show-for-medium-up">
+  <div class="row show-for-medium-up breadcrumbs-nav">
     <div class="columns">
       {% if settings.product-breadcrumbs-show %}
         {% include 'snippet-breadcrumbs' %}
       {% endif %}
     </div>
   </div>
-  <div class="previous-next row">
-    {% if collection %}
-      {% if collection.previous_product or collection.next_product %}
-        <div class="previous columns large-3 small-6"> 
-          {% if collection.previous_product %}
-            <a class="left" title="Previous Product" href="{{ collection.previous_product}}"><span aria-hidden="true" class="glyph arrow-left"></span> Previous Item</a>
-          {% endif %}
-          <div class="border-decoration show-for-medium-up"></div>
-        </div>
-
-        <div class="next columns large-3 large-offset-6 small-6">
-          {% if collection.next_product %}
-            <a class="right" title="Next Product" href="{{ collection.next_product}}">Next Item <span aria-hidden="true" class="glyph arrow-right"></span></a>
-          {% endif %}
-          <div class="border-decoration show-for-medium-up"></div>
-        </div>
-      {% endif %}
-    {% endif %}
-  </div>
+  
 
 <script type="text/javascript">
 ga('send', {
@@ -84,6 +66,7 @@ ga('send', {
             <img src="{{ image.src | product_img_url: 'grande' }}" alt="{{ image.alt | escape }}" />
           </a>
           {% endfor %}
+          
         </div>
       </div>
     </div>
@@ -140,9 +123,9 @@ ga('send', {
 
   <!-- Mobile -->
   <div class="positions show-for-small columns">
+    <div data-position="photos"></div>
     <div data-position="title-vendor"></div>
     <div data-position="prices"></div>
-    <div data-position="photos"></div>
     <div data-position="thumbs" class="text-center"></div>
     <div data-position="cart-form"></div>
     <div data-position="description"></div>
@@ -151,61 +134,29 @@ ga('send', {
   <!-- Medium Screens -->
   <div class="positions show-for-medium-only">
     <div class="columns large-6">
+      <div data-position="photos"></div>
+    </div>
+
+    <div class="columns large-6">
       <div data-position="title-vendor"></div>
       <div data-position="prices"></div>
       <div data-position="cart-form"></div>
       <div data-position="thumbs"></div>
       <div data-position="description"></div>
     </div>
-
-    <div class="columns large-6">
-      <div data-position="photos"></div>
-    </div>
   </div>
 
-  <!-- Large Screens -->
-  <div class="positions show-for-large-up">
-    <div class="columns large-3">
-      {% if settings.product-position-title-vendor == 'left' %}
-        <div data-position="title-vendor"></div>
-      {% endif %}
-      {% if settings.product-position-price == 'left' %}
-        <div data-position="prices"></div>
-      {% endif %}
-      {% if settings.product-position-form == 'left' %}
-        <div data-position="cart-form"></div>
-      {% endif %}
-      {% if settings.product-position-thumbs == 'left' %}
-        <div data-position="thumbs"></div>
-      {% endif %}
-      {% if settings.product-position-description == 'left' %}
-        <div data-position="description"></div>
-      {% endif %}
+    <div class="positions show-for-large-up">
+    <div class="columns large-6">
+      <div data-position="photos"></div>
     </div>
 
     <div class="columns large-6">
-      <div data-position="photos"></div>
-      {% if settings.product-position-thumbs == 'center' %}
-        <div data-position="thumbs" class="text-center"></div>
-      {% endif %}
-    </div>
-
-    <div class="columns large-3">
-      {% if settings.product-position-title-vendor == 'right' %}
-        <div data-position="title-vendor"></div>
-      {% endif %}
-      {% if settings.product-position-price == 'right' %}
-        <div data-position="prices"></div>
-      {% endif %}
-      {% if settings.product-position-form == 'right' %}
-        <div data-position="cart-form"></div>
-      {% endif %}
-      {% if settings.product-position-thumbs == 'right' %}
-        <div data-position="thumbs"></div>
-      {% endif %}
-      {% if settings.product-position-description == 'right' %}
-        <div data-position="description"></div>
-      {% endif %}
+      <div data-position="title-vendor"></div>
+      <div data-position="prices"></div>
+      <div data-position="cart-form"></div>
+      <div data-position="thumbs"></div>
+      <div data-position="description"></div>
     </div>
   </div>
 </article>
@@ -244,4 +195,4 @@ ga('send', {
 
   // Looking for the selectCallback function?
   // You can find it by searching 'selectCallback' in the assets > shop.js
-</script>
+</script

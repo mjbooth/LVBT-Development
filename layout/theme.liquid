@@ -13,28 +13,31 @@
   <link rel="shortcut icon" type="image/png" href="{{ 'favicon.png' | asset_url }}" />
   {% endif %}
 
+  {{ 'style.css' | asset_url | stylesheet_tag }}
+  {{ 'trunk.css' | asset_url | stylesheet_tag }}    
+  {{ 'reset.css' | asset_url | stylesheet_tag }}
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script src="https://use.typekit.net/mxr7drh.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+
+  {% include 'snippet-page-title' %}
+  {% include 'snippet-page-description' %}
+  {% include 'snippet-fb-open-graph-tags' %}
+  {% include 'snippet-fb-retarget' %}
+  {% include 'snippet-webfont' %}
+  {% include 'sofa-script' %}
+
+  {% if template == 'blog' %}
+    {% include 'snippet-facebook-pixel' %}
+  {% endif %}
+
   {% if template == 'product' %}
     <link rel="canonical" href="{{ shop.url }}{{ product.url }}" />
   {% elsif template == 'collection' %}
     <link rel="canonical" href="{{ shop.url }}{{ collection.url }}" />
   {% else %}
     <link rel="canonical" href="{{ canonical_url }}" />
-  {% endif %}
-
-  {{ 'style.min.css' | asset_url | stylesheet_tag }}
-  {{ 'trunk.min.css' | asset_url | stylesheet_tag }}    
-  {{ 'reset.min.css' | asset_url | stylesheet_tag }}
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700italic,700,400italic,300,300italic' rel='stylesheet' type='text/css'>
-
-  {% include 'snippet-page-title' %}
-  {% include 'snippet-page-description' %}
-  {% include 'snippet-fb-open-graph-tags' %}
-  {% include 'snippet-fb-retarget' %}
-  {% include 'sofa-script' %}
-
-  {% if template == 'blog' %}
-    {% include 'snippet-facebook-pixel' %}
   {% endif %}
 
   {{ content_for_header }}
@@ -53,16 +56,15 @@
   <![endif]-->
 
   <script src="{{ 'custom.modernizr.min.js' | asset_url }}" ></script>
-  <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' ></script>
+  <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
   <script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js' async></script>
   <script src="{{ 'api.jquery.js' | shopify_asset_url }}" async></script>
   <script src="//load.sumome.com/" data-sumo-site-id="8a69768f5f612b20a7c2f3013b9953bc9fe5a13062cb4bec21373eb96ad0f4b5" async="async"></script>
   <script src="{{ 'trunk.js' | asset_url }}" async></script>
   <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   {% if page.title contains 'scroller' %}
-  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="{{ 'spritespin.min.js' | asset_url }}"></script>
   {% endif %}
 
@@ -95,7 +97,7 @@
 <body class="page-{{ page_title | handle }} {% if customer %}customer-logged-in {% endif %}template-{{ template | split: '.' | first | remove: '/' | remove: '_' }}{% if template == 'index' and settings.home-transparent-menu %} transparent-menu{% endif %}">
 
   <div class="container">
-    <header id="mobile" class="slide">
+    <div id="mobile" class="header slide">
       <div class="logo">
         <img src="https://cdn.shopify.com/s/files/1/0730/5135/files/lvbt-03.svg?4821368000818331262"> 
       </div>
@@ -107,8 +109,7 @@
       <a href="/account" class="glyph account-menu"></a>
       {% endif %}
       <a href="/cart" class="glyph cart-menu"></a>
-      
-    </header>
+    </div>
 
     <nav id="mobile" class="slide">
       <ul>
@@ -122,7 +123,17 @@
       <header class="main-header">
         <div class="bg"></div>
         <div class="logo-block">
-          <div class="headline"><h6>12 Unique Brands from 8 Countries. <span>1 destination to shop</span></h6></div>
+          <div class="headline">
+            <div class="large-4 left">
+              <h6>{{ settings.header-strip-text-1 }} <i class="fa {{ settings.header-strip-icon-1 }}"></i></h6>
+            </div>
+            <div class="large-4 left">
+              <h6>{{ settings.header-strip-text-2 }} <i class="fa {{ settings.header-strip-icon-2 }}"></i></h6>
+            </div>
+            <div class="large-4 left">
+              <h6>{{ settings.header-strip-text-3 }} <i class="fa {{ settings.header-strip-icon-3 }}"></i></h6>
+            </div>
+          </div>
           <div class="row top">
             <div class="columns{% if settings.header-logo-center %} logo-center{% endif %}">
               {% include 'snippet-store-title' %}
@@ -145,10 +156,6 @@
 
         <div class="main-menu-dropdown-panel">
           <div class="row{% if settings.header-menu-center %} text-center{% endif %}"></div>
-        </div>
-
-        <div class="mobile-menu">
-          {% include 'snippet-mobile-menu' %}
         </div>
 
         <div class="row">
@@ -286,6 +293,7 @@
 
   {{ 'com-scripts.min.js' | asset_url | script_tag }}
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
   
   {% if settings.show_multiple_currencies %}
   {{ '/services/javascripts/currencies.js' | script_tag }}
@@ -322,4 +330,4 @@
   </script>
 
 </body>
-</html>
+</html

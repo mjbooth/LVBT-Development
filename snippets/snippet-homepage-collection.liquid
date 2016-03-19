@@ -1,0 +1,10 @@
+<div class="column featured-item">
+  <figure class="{{ settings.brand-block-image-style-11 }} hp-white">
+    <a href="{{ product.url | within: collection }}">
+      <img {% if product_slider %}class="lazyOwl" data-src="{{ product.images.first.src | product_img_url: 'large' }}"{% endif%} src="{{ product.images.first.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" />
+      <div class="btn"><span>VIEW ME</span></div>
+  </a>
+  </figure>
+  <p class="title">{{ product.title }}</p>
+  <p class="price">£10.00</p>
+</div>

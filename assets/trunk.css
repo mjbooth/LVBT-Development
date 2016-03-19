@@ -1,4 +1,9 @@
-@media only screen and (max-width: 768px) {
+nav { display: none; }
+#mobile { display: none;}
+
+@media only screen and (max-width: 767px) {
+
+#mobile { display: block;}
 
 body {
 	
@@ -14,25 +19,24 @@ body {
 	-ms-text-size-adjust: none;
 	-ms-font-smoothing: antialiased;
 }
+
 a {text-decoration: none;}
 
 .container {
 	overflow: hidden;
 	background-color: #fff;
-
-/*  Prevents Flickering  */
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
 }
 
-header {
-	height: 60px;
+.header {
+	height: 50px;
 	position: relative;
 	background-color: #fff;
-	box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 1.0);
+	box-shadow: 0 0 4px rgba(34,34,34,0.3);
 }
-header h1 {
+.header h1 {
 	color: #9aa6af;
 	text-align: right;
 	font-size: 22px;
@@ -45,7 +49,7 @@ header h1 {
 	position: absolute;
 	float: left;
 	padding: 10px;
-	top: 4px;
+	top: 0;
 	left: 10px;
 	
 	display: none;
@@ -60,6 +64,7 @@ header h1 {
 .burger.open li {background-color: #666666;}
 
 nav {
+	display: block;
 	position: absolute;
 	top: 0;
 	right: 5px;
@@ -104,11 +109,10 @@ nav li a:hover {color: #000;}
 }
 
 
-header {
-	height: 60px;
+.header {
+	height: 50px;
 	z-index: 2;
-	background-color: rgba(255,255,255, 0.95);
-	
+	background-color: rgba(255,255,255, 1.0);
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -120,7 +124,7 @@ header {
 	transform: translate3d(0,0,0);
 }
 
-header h1 {
+.header h1 {
 	color: #000;
 	text-align: center;
 	padding-left: 0;
@@ -250,10 +254,11 @@ nav.close {
 	-moz-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 	z-index: 1;
+	background-color: #fff;
 }
 
 /*Content Sliding Open Effect*/
-header.open,
+.header.open,
 .content.open 
 {   
 	-webkit-transform: translate3d(240px,0,0);
@@ -282,7 +287,7 @@ header.open,
 }
 
 /*Content Sliding Closed Effect*/
-header.close,
+.header.close,
 .content.close 
 {
 	-webkit-transform: translate3d(0,0,0);
