@@ -20,7 +20,7 @@
         {% assign current_product_found = true %}
       {% else %}
         {% unless current_product_found == false and forloop.last %}
-          {% include 'snippet-related-product-item' with number_of_related_products_to_show %}
+          {% include 'snippet-related-products-item' with number_of_related_products_to_show %}
         {% endunless %}
       {% endif %}
     {% endfor %}

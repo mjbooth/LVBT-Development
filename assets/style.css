@@ -6394,7 +6394,8 @@ figure.hp-white:hover img {
 .template-product .similar-products {
     text-align: center;
     margin: 0;
-    padding: 60px 0;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .template-product .similar-products h2.title {
