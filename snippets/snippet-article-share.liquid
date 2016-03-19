@@ -1,19 +1,19 @@
 {% capture shareurl %}{{ shop.url }}{{ article.url }}{% endcapture %}
 
 {% if settings.article-share-twitter %}
-  <a class="glyph twitter" href="http://twitter.com/home?status=Check%20out%20this%20{%if template contains "article" or template contains "blog"%}blog%20post{% elsif template contains "product" %}product{%endif%}:+{{ shareurl }}"><span>Tweet</span></a>
+  <a class="glyph twitter" href="https://twitter.com/home?status=Check%20out%20this%20{%if template contains "article" or template contains "blog"%}blog%20post{% elsif template contains "product" %}product{%endif%}:+{{ shareurl }}"><span>Tweet</span></a>
 {% endif %}
 
 {% if settings.article-share-facebook %}
-  <a class="glyph facebook" href="http://www.facebook.com/sharer.php?u={{ shareurl }}&t={{ product.title }}"><span>Like</span></a>
+  <a class="glyph facebook" href="https://www.facebook.com/sharer.php?u={{ shareurl }}&t={{ product.title }}"><span>Like</span></a>
 {% endif %}
 
 {% if settings.article-share-pinterest %}
-  <a class="glyph pinterest" href="http://pinterest.com/pin/create/button/?url={{ shareurl }}&media={{ product.featured_image | product_img_url: 'original' }}&description={{ product.title | strip_html | escape | replace: ' ', '%20' }}" count-layout="none"><span>Pin</span></a>
+  <a class="glyph pinterest" href="https://pinterest.com/pin/create/button/?url={{ shareurl }}&media={{ product.featured_image | product_img_url: 'original' }}&description={{ product.title | strip_html | escape | replace: ' ', '%20' }}" count-layout="none"><span>Pin</span></a>
 {% endif %}
 
 {% if settings.article-share-tumblr %}
-  <a class="glyph tumblr" href="http://www.tumblr.com/share/link?url={{ shareurl | replace: 'http://', '' }}"><span>Post</span></a>
+  <a class="glyph tumblr" href="https://www.tumblr.com/share/link?url={{ shareurl | replace: 'http://', '' }}"><span>Post</span></a>
 {% endif %}
 
 {% if settings.article-share-google %}

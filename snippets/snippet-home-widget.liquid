@@ -91,14 +91,6 @@
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   </div>
 
-{% comment %}{% elsif type == 'instagram' %}
-	{% assign widget_username = widget | append: "-username" %}
-	{% assign widget_username = settings[widget_username] %}
-
-	<div class="instagram-widget" data-username="{{ widget_username }}">
-		<h3 class="title"><a target="_blank" href="http://instagram.com/{{ widget_username }}">Instagram</a></h3>
-		<div class="items"></div>
-	</div>{% endcomment %}
 
 {% elsif type == 'blog' %}
 	{% assign widget_name = widget | append: "-name" %}

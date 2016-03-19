@@ -19,7 +19,7 @@ ga('send', {
 
 </header>
 
-<article class="row" itemscope itemtype="http://schema.org/Product">
+<article class="row" itemscope itemtype="https://schema.org/Product">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
   <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}" />
 
@@ -40,13 +40,13 @@ ga('send', {
 
     <div data-position="prices">
       <div class="prices">
-        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
           <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
 
           {% if product.available %}
-            <link itemprop="availability" href="http://schema.org/InStock" />
+            <link itemprop="availability" href="https://schema.org/InStock" />
           {% else %}
-            <link itemprop="availability" href="http://schema.org/OutOfStock" />
+            <link itemprop="availability" href="https://schema.org/OutOfStock" />
           {% endif %}
 
           <p>
