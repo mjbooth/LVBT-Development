@@ -1,55 +1,48 @@
 {% assign product_slider = false %}
 {% if snippet-product-item == 'product-slider' %}
-  {% assign product_slider = true %}
+{% assign product_slider = true %}
 {% endif %}
 
 {% comment %}{% unless product.available %} sold-out{% endunless %}{% endcomment %}
-  
-<div class="product-item {{ column-classes }}">
-  <div class="image-wrapper">
-    {% if product.compare_at_price > product.price %}  
-    <a class="circle sale" href="{{ product.url | within: collection }}">Sale</a>
-    {% endif %}
-    {% assign ratio = settings.product_img_w_to_h_ratio | times: 1.0 %}
-    <a href="{{ product.url | within: collection }}">
-      {% if snippet-product-item == '3' or ratio < 1 %}
-      <div class="reveal box">
-        <img {% if product_slider %}class="lazyOwl" data-src="{{ product.featured_image.src | product_img_url: 'large' }}"{% endif%} src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" />
-        <img class="lazyOwl hidden" src="{{ product.images.last | product_img_url: 'large' }}" alt="{{ product.images.last.alt | escape }}" />
-      </div>
-      {% else %}
-      <img {% if product_slider %}class="lazyOwl" data-src="{{ product.featured_image.src | product_img_url: 'medium' }}"{% endif%} src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
-      {% endif %}
-    </a>
-  </div>
 
-  <div class="caption">
-    <p class="title">
-      <a href="{{ product.url | within: collection }}">
-        {{ product.title }}
-      </a>
-    </p>
+<div class="related-product-item columns large-3">
+    <div class="image-wrapper">
+        {% if product.compare_at_price > product.price %}
+        <a class="circle sale" href="{{ product.url | within: collection }}">Sale</a>
+        {% endif %}
+        {% assign ratio = settings.product_img_w_to_h_ratio | times: 1.0 %}
+        <a href="{{ product.url | within: collection }}">
+            {% if snippet-product-item == '3' or ratio < 1 %}
+            <div class="reveal box">
+                <img {% if product_slider %}class="lazyOwl" data-src="{{ product.featured_image.src | product_img_url: 'large' }}"{% endif%} src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" />
+                <img class="lazyOwl hidden" src="{{ product.images.last | product_img_url: 'large' }}" alt="{{ product.images.last.alt | escape }}" />
+            </div>
+            {% else %}
+            <img {% if product_slider %}class="lazyOwl" data-src="{{ product.featured_image.src | product_img_url: 'medium' }}"{% endif%} src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
+            {% endif %}
+        </a>
+    </div>
 
-    {% if settings.collections-brand-show %}
-    {% assign product_vendor_handle = product.vendor | handle %}
-    {% if collections[product_vendor_handle].handle == product_vendor_handle %}
-    {% assign vendor_url = collections[product_vendor_handle].url %}
-    {% else %}
-    {% assign vendor_url = product.vendor | url_for_vendor %}
-    {% endif %}
-    <p class="vendor">{{ product.vendor | link_to: vendor_url }}</p>
-    {% endif %}
+    <div class="caption">
+        <p class="title">
+            <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+        </p>
 
-    {% if product.compare_at_price > product.price %}
-    <p class="price">
-      {{ product.price | money }}
-      <em class="marked-down-from">Was {{ product.compare_at_price | money }}</em>
-    </p>
-    {% else %}
-    <p class="price">
-      {% if product.price_varies %}From{% endif %}
-      {{ product.price | money }} {% if product.available == false %} <span>~ SOLD OUT</span> {% endif %}
-    </p>
-    {% endif %}
-  </div>
+        {% if settings.collections-brand-show %}
+        {% assign product_vendor_handle = product.vendor | handle %}
+        {% if collections[product_vendor_handle].handle == product_vendor_handle %}
+        {% assign vendor_url = collections[product_vendor_handle].url %}
+        {% else %}
+        {% assign vendor_url = product.vendor | url_for_vendor %}
+        {% endif %}
+        <p class="vendor">{{ product.vendor | link_to: vendor_url }}</p>
+        {% endif %}
+
+        {% if product.compare_at_price > product.price %}
+        <p class="price">{{ product.price | money }} <em class="marked-down-from">Was {{ product.compare_at_price | money }}</em></p>
+        {% else %}
+
+        <p class="price">{% if product.price_varies %}From{% endif %}{{ product.price | money }} {% if product.available == false %} <span>~ SOLD OUT</span> {% endif %}</p>
+        {% endif %}
+    </div>
 </div>
