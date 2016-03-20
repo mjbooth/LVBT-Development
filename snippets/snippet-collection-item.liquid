@@ -2,9 +2,9 @@
    <a href="{{ collection.url }}">
       <div class="image-wrapper">
           <div class="reveal">
-            {{ collection.image.src | collection_img_url: 'large' | img_tag: collection.image.alt }}
+            <img src="{{ collection.metafields.brand.image }}">
             <div class="hidden">
-              {{ collection.products.first.featured_image.src | product_img_url: 'large' | img_tag: collection.title }}
+              {{ collection.image.src | collection_img_url: 'large' | img_tag: collection.image.alt }}
               <div class="caption">
                  <div class="bg"></div>
                  <div class="inner">
