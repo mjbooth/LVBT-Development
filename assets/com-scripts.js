@@ -1513,32 +1513,7 @@ function() {
     var t;
     return t = e(this).closest("li").find(".sub-nav:eq(0)"), t.slideToggle(), e(this).find(".glyph.plus").toggle(), e(this).find(".glyph.minus").toggle(), !1
   })
-}, y(), f = function() {
-  var t, i, n, o;
-  return o = e(".instagram-widget").attr("data-username"), t = "https://api.instagram.com/v1/users/296922654/media/recent/?client_id=5ee50bb276c54efebf83323faac4a82e", n = 5, home_widget_twitter_enabled || home_widget_blog_enabled || (n += 6, e(".instagram-widget .items").addClass("wide")), e.ajax({
-    dataType: "jsonp",
-    url: "https://api.instagram.com/v1/users/search?q=" + o + "&client_id=5ee50bb276c54efebf83323faac4a82e",
-    success: function(t) {}
-  }).done(function(t) {
-    var e, n, s, a, r;
-    for (n = "", r = t.data, s = 0, a = r.length; a > s; s++)
-      if (e = r[s], o === e.username) {
-        n = e.id;
-        break
-      }
-      return i(n)
-    }), i = function(t) {
-    return e.ajax({
-      dataType: "jsonp",
-      url: "https://api.instagram.com/v1/users/" + t + "/media/recent/?client_id=5ee50bb276c54efebf83323faac4a82e",
-      success: function(t) {}
-    }).done(function(t) {
-      var i, o, s;
-      for (s = [], i = o = 0; n >= 0 ? n >= o : o >= n; i = n >= 0 ? ++o : --o) s.push(e(".instagram-widget .items").append('<a class="item" target="_blank" href="' + t.data[i].link + '"><img src="' + t.data[i].images.low_resolution.url + '" /></a>'));
-        return s
-    })
-  }
-}, s = function() {
+}, y(), s = function() {
   function i(i) {
     this.createIframe = t(this.createIframe, this), this.extractVideoId = t(this.extractVideoId, this), this.extractVideoType = t(this.extractVideoType, this), this.eventListeners = t(this.eventListeners, this), this.centerPosition = t(this.centerPosition, this), this.close = t(this.close, this), this.open = t(this.open, this), this.opened = !1, this.video = i, this.modal = e(".video.modal"), this.player_button = i.find(".player-button"), this.src_url = i.find(".play-button").attr("href"), this.type = this.extractVideoType(), this.id = this.extractVideoId(), this.iframe = this.createIframe(), this.caption = i.find(".caption")
   }
