@@ -5219,7 +5219,7 @@ body {
 }
 
 .rte-content h2 {
-    font-size: 20px;
+
 }
 
 .rte-content h3 {
@@ -5305,7 +5305,6 @@ body {
 
 .rte-content a,
 .rte-content a:link,
-.rte-content a:visited,
 .rte-content a:hover {
     text-decoration: underline;
     color: #c0392b;
