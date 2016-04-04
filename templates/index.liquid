@@ -1,100 +1,208 @@
-{% assign widgets_order = settings.home-widgets-order | downcase | replace: ' ', '' | split: ',' %}
-{% for widget_order in widgets_order %}
-{% if widget_order == 'a' %}
-
-<section class="slider {{ settings.color-icons-theme }}">
-  <div class="row">
-    <div class="slides">
-
-      {% for i in (1..7) %}
-
-      {% capture slide_enabled %}home-slider-slide-{{ i }}-enabled{% endcapture %}
-
-      {% capture slide_img %}home-slider-slide-{{ i }}.jpg{% endcapture %}
-      {% capture slide_media_type %}home-slider-slide-{{ i }}-type{% endcapture %}
-      {% capture slide_bg_color %}home-slider-slide-{{ i }}-bg-color{% endcapture %}
-      {% capture slide_title %}home-slider-slide-{{ i }}-title{% endcapture %}
-      {% capture slide_tagline %}home-slider-slide-{{ i }}-tagline{% endcapture %}
-      {% capture slide_link_url %}home-slider-slide-{{ i }}-link-url{% endcapture %}
-      {% capture slide_link_title %}home-slider-slide-{{ i }}-link-title{% endcapture %}
-      {% capture slide_x_pos %}home-slider-slide-{{ i }}-x-pos{% endcapture %}
-      {% capture slide_y_pos %}home-slider-slide-{{ i }}-y-pos{% endcapture %}
-      {% capture slide_text_pos %}home-slider-slide-{{ i }}-text-pos{% endcapture %}
-      {% capture slide_video %}home-slider-slide-{{ i }}-video{% endcapture %}
-
-      {% if settings[slide_enabled] %}
-
-      {% assign caption_exists = false %}
-      {% if settings[slide_title].size > 0 or settings[slide_tagline].size > 0 or settings[slide_link_title].size > 0 %}
-      {% assign caption_exists = true %}
-      {% endif %}
-
-      {% assign link_whole_slide = false %}
-      {% if settings[slide_link_url].size > 0 and caption_exists == false and settings[slide_video].size == 0 %}
-      {% assign link_whole_slide = true %}
-      {% endif %}
-
-      <div class="slide{% if settings[slide_video].size > 0 %} video{% endif %}">
-
-        {% if link_whole_slide %}
-        <a href="{{ settings[slide_link_url] }}">
-          {% endif %}
-          {{ slide_img | asset_url | img_tag }}
-
-          {% if settings[slide_video].size > 0 %}
-
-          {% assign video_src = '' %}
-          {% assign attributes = settings[slide_video] | split: ' ' %}
-          {% for attribute in attributes %}
-          {% assign match = attribute | truncate: 4, '' %}
-          {% if match == 'src=' or match == 'http' %}
-          {% assign video_src = attribute | replace: 'src=', '' | replace: '"', '' | replace: "'", ""  %}
-          {% endif %}
-          {% endfor %}
-
-          <a href="{{ video_src }}" class="play-button"><div class="triangle"></div></a>
-
-          {% endif %}
-
-          {% if caption_exists %}
-          <div class="caption {{ settings[slide_x_pos] }} {{ settings[slide_y_pos] }} {{ settings[slide_text_pos] }}">
-            <div class="bg"></div>
-            {% if settings[slide_title].size > 0 %}
-            <h2 class="title">{{ settings[slide_title] }}</h2>
-            {% endif %}
-
-            {% if settings[slide_tagline].size > 0 %}
-            <h3 class="sub-title">{{ settings[slide_tagline] }}</h3>
-            {% endif %}
-
-            {% if settings[slide_link_title].size > 0 %}
-            <a class="button" href="{{ settings[slide_link_url] }}">{{ settings[slide_link_title] }}</a>
-            {% endif %}
-          </div><!--.slide_caption -->
-          {% endif %}
-
-          {% if link_whole_slide %}
-        </a>
-        {% endif %}
-      </div>
-      {% endif %}
-
-      {% endfor %}
+<div class="hero--desktop" style="background: url({{ 'home-block-desktop-hero-1.jpg' | asset_url }}) center center/100%;">
+  <div class="hero-content-area">
+    <div class="large-8 graphic-overlay--dark tight-title">
+      <h1>{{ settings.hero-title }}</h1>
     </div>
   </div>
-</section>
-
-<div class="modal video">
-  <div class="bg"></div>
-  <a aria-hidden="true" class="close glyph cross"></a>
-  <div class="player columns large-8">
-    <div class="flex-video"></div>
+  <div class="carousel__lvbt-sign-off">
+    <h3>14 UNIQUE BRANDS FROM 9 COUNTRIES. <br />1 DESTINATION TO SHOP</h3>
   </div>
-  <div class="caption columns large-4"></div>
 </div>
-<div class="modal-mask"></div>
 
-{% elsif widget_order == 'b' %}
+<div class="hero--mobile" style="background: url({{ 'home-block-mobile-hero-1.jpg' | asset_url }}) top right/auto 100%;">
+  <div class="hero-content-area">
+    <div class="graphic-overlay--dark tight-title">
+      <h1 style="headline dark">{{ settings.hero-title }}</h1>
+    </div>
+  </div>
+  <div class="carousel__lvbt-sign-off">
+    <h3>14 UNIQUE BRANDS FROM 9 COUNTRIES. <br />1 DESTINATION TO SHOP</h3>
+  </div>
+</div>
+
+<div class="brand-block">
+  <div class="brands__content">
+    <div class="large-10 push-1 brands__text-area text-center">
+      <h2><span>{{ settings.home-brand-block-heading }}</span></h2>
+      <p class="para">{{ settings.home-brand-block-intro }}</p>
+      <p class="para">{{ settings.home-brand-block-cta }} <i class="fa fa-chevron-down"></i></p>
+    </div>
+
+    <div class="grid brand-images" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 0 }'>
+      <div class="row">
+
+        {% if settings.brand-block-image-text-1 %}  
+        <div class="columns {% if settings.brand-block-image-style-1 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-1 }} hp-black">
+            <a href="/collections/posh">
+              <img src="{{ 'brand-block-image-text-1.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-1-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-1-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+
+        {% if settings.brand-block-image-text-2 %}
+        <div class="columns {% if settings.brand-block-image-style-2 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-2 }} hp-black">
+            <a href="{{ settings.brand-block-image-text-2-link }}">
+              <img src="{{ 'brand-block-image-text-2.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-2-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-2-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+
+        {% if settings.brand-block-image-text-3 %}
+        <div class="columns {% if settings.brand-block-image-style-3 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-3 }} hp-black">
+            <a href="{{ settings.brand-block-image-text-3-link }}">
+              <img src="{{ 'brand-block-image-text-3.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-3-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-3-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+
+        {% if settings.brand-block-image-text-4 %}
+        <div class="columns {% if settings.brand-block-image-style-4 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-4 }} hp-black">
+            <a href="{{ settings.brand-block-image-text-4-link }}">
+              <img src="{{ 'brand-block-image-text-4.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-4-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-4-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+
+        {% if settings.brand-block-image-text-5 %}
+        <div class="columns {% if settings.brand-block-image-style-5 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-5 }} hp-black">
+            <a href="{{ settings.brand-block-image-text-5-link }}">
+              <img src="{{ 'brand-block-image-text-5.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-5-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-5-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+
+        {% if settings.brand-block-image-text-6 %}
+        <div class="columns {% if settings.brand-block-image-style-6 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-6 }} hp-black">
+            <a href="{{ settings.brand-block-image-text-6-link }}">
+              <img src="{{ 'brand-block-image-text-6.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-6-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-6-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+
+        {% if settings.brand-block-image-text-7 %}
+        <div class="columns {% if settings.brand-block-image-style-7 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-7 }} hp-black">
+            <a href="{{ settings.brand-block-image-text-7-link }}">
+              <img src="{{ 'brand-block-image-text-7.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-7-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-7-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+
+        {% if settings.brand-block-image-text-8 %}
+        <div class="columns {% if settings.brand-block-image-style-8 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-8 }} hp-black">
+            <a href="{{ settings.brand-block-image-text-8-link }}">
+              <img src="{{ 'brand-block-image-text-8.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-8-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-8-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+
+        {% if settings.brand-block-image-text-9 %}
+        <div class="columns {% if settings.brand-block-image-style-9 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-9 }} hp-black">
+            <a href="{{ settings.brand-block-image-text-9-link }}">
+              <img src="{{ 'brand-block-image-text-9.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-9-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-9-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+
+        {% if settings.brand-block-image-text-10 %}
+        <div class="columns {% if settings.brand-block-image-style-10 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-10 }} hp-black">
+            <a href="{{ settings.brand-block-image-text-10-link }}">
+              <img src="{{ 'brand-block-image-text-10.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-10-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-10-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+
+        {% if settings.brand-block-image-text-11 %}
+        <div class="columns {% if settings.brand-block-image-style-11 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-11 }} hp-black">
+            <a href="{{ settings.brand-block-image-text-11-link }}">
+              <img src="{{ 'brand-block-image-text-11.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-11-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-11-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+
+        {% if settings.brand-block-image-text-12 %}
+        <div class="columns {% if settings.brand-block-image-style-12 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
+          <figure class="{{ settings.brand-block-image-style-12 }} hp-black">
+            <a href="{{ settings.brand-block-image-text-12-link }}">
+              <img src="{{ 'brand-block-image-text-12.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-12-alt }}" />
+              <div class="lvbt-title">
+                <figcaption>{{ settings.brand-block-image-text-12-title }}<i class="fa fa-angle-right"></i></figcaption>
+              </div>
+              <div class="btn"><span>EXPLORE</span></div>
+            </a>
+          </figure>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <a class="ghost-button-semi-transparent--fixed" href="/collections">Explore all brands</a>
+  </div>
+</div>
 
 {% if settings.home-product-slider-collection == blank or collections[settings.home-product-slider-collection].handle != settings.home-product-slider-collection %}
 {% for c in collections %}
@@ -106,447 +214,93 @@
 {% assign collection = collections[settings.home-product-slider-collection] %}
 {% endif %}
 
-<div class="product-slider {{ settings.color-icons-theme }}">
-  <div class="row header">
-    <div class="columns">
-     <h2 class="font-headings clearfix">{{ settings.home-product-slider-title | link_to: collection.url }}</h2>
-   </div>
- </div>
- <div class="row content">
-  {% if collection.products.size %}
-  <div class="product-grid clearfix">
-    {% for product in collection.products limit: settings.home-product-slider-limit %}
-    {% include 'snippet-home-product-item' with 'product-slider' %}
-    {% endfor %}
-  </div>
-  {% else %}
-  <p style="text-align:center;" class="colored-links">Your <strong>{{ collection.title }}</strong> collection is empty. <a target="_blank" href="{{ shop.url }}/admin/collections/">Go and add some products to it</a>.</p>
-  {% endif %}
-</div>
-</div><!-- #product-slider -->
-
-{% elsif widget_order == 'c' %}
-<div class="widgets">
-  <div class="featured-promo">
+<div class="feature-block">
+  <div class="content-area">
+    <div class="content-block">
+      <h2 class="text-center"><span>{{ settings.home-feature-block-heading }}</span></h2>
+      <p>{{ settings.product-slider-body }}</p>
+      {% if collection.products.size %}
+    </div>
     <div class="row">
+      <div class="feature-grid">
+        {% for product in collection.products limit: "4" %}
+        {% include 'snippet-homepage-collection' %}
+        {% endfor %}
+        {% for product in collection.products limit: "4" offset: "4" %}
+        {% include 'snippet-homepage-item2' %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
 
-      {% assign left_type = settings.home-featured-promo-left-type %}
-      {% assign right_type = settings.home-featured-promo-right-type %}
 
-      {% assign widget_text_align = settings["home-featured-promo-text-align"] %}
-      {% assign widget_title = settings["home-featured-promo-title"] %}
-      {% assign widget_description = settings["home-featured-promo-description"] %}
-      {% assign widget_link_text = settings["home-featured-promo-link-text"] %}
-      <!-- {% assign widget_link_text_2 = settings["home-featured-promo-link-text-2"] %} -->
-      {% assign widget_link_url = settings["home-featured-promo-link-url"] %}
-      <!-- {% assign widget_link_url_2 = settings["home-featured-promo-link-url-2"] %} -->
+<a href="{{ settings.home-promo-link-url }}">
+  <div class="image-promo" style="background-image: url({{ 'home-block-promo-strip-1.jpg' | asset_url }})">
+    <div class="image-promo__content">
+      <div class="large-6 graphic-overlay--dark tight-title">
+        <h2 class="text-center">{{ settings.promo-title }}</h2>
+      </div>
+    </div>
+  </div>
+</a>
 
-      {% assign widget_image_a = "home-featured-promo-a.png" %}
-      {% assign widget_image_link_a = settings["home-featured-promo-image-link-a"] %}
-      {% assign widget_alt_a = settings["home-featured-promo-alt-a"] %}
 
-      {% assign widget_image_b = "home-featured-promo-b.png" %}
-      {% assign widget_image_link_b = settings["home-featured-promo-image-link-b"] %}
-      {% assign widget_alt_b = settings["home-featured-promo-alt-b"] %}
-
-      {% assign widget_vimeo_code = settings["home-featured-promo-video"] %}
-
-      {% for i in (1..2) %}
-      {% if forloop.first %}
-      {% assign block_type = settings.home-featured-promo-left-type %}
-      {% else %}
-      {% assign block_type = settings.home-featured-promo-right-type %}
-      {% endif %}
-
-      {% if block_type == 'none' %}{% continue %}{% endif %}
-
-      <div class="columns{% if block_type == 'text' %} {{ widget_text_align}}{% endif %}{% unless settings.home-featured-promo-right-type == 'none' %} large-6{% endunless %}">
-
-        {% if block_type == 'text'  %}
-
-        {% if widget_title.size > 0 %}
-        <h3 class="title">{{ widget_title }}</h3>
-        {% endif %}
-
-        <div class="description">
-          {{ widget_description | newline_to_br  }}
-          {% if widget_link_text.size > 0 %}
-          <p class="call-to-action">
-            <a class="button" href="{{ widget_link_url }}">{{ widget_link_text }}</a>
-            <!-- <a class="button" style="display: table;" href="{{ widget_link_url_2 }}">{{ widget_link_text_2 }}</a> -->
-            <p>
-              {% endif %}
-            </div>
-
-            {% elsif block_type == 'image-a' %}
-
-            {% if widget_image_link_a != empty %}
-            {{ widget_image_a | asset_url | img_tag: widget_alt_a | link_to: widget_image_link_a }}
-            {% else %}
-            {{ widget_image_a | asset_url | img_tag: widget_alt_a }}
-            {% endif %}
-
-            {% elsif block_type == 'image-b' %}
-
-            {% if widget_image_link_b != empty %}
-            {{ widget_image_b | asset_url | img_tag: widget_alt_b | link_to: widget_image_link_b }}
-            {% else %}
-            {{ widget_image_b | asset_url | img_tag: widget_alt_b }}
-            {% endif %}
-
-            {% elsif block_type == 'video' %}
-
-            <div class="vimeo-wrapper">
-              <div class="flex-video">
-                {{ widget_vimeo_code }}
-              </div>
-            </div>
-
-            {% endif %}
-
-          </div>
-          {% endfor %}
-
+<div class="service-block">
+  <div class="content-area">
+    <h2 class="text-center">{{ settings.services-title }}</h2>
+    <div class="large-10 centered content-block">
+      <div class="columns--wider large-4 content-item">
+        <img src="{{ 'service-pillar-1-icon.png' | asset_url }}">
+        <h4 class="fourth-level-text">{{ settings.service-pillar-1-title }}</h4>
+        <p class="para text-justify">{{ settings.service-pillar-1-body }}</p>
+        <div class="text-center">
+          <a class="ghost-button-semi-transparent--flex" href="{{ settings.service-pillar-1-link }}">{{ settings.service-pillar-1-cta }}</a>
+        </div>
+      </div>
+      <div class="columns--wider large-4 content-item">
+        <img src="{{ 'service-pillar-2-icon.png' | asset_url }}">
+        <h4 class="fourth-level-text">{{ settings.service-pillar-2-title }}</h4>
+        <p class="para text-justify">{{ settings.service-pillar-2-body }}</p>
+        <div class="text-center">
+          <a class="ghost-button-semi-transparent--flex" href="{{ settings.service-pillar-2-link }}">{{ settings.service-pillar-2-cta }}</a>
+        </div>
+      </div>
+      <div class="columns--wider large-4 content-item">
+        <img src="{{ 'service-pillar-3-icon.png' | asset_url }}">
+        <h4 class="fourth-level-text">{{ settings.service-pillar-3-title }}</h4>
+        <p class="para text-justify">{{ settings.service-pillar-3-body }}</p>
+        <div class="text-center">
+          <a class="ghost-button-semi-transparent--flex" href="{{ settings.service-pillar-3-link }}">{{ settings.service-pillar-3-cta }}</a>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    {% elsif widget_order == 'f' %}
-    <div class="widgets">
-      <div class="featured-promo">
-        <div class="row">
+<div class="review-block">
+  <div class="content-area">
+    <h2 class="text-center">{{ settings.home-review-block-title }}</h2>
+    <div class="row large-7 content-block centered hero">
+      <img src="https://cdn.shopify.com/s/files/1/0730/5135/files/single_quote.png" width="40px" style="margin: 2.5em 0;">
+      <p>{{ settings.home-review-block-hero }}</p>
+    </div>
+    <p class="rw-so para" style="">Independent customer review<br />Read more reviews <a href="#"><strong>powered by Trustpilot</strong></a></p>
+  </div>
+</div>
 
-          {% assign left_type = settings.home-featured-promo-left-type %}
-          {% assign right_type = settings.home-featured-promo-right-type %}
-
-          {% assign widget_text_align = settings["home-featured-promo-text-align"] %}
-          {% assign widget_title = settings["home-featured-promo-title"] %}
-          {% assign widget_description = settings["home-featured-promo-description"] %}
-          {% assign widget_link_text = settings["home-featured-promo-link-text"] %}
-          {% assign widget_link_url = settings["home-featured-promo-link-url"] %}
-
-          {% assign widget_image_a = "home-featured-promo-a.png" %}
-          {% assign widget_image_link_a = settings["home-featured-promo-image-link-a"] %}
-          {% assign widget_alt_a = settings["home-featured-promo-alt-a"] %}
-
-          {% assign widget_image_b = "home-featured-promo-b.png" %}
-          {% assign widget_image_link_b = settings["home-featured-promo-image-link-b"] %}
-          {% assign widget_alt_b = settings["home-featured-promo-alt-b"] %}
-
-          {% assign widget_vimeo_code = settings["home-featured-promo-video"] %}
-
-          {% for i in (1..2) %}
-          {% if forloop.first %}
-          {% assign block_type = settings.home-featured-promo-left-type %}
-          {% else %}
-          {% assign block_type = settings.home-featured-promo-right-type %}
-          {% endif %}
-
-          {% if block_type == 'none' %}{% continue %}{% endif %}
-
-          <div class="columns{% if block_type == 'text' %} {{ widget_text_align}}{% endif %}{% unless settings.home-featured-promo-right-type == 'none' %} large-6{% endunless %}">
-
-            {% if block_type == 'text'  %}
-
-            {% if widget_title.size > 0 %}
-            <h3 class="title">{{ widget_title }}</h3>
-            {% endif %}
-
-            <div class="description">
-              {{ widget_description | newline_to_br  }}
-              {% if widget_link_text.size > 0 %}
-              <p class="call-to-action">
-                <a class="button" href="{{ widget_link_url }}">{{ widget_link_text }}</a>
-                <!-- <a class="button" style="display: table;" href="{{ widget_link_url_2 }}">{{ widget_link_text_2 }}</a> -->
-                <p>
-                  {% endif %}
-                </div>
-
-                {% elsif block_type == 'image-a' %}
-
-                {% if widget_image_link_a != empty %}
-                {{ widget_image_a | asset_url | img_tag: widget_alt_a | link_to: widget_image_link_a }}
-                {% else %}
-                {{ widget_image_a | asset_url | img_tag: widget_alt_a }}
-                {% endif %}
-
-                {% elsif block_type == 'image-b' %}
-
-                {% if widget_image_link_b != empty %}
-                {{ widget_image_b | asset_url | img_tag: widget_alt_b | link_to: widget_image_link_b }}
-                {% else %}
-                {{ widget_image_b | asset_url | img_tag: widget_alt_b }}
-                {% endif %}
-
-                {% elsif block_type == 'video' %}
-
-                <div class="vimeo-wrapper">
-                  <div class="flex-video">
-                    {{ widget_vimeo_code }}
-                  </div>
-                </div>
-
-                {% endif %}
-
-              </div>
-              {% endfor %}
-
-            </div>
-          </div>
-        </div>
-
-
-        {% elsif widget_order == 'd' %}
-        <div class="widgets">
-          {% assign column_count = 4 %}
-
-
-
-
-
-    <div class="widgets flash-sale">
-      <div class="row">
-        <div class="columns large-12">
-          <h1 class="">Uncover spring 2016 style</h1>
-          <a class="button" href="/collections/all">shop now</a>
-        </div>
+<div class="social-block">
+  <div class="content-area">
+    <div class="">
+      <h2 class="text-center">Stay in the know</h2>
+      <div class="centered content-block">
+        <a href="{{ settings.home-social-block-1 }}"><img class="large-1 social-icon" src="{{ 'home-social-block-1.png' | asset_url }}"></a>
+        <a href="{{ settings.home-social-block-2 }}"><img class="large-1 social-icon" src="{{ 'home-social-block-2.png' | asset_url }}"></a>
+        <a href="{{ settings.home-social-block-3 }}"><img class="large-1 social-icon" src="{{ 'home-social-block-3.png' | asset_url }}"></a>
+        <a href="{{ settings.home-social-block-4 }}"><img class="large-1 social-icon" src="{{ 'home-social-block-4.png' | asset_url }}"></a>
+        <a href="{{ settings.home-social-block-5 }}"><img class="large-1 social-icon" src="{{ 'home-social-block-5.png' | asset_url }}"></a>
       </div>
     </div>
-
-    <div class="announcement">
-      <div class="">
-        <div class="large-12">
-          <div class="columns large-4">
-            <h5>Worldwide shipping <i class="fa fa-globe"></i></h5>
-          </div>
-          <div class="columns large-4">
-            <h5><strong>Free</strong> UK delivery on all orders <i class="fa fa-truck fa-flip-horizontal"></i></h5>
-          </div>
-          <div class="columns large-4">
-            <h5>UK Customer Service <i class="fa fa-comments-o"></i></h5>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {% if column_count > 0 %}
-      <div class="small-promos">
-        <div class="row">
-          <div class="columns large-3">
-            <figure class="image-text-widget box effect-black-fill">
-              <a href="/collections/mya-bay">
-                <img src="https://cdn.shopify.com/s/files/1/0653/1555/files/mya-bay-block.jpg?12878094668853684142" alt="MYA BAY at LVBT" />
-                <div class="mjbtitle">
-                  <figcaption class="inner">
-                    <h3>MYA BAY<span aria-hidden="true" class="glyph slider-right"></span></h3>
-                  </figcaption>
-                </div>
-              </a>
-            </figure>
-          </div>
-
-          <div class="columns large-3">
-            <figure class="image-text-widget box effect-black-fill">
-              <a href="/collections/leone">
-                <img src="https://cdn.shopify.com/s/files/1/0730/5135/files/leone-jewellery-lvbt_large.jpg?187903706606867438" alt="Leone Bisjoux Jewellery from France at LVBT" />
-                <div class="mjbtitle">
-                  <div class="inner">
-                    <h3>L&eacute;one<span aria-hidden="true" class="glyph slider-right"></span></h3>
-                  </div>
-                </div>
-              </a>
-            </figure>
-          </div>
-
-          <div class="columns large-3">
-            <figure class="image-text-widget box effect-black-fill">
-              <a href="/collections/miss-lesley">
-                <img src="https://cdn.shopify.com/s/files/1/0653/1555/files/miss-lesley-block.jpg?12878094668853684142" alt="Miss Lesley of South Africa exclusively at LVBT" />
-                <div class="mjbtitle">
-                  <div class="inner">
-                    <h3>Miss Lesley<span aria-hidden="true" class="glyph slider-right"></span></h3>
-                  </div>
-                </div>
-              </a>
-            </figure>
-          </div>
-
-          <div class="columns large-3">
-            <figure class="image-text-widget box effect-black-fill">
-              <a href="/collections/lvbt"><img src="https://cdn.shopify.com/s/files/1/0653/1555/files/rings-at-lvbt.jpg?11871397062105060929" alt="Own label LVBT brands" />
-                <div class="mjbtitle">
-                  <div class="inner">
-                    <h3>LVBT<span aria-hidden="true" class="glyph slider-right"></span></h3>
-                  </div>
-                </div>
-              </a>
-            </figure>
-          </div>
-
-          <div class="columns large-3">
-            <figure class="tall-aspect-image box effect-black-fill">
-              <a href="/collections/posh">
-                <img src="https://cdn.shopify.com/s/files/1/0730/5135/files/ajax-loader.gif?11109608897749343053" data-src="https://cdn.shopify.com/s/files/1/0653/1555/files/posh-block.jpg?12878094668853684142" alt="Posh bags exclusively at LVBT" />
-                <div class="mjbtitle">
-                  <div class="tall-inner">
-                    <h3>Posh Bags<span aria-hidden="true" class="glyph slider-right"></span></h3>
-                  </div>
-                </div>
-              </a>
-            </figure>
-          </div>
-
-          <div class="columns large-3">
-            <figure class="image-text-widget box effect-black-fill">
-              <a href="/collections/monte-jewellery">
-                <img src="https://cdn.shopify.com/s/files/1/0730/5135/files/ajax-loader.gif?11109608897749343053" data-src="https://cdn.shopify.com/s/files/1/0730/5135/files/monte-jewellery-lvbt_large.jpg?16561676669070095237" alt="Monte Jewellery of Turkey at LVBT" />
-                <div class="mjbtitle">
-                  <div class="inner">
-                    <h3>Monte Jewellery<span aria-hidden="true" class="glyph slider-right"></span></h3>
-                  </div>
-                </div>
-              </a>
-            </figure>
-          </div>
-
-          <div class="columns large-3">
-            <figure class="image-text-widget box effect-black-fill">
-              <a href="/collections/bisjoux"><img src="https://cdn.shopify.com/s/files/1/0730/5135/files/Bisjoux-Image-2_large.jpg?5085400816675551419" alt="Bisjoux Jewellery of New York at LVBT" />
-                <div class="mjbtitle">
-                  <div class="inner">
-                    <h3>Bisjoux<span aria-hidden="true" class="glyph slider-right"></span></h3>
-                  </div>
-                </div>
-              </a>
-            </figure>
-          </div>
-
-          <div class="columns large-3">
-            <figure class="image-text-widget box effect-black-fill">
-              <a href="/collections/ashiana">
-                <img src="https://cdn.shopify.com/s/files/1/0730/5135/files/ajax-loader.gif?11109608897749343053" data-src="https://cdn.shopify.com/s/files/1/0653/1555/files/ashiana-block.jpg?12878094668853684142" alt="Ashiana at LVBT" />
-                <div class="mjbtitle">
-                  <div class="inner">
-                    <h3>Ashiana<span aria-hidden="true" class="glyph slider-right"></span></h3>
-                  </div>
-                </div>
-              </a>
-            </figure>
-          </div>
-
-          <div class="columns large-3">
-            <figure class="image-text-widget box effect-black-fill">
-              <a href="/collections/amadoria">
-                <img src="https://cdn.shopify.com/s/files/1/0730/5135/files/ajax-loader.gif?11109608897749343053" data-src="https://cdn.shopify.com/s/files/1/0653/1555/files/amadoria-at-lvbt_large.jpg?13032052720102941618" alt="Amadoria Jewellery at LVBT" />
-                <div class="mjbtitle">
-                  <div class="inner">
-                    <h3>Amadoria<span aria-hidden="true" class="glyph slider-right"></span></h3>
-                  </div>
-                </div>
-              </a>
-            </figure>
-          </div>
-
-          <div class="columns large-3">
-            <figure class="image-text-widget box effect-black-fill">
-              <a href="/collections/lyla-bo">
-                <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="http://cdn.shopify.com/s/files/1/0653/1555/products/LYLABO-Dakota-Fedora_large.png?v=1437335774" alt="Lyla & Bo at LVBT" />
-                <div class="mjbtitle">
-                  <div class="inner">
-                    <h3>LYLA&amp;BO<span aria-hidden="true" class="glyph slider-right"></span></h3>
-                  </div>
-                </div>
-              </a>
-            </figure>
-          </div>
-
-          <div class="columns large-3">
-            <div class="newsletter-block box">
-              <div class="newsletter-block-content">
-                <h3>Want to stay in the know?<br /><br />Subscribe to get the latest from LVBT to your inbox.</h3>
-              </div>
-              <div class="mjbtitle">
-                <div class="wide-inner">
-                  <h3><a href="/pages/newsletter-sign-up">Subscribe</a><span aria-hidden="true" class="glyph slider-right"></span></h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>{% endif %}
-      </div>{% endif %}{% endfor %}
-    </div>
-
-    <div class="widgets testimonials">
-      <div class="small-promos">
-        <div class="row">
-          <div class="columns large-12 r-r">
-            <h2 class="font-headings clearfix">What our customers say&hellip;</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="columns large-4 review-block">
-            <a href="https://www.trustpilot.com/review/lvbt.co.uk/55e056b30000ff000903413a"><span><strong>Style and elegance without breaking the bank!</strong></span></a>
-            <div class="rating">
-              <div>
-                <span>&#9734;<span>&#9734;<span>&#9734;<span>&#9734;<span>&#9734;</span></span></span></span></span>
-              </div>
-            </div>
-            <div class="review">
-              <blockquote>I can always count on LVBT for great quality pieces that are stylishly on point and really affordable! Keep up the good work!</blockquote>
-              <cite>Shelley</cite>
-            </div>
-          </div>
-          <div class="columns large-4 review-block">
-            <a href="https://www.trustpilot.com/review/lvbt.co.uk/55dad7c60000ff000901dbc3"><span><strong>Excellent product!</strong></span></a>
-            <div class="rating">
-              <div>
-                <span>&#9734;<span>&#9734;<span>&#9734;<span>&#9734;<span>&#9734;</span></span></span></span></span>
-              </div>
-            </div>
-            <div class="review">
-              <blockquote>Excellent quality and value for money, love the LVBT range, definitely recommend this company!</blockquote>
-              <cite>Johnathon</cite>
-            </div>
-          </div>
-          <div class="columns large-4 review-block">
-            <a href="https://www.trustpilot.com/review/lvbt.co.uk/55da15830000ff000901be8e"><span><strong>Perfect</strong></span></a>
-            <div class="rating">
-              <div>
-                <span>&#9734;<span>&#9734;<span>&#9734;<span>&#9734;<span>&#9734;</span></span></span></span></span>
-              </div>
-            </div>
-            <div class="review">
-              <blockquote>Loved the items bought, cutting edge style, lots of compliments, easy to wear - perfect for me and ticked all the boxes.</blockquote>
-              <cite>Jane</cite>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="widgets">
-      <div class="small-promos">
-        <div class="row">
-          <div class="social-columns large-3 social">
-            <div class="instagram-block">
-              <a href="https://instagram.com/lvbt_uk/"><img src="https://cdn.shopify.com/s/files/1/0653/1555/files/instagram.svg?2282507916676215286" alt="LVBT on Instagram" /></a>
-            </div>
-          </div>
-          <div class="social-columns large-3 social">
-            <div class="facebook-block">
-              <a href="https://facebook.com/lovebytaryn/"><img src="https://cdn.shopify.com/s/files/1/0653/1555/files/facebook.svg?2282507916676215286" alt="LVBT on Facebook" /></a>
-            </div>
-          </div>
-          <div class="social-columns large-3 social">
-            <div class="twitter-block">
-              <a href="https://twitter.com/lvbt_uk/"><img src="https://cdn.shopify.com/s/files/1/0653/1555/files/twitter.svg?2282507916676215286" alt="LVBT on Twitter" /></a>
-            </div>
-          </div>
-          <div class="social-columns large-3 social">
-            <div class="pinterest-block">
-              <a href="https://uk.pinterest.com/lovebytaryn/"><img src="https://cdn.shopify.com/s/files/1/0653/1555/files/pinterest.svg?10415044287147164641" alt="LVBT on Pinterest" /></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div
+  </div>
+</div>

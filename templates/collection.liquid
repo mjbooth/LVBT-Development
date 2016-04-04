@@ -2,19 +2,13 @@
 {% assign products_per_page =  products_per_row | to_number | times: settings.collections-rows-per-page %}
 
 {% paginate collection.products by products_per_page %}
-<header class="row">
-  <div class="left columns large-6">
+<header class="row breadcrumbs-nav">
+  <div class="columns">
     {% if settings.collections-breadcrumbs-show and collection.title != 'Winter Sale' %}
     {% include 'snippet-breadcrumbs' %}
     {% endif %}
   </div>
 </header>
-
-<div class="row">
-  <div class="columns">
-    <div class="divider"></div>
-  </div>
-</div>
 
 {% if collection.title == 'Winter Sale' %}
 <div class="full-width large-12">
@@ -29,41 +23,27 @@
 </div>
 {% endif %}
 
-<div class="row left columns large-3">
+<div class="collection-filter columns filter-width">
   {% include 'filter-menu' %}
 </div>
 
-<div class="row large-9" style="float: right;">
-  {% if collection.title == 'Winter Sale' %}
-{% comment %}  
-  <div class="description columns flash-intro">
-    <article>
-      <div style=" -webkit-margin-before: 0.83em;">
-        <h1>Black Friday weekend</h1>
-        <h2>15% off using code: blackfriday15</h2>
-      </div>
-    </article>
-  </div>
-{% endcomment %}
-  {% elsif collection.description.size > 0 %}
+<div class="row large-9 right">
   <div class="description columns intro">
-    <article class="" style="float: left;">
-      <div style="float: left;" class="large-3">
-        {{ collection.image.src | collection_img_url: 'large' | img_tag: page_title }}
+    <article>
+      <div id="feature" class="large-3 right">
+         {% if collection.image.src %}{{ collection.image.src | collection_img_url: 'large' | img_tag: page_title }}{% endif %}
       </div>
-      <div class="collection-intro">
-        {% if collection.title == 'LYLA&BO' or collection.title == 'SUPA SUNDAYS' or collection.title == 'Miss Lesley' or collection.title == 'Ashiana' or collection.title == 'LVBT' or collection.title == 'Amadoria' or collection.title == 'Posh'  or collection.title == 'MYA BAY' or collection.title == 'Bisjoux' or collection.title == 'Leone' or collection.title == 'Monte Jewellery' or collection.title == 'Jackson and Hyde' %}
-        <div class="flags">
-          <h1>{{ collection.title}}</h1>
-          {% include 'snippet-world-flag' %}
-        </div>
-        {% else %}
-          <h1>{{ collection.title}}</h1>
-        {% endif %}
-        {{ collection.description }}
+      <div class="tight-title">
+        <h1>{{ collection.title}}</h1>
+      </div>
+      {% if collection.metafields.origin.location %}
+      <div class="flags">
+        <img class="flags-icon" src="{{ collection.metafields.flags.country }}">{{ collection.metafields.origin.location }}
+      </div>
+      {% endif %}
+      {{ collection.description }}
     </article>
   </div>
-  {% endif %}
 
   {% if shop.products_count == 0 %}
 
@@ -71,7 +51,7 @@
 
   {% else %}
   <section class="row">
-    <div class="right columns large-12">
+    <div class="columns collection-bloc">
       <div class="product-grid clearfix">
         {% for product in collection.products %}
         {% include 'snippet-product-item' with products_per_row %}
@@ -80,7 +60,6 @@
     </div>
   </section>
   {% endif %}
-
 </div>
 
 <div class="row">
