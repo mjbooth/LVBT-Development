@@ -7820,7 +7820,7 @@ ABOUT US
 
 .about--mobile {
     display: block;
-    height: 460px;
+    height: 180px;
     position: relative;
     margin-top: 50px;
 }
@@ -7829,6 +7829,8 @@ ABOUT US
     position: absolute;
     top: 0;
     margin: 2%;
+    color: #fff;
+    letter-spacing: -1px;
 }
 
 .about-body {
@@ -7877,8 +7879,6 @@ ABOUT US
         margin: 5% 0;
         height: auto;
         background-color: transparent;
-        color: #fff;
-        letter-spacing: -1px;
     }
 
     .about-body {
