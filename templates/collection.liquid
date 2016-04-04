@@ -28,11 +28,10 @@
 </div>
 
 <div class="row large-9 right">
-  {% if collection.description.size > 0 %}
   <div class="description columns intro">
     <article>
       <div id="feature" class="large-3 right">
-         {{ collection.image.src | collection_img_url: 'large' | img_tag: page_title }}
+         {% if collection.image.src %}{{ collection.image.src | collection_img_url: 'large' | img_tag: page_title }}{% endif %}
       </div>
       <div class="tight-title">
         <h1>{{ collection.title}}</h1>
@@ -44,7 +43,6 @@
       {% endif %}
       {{ collection.description }}
     </article>
-  {% endif %}
   </div>
 
   {% if shop.products_count == 0 %}
