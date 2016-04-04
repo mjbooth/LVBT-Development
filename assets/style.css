@@ -7823,10 +7823,6 @@ ABOUT US
     height: 180px;
     position: relative;
     margin-top: 50px;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 
 .about-content-area {
