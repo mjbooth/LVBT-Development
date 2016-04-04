@@ -1,12 +1,8 @@
 {% paginate collections by 100 %}
 
 <header class="row">
-  <div class="left columns large-6">
-    {% if snippet-collection-listing == '' or template == 'list-collections' %}
-      <h1 class="page-title">Our brands</h1>
-    {% else %}
-      <h1 class="page-title">{{ linklists[snippet-collection-listing].title }}</h1>
-    {% endif %}
+  <div class="left">
+      <h1>Our brands</h1>
   </div>
 </header>
 
@@ -22,12 +18,6 @@
       {% endunless %}
     {% endfor %}
   </div>
-  {% if count == 0 %}
-    <div class="add-first-collection" class="clearfix">
-        <p>There are no collections in your store besides your Frontpage collection.</p>
-        <a class="button" href="/admin/collections">Create a collection</a>
-    </div><!-- #add-first-collection-->
-  {% endif %}
 </div>
 
 {% if paginate.pages > 1 %}

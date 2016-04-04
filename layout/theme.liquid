@@ -16,7 +16,6 @@
   {{ 'reset.css' | asset_url | stylesheet_tag }}
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-
   {% include 'snippet-page-title' %}
   {% include 'snippet-page-description' %}
   {% include 'snippet-fb-open-graph-tags' %}
@@ -61,11 +60,7 @@
   <script src="{{ 'trunk.js' | asset_url }}" async></script>
   <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
 
-  {% if page.title contains 'scroller' %}
-  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="{{ 'spritespin.min.js' | asset_url }}"></script>
-  {% endif %}
-  
+
   {% if template contains 'customers' %}
   {{ 'customer.css' | asset_url | stylesheet_tag }}
   {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
@@ -78,16 +73,13 @@
   general_scroll_to_active_item = {{ settings.general-scroll-to-active-item }},
   shop_url = '{{ shop.url }}',
   shop_money_format = '{{ shop.money_format | strip_html | replace: "'", '"' | strip }}',
-  home_slider_auto_enabled = {{ settings.home-slider-auto-enabled }},
-  home_slider_rotate_frequency = {{ settings.home-slider-rotate-frequency }},
-  home_widget_twitter_enabled = {{ settings.home-widget-twitter }},
-  home_widget_blog_enabled = {{ settings.home-widget-blog }},
   product_zoom_enabled = {{ settings.product-zoom-enabled }},
   product_modal_enabled = {{ settings.product-modal-enabled }};
   </script>
 
   {% include 'snippet-twitter-card' %}
   {% include 'snippet-hotjar' %}
+
 </head>
 
 <body class="page-{{ page_title | handle }} {% if customer %}customer-logged-in {% endif %}template-{{ template | split: '.' | first | remove: '/' | remove: '_' }}{% if template == 'index' and settings.home-transparent-menu %} transparent-menu{% endif %}">
@@ -95,7 +87,7 @@
   <div class="container">
     <div id="mobile" class="header slide">
       <div class="logo">
-        <img src="https://cdn.shopify.com/s/files/1/0730/5135/files/lvbt-03.svg?4821368000818331262"> 
+        <a href="/"><img src="https://cdn.shopify.com/s/files/1/0730/5135/files/lvbt-03.svg?4821368000818331262"></a>
       </div>
       <ul id="navToggle" class="burger slide">
         <li></li><li></li><li></li>
@@ -167,13 +159,13 @@
         <div class="row bottom">
           <div class="column-1 large-3 columns">
             <h4 class="title">{{ settings.footer-block-1-title }}</h4>
-            <div class="content">
+            <div class="main-footer-content">
               <p class="text">{{ settings.footer-block-1-text | newline_to_br }}</p>
             </div>
           </div>
           <div class="column-2 large-3 columns">
             <h4 class="title">{{ settings.footer-block-2-title }}</h4>
-            <div class="content">
+            <div class="main-footer-content">
               {% assign footer_nav = 'footer' %}
               {% if linklists[settings.footer-block-2-linklist].links.size > 0 %}
               {% assign footer_nav = settings.footer-block-2-linklist %}
@@ -187,7 +179,7 @@
           </div>
           <div class="column-2 large-3 columns">
             <h4 class="title">What's in store</h4>
-            <div class="content">
+            <div class="main-footer-content">
               <ul class="footer-nav plain-list" role="navigation">
                 <li><a href="/collections/bags">Bags</a></li>
                 <li><a href="/collections/bracelets-bangles">Bracelets &amp; Bangles</a></li>
@@ -205,7 +197,7 @@
             <h4 class="title">{{ settings.footer-mailing-list-title }}</h4>
             {% endif %}
 
-            <div class="content" id="mailing-list-module">
+            <div class="main-footer-content" id="mailing-list-module">
               {% if settings.footer-mailing-list-tag-line.size > 0 %}
               <p>{{ settings.footer-mailing-list-tag-line }}</p>
               {% endif %}
@@ -326,4 +318,4 @@
   </script>
 
 </body>
-</html
+</html>

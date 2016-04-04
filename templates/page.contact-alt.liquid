@@ -19,18 +19,14 @@
 
       {% if form.posted_successfully? %}
       <div class="success feedback accent-text">
-        <p>Thank you for entering our competition. Winners will be announced once the competition has closed. <a href="/">Full terms and conditions are avaliable here</a>.</p>
-        <br />
-        <h2>Discover the latest from LVBT</h2>
-        <a href="/collections/all"><h3>Start shopping now<span aria-hidden="true" class="glyph slider-right"></span></h3></a>
-        <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://cdn.shopify.com/s/files/1/0730/5135/files/ashian-homepage.jpg" alt="Ashiana at LVBT" />
+        <p>Thank you for getting in touch. We will be in contact with you as soon as one of the team have had a chance to review your message.</p>
       </div>
 
       {% endif %}
 
       {% if form.errors %}
       <div class="error feedback accent-text">
-        <p>Oops, sorry. We were unable to submit your competition entry because it contained {{ form.errors | size | pluralize: 'an error', 'a few errors' }}. Please correct the following and try again:</p>
+        <p>Oops, sorry. We've not been able to submit your message because it contained {{ form.errors | size | pluralize: 'an error', 'a few errors' }}. Please correct the following and try again:</p>
         {% for field in form.errors %}
           <p>The {{ field | capitalize | replace: 'Body', 'Message' }} field {{ form.errors.messages[field] }}.</p>
         {% endfor %}
@@ -39,7 +35,7 @@
       
       {% unless form.posted_successfully? %}
 
-      <h3>Enter our summer accessories competition</h3>
+      <h3>LVBT Contact Form</h3>
 
       <p>
         <label>Your Name:</label>
@@ -53,15 +49,13 @@
         <label>Postcode:</label>
         <input required="required" type="text" id="contactFormPostcode" name="contact[postcode]" placeholder="Your postcode" class="styled-input{% if form.errors contains 'email' %} error{% endif %}" value="{{ contact.fields.email }}" />
       </p>
-      <div class="captcha">
-          How much is: <input type="text" readonly="readonly" id="question"/>
-          Answer:* <input type="text" id="answer" class="styled-input{% if form.errors contains 'sum' %} error{% endif %}"/>
-      </div>
       <p>
-        <input class="button styled-submit" style="margin-top: 12px;" type="submit" id="contactFormSubmit" value="ENTER" />
+        <label>Message</label>
+        <textarea required rows="10" id="contactFormMessage" name="contact[body]"></textarea>
       </p>
-
-      <p><a href="http://mb-test-2.myshopify.com/pages/summer-accessories-terms-and-conditions">Competition Terms &amp; Conditions</a></p>
+      <p>
+        <input class="button styled-submit" style="margin-top: 12px;" type="submit" id="contactFormSubmit" value="SUBMIT" />
+      </p>
       
       {% endunless %}
     
@@ -74,4 +68,4 @@
     {% endform %}
 
   </div>
-</div>  
+</div> 
