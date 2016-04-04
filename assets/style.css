@@ -5143,7 +5143,7 @@ body {
 }
 
 @media only screen and (min-width: 768px) {
-    .product-grid .product-item:nth-child(3n+1), .product-grid .related-product-item:nth-child(3n+1) {
+    .product-grid .product-item:nth-child(3n+1) {
         clear: both;
     }
 }
@@ -7490,6 +7490,17 @@ Collection Filters
         padding: 30px 0 0 1em;
 
     }
+}
+
+@media only screen and (min-width: 768px) {
+    .filter-width {
+        width: 24%;
+    }
+}
+
+.lt-ie9 .filter-width,
+.lt-ie9 .row .filter-width {
+    width: 24%;
 }
 
 .filter-group .has_selected .active {
