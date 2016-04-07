@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" type="image/png" href="{{ 'favicon.png' | asset_url }}" />
 
@@ -19,7 +19,6 @@
   {% include 'snippet-page-title' %}
   {% include 'snippet-page-description' %}
   {% include 'snippet-fb-open-graph-tags' %}
-  {% include 'snippet-fb-retarget' %}
   {% include 'snippet-webfont' %}
   {% include 'sofa-script' %}
 
@@ -76,6 +75,22 @@
   product_zoom_enabled = {{ settings.product-zoom-enabled }},
   product_modal_enabled = {{ settings.product-modal-enabled }};
   </script>
+
+  <script>(function() {
+    var _fbq = window._fbq || (window._fbq = []);
+    if (!_fbq.loaded) {
+      var fbds = document.createElement('script');
+      fbds.async = true;
+      fbds.src = '//connect.facebook.net/en_US/fbds.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(fbds, s);
+      _fbq.loaded = true;
+    }
+    _fbq.push(['addPixelId', '1412080395756365']);
+  })();
+  window._fbq = window._fbq || [];
+  window._fbq.push(['track', 'PixelInitialized', {}]);
+  </script>  
 
   {% include 'snippet-twitter-card' %}
   {% include 'snippet-hotjar' %}
@@ -289,9 +304,6 @@
   {% include 'snippet-currencies' %}
   {% endif %}
 
-  {% comment %} Beetailer Facebook store and social widget plugins code below {% endcomment %}
-  {% include 'beetailer' %}
-
   <script>
   function init() {
   var imgDefer = document.getElementsByTagName('img');
@@ -316,6 +328,8 @@
     ]
   }
   </script>
+
+  <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=1412080395756365&amp;ev=PixelInitialized" /></noscript>
 
 </body>
 </html
