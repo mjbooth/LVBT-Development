@@ -6012,12 +6012,12 @@ body {
     color: #000000;
 }
 
-figure.hp-black img {
+.hp-black img {
     opacity: 1.0;
     -webkit-backface-visibility: hidden;
 }
 
-figure.hp-black:hover img {
+.hp-black:hover img {
     opacity: 0.3;
     -webkit-transition: all .6s;
     -moz-transition: all .6s;
@@ -6052,12 +6052,12 @@ figure.hp-black:hover img {
     color: #ffffff;
 }
 
-figure.hp-white img {
+.hp-white img {
     opacity: 1.0;
     -webkit-backface-visibility: hidden;
 }
 
-figure.hp-white:hover img {
+.hp-white:hover img {
     opacity: 0.6;
     -webkit-transition: all .25s;
     -moz-transition: all .25s;
