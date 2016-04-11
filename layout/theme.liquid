@@ -134,11 +134,12 @@
             </div>
           </div>
           <div class="row top">
-            <div class="columns{% if settings.header-logo-center %} logo-center{% endif %}">
-              {% include 'snippet-store-title' %}
+            <div class="columns logo-center">
+              <div class="title clearfix text-center">
+                <a href="/" title="{{ shop.name }}"><img src="https://cdn.shopify.com/s/files/1/0653/1555/files/lvbt-logo.svg" alt="{{ shop.name }}" ></a>
+              </div>
             </div>
-            <div class="search-account">
-            </div>
+            <div class="search-account"></div>
           </div>
         </div>
 
