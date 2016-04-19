@@ -20,7 +20,7 @@ ga('send', {
 </header>
 
 <article class="row" itemscope itemtype="https://schema.org/Product">
-  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
+  <meta itemprop="url" content="{{ shop.secure_url }}{{ product.url }}" />
   <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}" />
 
   <div class="positions active hide-for-js">

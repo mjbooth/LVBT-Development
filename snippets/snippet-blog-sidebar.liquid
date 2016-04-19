@@ -15,7 +15,7 @@
     {% if blog.all_tags.size > 0 %}
     <h3 class="title">Tags</h3>
     <ul>
-      <li class="item{% unless current_tags %} active{% endunless %}"><a href="{{ shop.url}}/blogs/{{ blog.handle }}">All</a></li>
+      <li class="item{% unless current_tags %} active{% endunless %}"><a href="{{ shop.secure_url}}/blogs/{{ blog.handle }}">All</a></li>
       {% for tag in blog.all_tags %}
       {% if current_tags contains tag %}
       <li class="item active">{{ tag | link_to_remove_tag: tag }}</li>

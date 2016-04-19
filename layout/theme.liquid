@@ -27,9 +27,9 @@
   {% endif %}
 
   {% if template == 'product' %}
-    <link rel="canonical" href="{{ shop.url }}{{ product.url }}" />
+    <link rel="canonical" href="{{ shop.secure_url }}{{ product.url }}" />
   {% elsif template == 'collection' %}
-    <link rel="canonical" href="{{ shop.url }}{{ collection.url }}" />
+    <link rel="canonical" href="{{ shop.secure_url }}{{ collection.url }}" />
   {% else %}
     <link rel="canonical" href="{{ canonical_url }}" />
   {% endif %}
@@ -70,7 +70,7 @@
   var twitterID = '{{ settings.twitter_username }}',
   general_external_links_enabled = {{ settings.general-external-links-enabled }},
   general_scroll_to_active_item = {{ settings.general-scroll-to-active-item }},
-  shop_url = '{{ shop.url }}',
+  shop_url = '{{ shop.secure_url }}',
   shop_money_format = '{{ shop.money_format | strip_html | replace: "'", '"' | strip }}',
   product_zoom_enabled = {{ settings.product-zoom-enabled }},
   product_modal_enabled = {{ settings.product-modal-enabled }};
