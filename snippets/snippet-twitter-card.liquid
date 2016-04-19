@@ -5,7 +5,7 @@
 	<meta name="twitter:domain" content="lvbt.co.uk">
 	<meta name="twitter:title" content="{{ product.title | escape }}">
 	<meta name="twitter:description" content="{{ product.description | strip_html | strip_newlines | truncatewords: 60, '' | escape }}" />
-	<meta name="twitter:image" content="{{ product.featured_image.src | product_img_url: 'large' }}" />
+	<meta name="twitter:image" content="https:{{ product.featured_image.src | product_img_url: 'large' }}" />
 	<meta name="twitter:label1" content="Price" />
 	<meta name="twitter:data1" content="{% if product.price_varies %}From {% endif %}{{ product.price | money_with_currency | strip_html }}" />
 	{% if product.available == false %}
