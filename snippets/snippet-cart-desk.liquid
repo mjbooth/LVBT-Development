@@ -1,0 +1,36 @@
+<div class="cart">
+    <div class="show-for-medium-up">
+        <div class="recently-added">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td colspan="3">Recently Added</td>
+                    </tr>
+                </thead>
+
+                <tbody>             
+
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td class="items-count"><a href="/cart"><span class="number">{{ cart.item_count }}</span> Items</a></td>
+                        <td colspan="2" class="text-right"><strong>TOTAL <span class="total-price" style="margin-left:5px;">{{ cart.total_price | money }}</span></strong></td>
+                    </tr>
+                </tfoot>
+
+            </table>
+
+            <div class="row"> 
+                <div class="checkout columns">
+                    <a class="button" href="/cart">Go to Checkout</a>
+                </div><!-- #cart-meta -->
+            </div>
+
+            <div class="error">
+                <p>The item you just added is unavailable. Please select another product or variant.</p>
+            </div>
+
+        </div>
+    </div>
+</div>

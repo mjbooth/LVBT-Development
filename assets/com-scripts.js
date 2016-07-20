@@ -1,3 +1,5 @@
+// MB 201607018
+
 var libFuncName = null;
 if ("undefined" == typeof jQuery && "undefined" == typeof Zepto && "function" == typeof $) libFuncName = $;
 else if ("function" == typeof jQuery) libFuncName = jQuery;
@@ -1637,22 +1639,24 @@ function() {
 }), e(".cart-form").submit(function() {
   return a(e(this)), !1
 }), e(".recently-added.mobile .close").on("click", function() {
-  return u()
+  return uu()
 }), e(".recently-added-mask").on("click", function() {
-  return u()
-}), c = "", F = function() {
-  return e(".main-header .recently-added").slideToggle("fast")
+  return uu()
+}), c = "", F = function() { 
+  return e(".recently-added").slideToggle("fast")
 }, W = function() {
-  return e(".main-header .recently-added").slideDown("fast"), e("html, body").animate({
+  return e(".recently-added").slideDown("fast"), e("html, body").animate({
     scrollTop: 0
-  })
+  }), e(".recently-added-mask").removeClass("hide")
 }, x = function() {
-  return e(".main-header .recently-added.mobile").fadeIn(), e(".main-header .recently-added-mask").removeClass("hide")
+  return e(".recently-added").fadeIn(), e(".recently-added-mask").removeClass("hide")
 }, u = function() {
-  return clearTimeout(c), e(".main-header .recently-added").fadeOut("fast"), e(".main-header .recently-added-mask").addClass("hide")
-}, e(".main-header .recently-added").mouseenter(function() {
-  return O()
-}), e(".main-header .recently-added").mouseleave(function() {
+ // return clearTimeout(c), e(".recently-added").fadeOut("fast"), e(".recently-added-mask").addClass("hide")
+}, uu = function() {
+  return clearTimeout(c), e(".recently-added").fadeOut("fast"), e(".recently-added-mask").addClass("hide")
+},e(".recently-added").mouseenter(function() {
+  return O()  
+}), e(".recently-added").mouseleave(function() {
   return M()
 }), M = function() {
   return c = setTimeout(function() {
@@ -1683,7 +1687,7 @@ function() {
   return t = {}, i = {}, n = e(".actual-price").html(), n = e.trim(n.slice(0, n.search(/\d/))), Shopify.money_format = n + " {{amount}}", e.getJSON("/cart.js", function(n, o) {
     var s, a, r, l, c, d, u;
     for (t.image_url = Shopify.resizeImage(n.items[0].image, "small"), t.url = n.items[0].url, t.title = n.items[0].title, t.price_raw = n.items[0].price, t.price = Shopify.formatMoney(t.price_raw, Shopify.money_with_currency_format), s = 100 * parseInt(e(".recently-added .raw-total").html()), i.quantity = 0, i.price = 0, u = n.items, c = 0, d = u.length; d > c; c++) a = u[c], i.quantity += a.quantity, i.price += a.price * a.quantity;
-      return e(".cart-link .number").html(i.quantity), e(".cart-link .number-wrapper").removeClass("hide"), e(".recently-added .items-count .number").html(i.quantity), e(".recently-added .total-price").html(Shopify.formatMoney(i.price, Shopify.money_format)), r = "<tr>", r += '<td class="cart-item">', r += '<a href="' + t.url + '">', r += '<img src="' + t.image_url + '" alt="' + t.title + '">', r += "</a>", r += "</td>", r += '<td class="cart-detail">', r += '<h2><a href="' + t.url + '">' + t.title + "</a></h2>", r += "</td>", r += '<td class="cart-price">' + t.price + "</td>", r += "</tr>", l = '<a href="' + t.url + '">', l += '<img src="' + t.image_url + '" alt="' + t.title + '">', l += "</a>", e(".recently-added tbody").html(r), e(".recently-added .mobile-item").html(l), e(".recently-added .error").hide(), e(".recently-added table").show(), e(".recently-added div.row").show(), e(".main-header") ? W() : x(), M()
+      return e(".cart-link .number").html(i.quantity), e(".cart-link .number-wrapper").removeClass("hide"), e(".recently-added .items-count .number").html(i.quantity), e(".recently-added .total-price").html(Shopify.formatMoney(i.price, Shopify.money_format)), r = "<tr>", r += '<td class="cart-item">', r += '<a href="' + t.url + '">', r += '<img src="' + t.image_url + '" alt="' + t.title + '">', r += "</a>", r += "</td>", r += '<td class="cart-detail">', r += '<h2><a href="' + t.url + '">' + t.title + "</a></h2>", r += "</td>", r += '<td class="cart-price">' + t.price + "</td>", r += "</tr>", l = '<a href="' + t.url + '">', l += '<img src="' + t.image_url + '" alt="' + t.title + '">', l += "</a>", e(".recently-added tbody").html(r), e(".recently-added .mobile-item").html(l), e(".recently-added .error").hide(), e(".recently-added table").show(), e(".recently-added div.row").show(), e(".cart") ? W() : x(), M()
   })
 }, Modernizr.touch === !1 && e(".product-grid .product-item").mouseenter(function() {
   return e(this).find(".image-wrapper").animate({
@@ -1835,10 +1839,8 @@ var text_max = 140;
 $('#cart-notes-area_feedback').html(text_max + ' characters remaining');
 
 $('#cart-notes-area').keyup(function() {
-    var text_length = $('#cart-notes-area').val().length;
-    var text_remaining = text_max - text_length;
+  var text_length = $('#cart-notes-area').val().length;
+  var text_remaining = text_max - text_length;
 
-    $('#cart-notes-area_feedback').html(text_remaining + ' characters remaining');
+  $('#cart-notes-area_feedback').html(text_remaining + ' characters remaining');
 });
-
-// MJB 14 December 2015 - v3
