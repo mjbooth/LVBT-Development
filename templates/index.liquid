@@ -33,7 +33,7 @@
 
         {% if settings.brand-block-image-text-1 %}  
         <div class="columns {% if settings.brand-block-image-style-1 == 'brands__image--wide' %}hlf{% else %}qrt{% endif %} single-brand grid-item">
-          <a href="/collections/posh">
+          <a href="{{ settings.brand-block-image-text-1-link }}">
             <div class="{{ settings.brand-block-image-style-1 }} hp-black">
               <img src="{{ 'brand-block-image-text-1.jpg' | asset_url }}" alt="{{ settings.brand-block-image-text-1-alt }}" />
               <div class="lvbt-title">{{ settings.brand-block-image-text-1-title }}<i class="fa fa-angle-right"></i></div>
